@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% set is_french = (page and page.lang == 'fr') %}
+
+<section class="page-header">
+    <div class="container">
+        <h1>{{ page.title }}</h1>
+    </div>
+</section>
+
+<section class="page-content">
+    <div class="container">
+        <article class="content">
+            {{ page.content }}
+        </article>
+        
+        <div class="campaigns-grid">
+            <div class="campaign-country">
+                <h3>
+                    <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/campaigns/senegal/">
+                        {% if is_french %}Sénégal{% else %}Senegal{% endif %}
+                    </a>
+                </h3>
+                <p>14 medical regions - 3 active campaigns</p>
+            </div>
+            
+            <div class="campaign-country">
+                <h3>Mozambique</h3>
+                <p>{% if is_french %}Bientôt disponible{% else %}Coming soon{% endif %}</p>
+            </div>
+            
+            <div class="campaign-country">
+                <h3>Nigeria</h3>
+                <p>{% if is_french %}Planifié 2026{% else %}Planned 2026{% endif %}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

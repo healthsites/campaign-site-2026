@@ -1,0 +1,17 @@
+{% macro typed_sentence(element_id, strings, loop=true, type_speed=80) %}
+<div id="{{ element_id }}"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const element = document.getElementById('{{ element_id }}');
+        if (element) {
+            ityped.init(element, {
+                strings: {{ strings|tojson }},
+            typeSpeed: {{ type_speed }},
+            loop: {{ loop|lower }},
+            backSpeed: 40,
+                backDelay: 2000
+        });
+        }
+    });
+</script>
+{% endmacro %}

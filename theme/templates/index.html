@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Detect language from page.lang -->
+{% set is_french = (page and page.lang == 'fr') %}
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            {% if is_french %}
+            <h1 class="hero-title">Cartographier les Établissements de Santé pour un Meilleur Accès aux Soins</h1>
+            {% else %}
+            <h1 class="hero-title">Mapping Health Facilities for Better Healthcare Access</h1>
+            {% endif %}
+
+            <p class="hero-subtitle">
+                <span id="typed-subtitle"></span>
+            </p>
+
+            <div class="hero-buttons">
+                {% if is_french %}
+                <a href="#comment-ca-marche" class="btn btn-primary">En savoir plus</a>
+                <a href="{{ SITEURL }}/fr/about.html" class="btn btn-secondary">À propos</a>
+                {% else %}
+                <a href="#how-it-works" class="btn btn-primary">Learn More</a>
+                <a href="{{ SITEURL }}/about.html" class="btn btn-secondary">About Us</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="{{ SITEURL }}/theme/images/1-Map-of-Republic-of-Senegal-and-its-regions.png" alt="Health facility mapping">
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works" id="{% if is_french %}comment-ca-marche{% else %}how-it-works{% endif %}">
+    <div class="container">
+        <h2 class="section-title">
+            {% if is_french %}Comment Nous Travaillons{% else %}How We Work{% endif %}
+        </h2>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon">
+                    <svg width="80" height="80" viewBox="0 0 80 80">
+                        <circle cx="40" cy="40" r="35" fill="#f44a52" opacity="0.2"/>
+                        <text x="40" y="50" font-family="Arial" font-size="32" fill="#f44a52" text-anchor="middle" font-weight="bold">1</text>
+                    </svg>
+                </div>
+                <h3>{% if is_french %}Collecte de Données{% else %}Data Collection{% endif %}</h3>
+                <p>
+                    {% if is_french %}
+                    Collecter des données sur les établissements de santé auprès des gouvernements, des ONG et des sources communautaires.
+                    {% else %}
+                    Collect health facility data from governments, NGOs, and community sources.
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">
+                    <svg width="80" height="80" viewBox="0 0 80 80">
+                        <circle cx="40" cy="40" r="35" fill="#f44a52" opacity="0.2"/>
+                        <text x="40" y="50" font-family="Arial" font-size="32" fill="#f44a52" text-anchor="middle" font-weight="bold">2</text>
+                    </svg>
+                </div>
+                <h3>{% if is_french %}Validation{% else %}Validation{% endif %}</h3>
+                <p>
+                    {% if is_french %}
+                    Vérifier et valider les emplacements, les services et l'état opérationnel des établissements.
+                    {% else %}
+                    Verify and validate facility locations, services, and operational status.
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">
+                    <svg width="80" height="80" viewBox="0 0 80 80">
+                        <circle cx="40" cy="40" r="35" fill="#f44a52" opacity="0.2"/>
+                        <text x="40" y="50" font-family="Arial" font-size="32" fill="#f44a52" text-anchor="middle" font-weight="bold">3</text>
+                    </svg>
+                </div>
+                <h3>{% if is_french %}Accès Ouvert{% else %}Open Access{% endif %}</h3>
+                <p>
+                    {% if is_french %}
+                    Publier les données validées sur OpenStreetMap pour un usage humanitaire mondial.
+                    {% else %}
+                    Publish validated data to OpenStreetMap for global humanitarian use.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Participation Section -->
+<section class="participation">
+    <div class="container">
+        <h2 class="section-title">
+            {% if is_french %}Participez{% else %}Get Involved{% endif %}
+        </h2>
+
+        <div class="cards">
+            <div class="card">
+                <div class="card-image">
+                    <svg width="100%" height="200" viewBox="0 0 400 200">
+                        <rect width="400" height="200" fill="#e8f4f8"/>
+                        <circle cx="200" cy="100" r="40" fill="#f44a52"/>
+                        <text x="200" y="110" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">MAP</text>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h3>{% if is_french %}Commencer à Cartographier{% else %}Start Mapping{% endif %}</h3>
+                    <p>
+                        {% if is_french %}
+                        Rejoignez notre communauté et aidez à cartographier les établissements de santé.
+                        {% else %}
+                        Join our community and help map health facilities in your region.
+                        {% endif %}
+                    </p>
+                    <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/about.html" class="card-link">
+                        {% if is_french %}En savoir plus →{% else %}Learn More →{% endif %}
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <svg width="100%" height="200" viewBox="0 0 400 200">
+                        <rect width="400" height="200" fill="#f9f4e8"/>
+                        <circle cx="200" cy="100" r="40" fill="#f44a52"/>
+                        <text x="200" y="110" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">DATA</text>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h3>{% if is_french %}Partager des Données{% else %}Share Data{% endif %}</h3>
+                    <p>
+                        {% if is_french %}
+                        Contribuez des données sur les établissements de santé.
+                        {% else %}
+                        Contribute health facility data from your organization.
+                        {% endif %}
+                    </p>
+                    <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/about.html" class="card-link">
+                        {% if is_french %}Partager →{% else %}Share Data →{% endif %}
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <svg width="100%" height="200" viewBox="0 0 400 200">
+                        <rect width="400" height="200" fill="#e8f8f0"/>
+                        <circle cx="200" cy="100" r="40" fill="#f44a52"/>
+                        <text x="200" y="110" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">API</text>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h3>{% if is_french %}Utiliser Notre API{% else %}Use Our API{% endif %}</h3>
+                    <p>
+                        {% if is_french %}
+                        Accédez aux données via notre API ouverte.
+                        {% else %}
+                        Access health facility data through our open API.
+                        {% endif %}
+                    </p>
+                    <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/about.html" class="card-link">
+                        {% if is_french %}Documentation →{% else %}API Docs →{% endif %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat">
+                <i class="fa fa-hospital-o stat-icon"></i>
+                <div class="stat-number">150K+</div>
+                <div class="stat-label">
+                    {% if is_french %}Établissements de Santé{% else %}Health Facilities{% endif %}
+                </div>
+            </div>
+
+            <div class="stat">
+                <i class="fa fa-globe stat-icon"></i>
+                <div class="stat-number">150+</div>
+                <div class="stat-label">
+                    {% if is_french %}Pays{% else %}Countries{% endif %}
+                </div>
+            </div>
+
+            <div class="stat">
+                <i class="fa fa-users stat-icon"></i>
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">
+                    {% if is_french %}Contributeurs{% else %}Contributors{% endif %}
+                </div>
+            </div>
+
+            <div class="stat">
+                <i class="fa fa-code stat-icon"></i>
+                <div class="stat-number">Open</div>
+                <div class="stat-label">
+                    {% if is_french %}Source{% else %}Source{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners Section -->
+<section class="partners">
+    <div class="container">
+        <h2 class="section-title">
+            {% if is_french %}Nos Partenaires{% else %}Our Partners{% endif %}
+        </h2>
+        <p class="section-subtitle">
+            {% if is_french %}
+            healthsites.io est rendu possible grâce aux organisations suivantes
+            {% else %}
+            healthsites.io is made possible by the following organizations
+            {% endif %}
+        </p>
+
+        <div class="partners-grid">
+            <div class="partner"><p>Missing Maps</p></div>
+            <div class="partner"><p>HOT OSM</p></div>
+            <div class="partner"><p>WHO</p></div>
+            <div class="partner"><p>UNICEF</p></div>
+        </div>
+
+        <div class="osm-section">
+            <i class="fa fa-map-o osm-icon"></i>
+            <h3>OpenStreetMap</h3>
+            <p>
+                {% if is_french %}
+                OpenStreetMap est la plateforme de cartographie open data qui rend tout cela possible.
+                {% else %}
+                OpenStreetMap is the volunteer-driven open data mapping platform which makes much of this possible.
+                {% endif %}
+            </p>
+            <a href="https://www.openstreetmap.org" target="_blank" rel="noopener" class="btn btn-secondary">OpenStreetMap</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
