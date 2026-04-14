@@ -62,8 +62,13 @@ ARTICLE_SAVE_AS = ''
 ARTICLE_URL = ''
 
 # Pages
-PAGE_SAVE_AS = '{slug}.html'
-PAGE_URL = '{slug}.html'
+PAGE_URL = '{slug}/'
+PAGE_SAVE_AS = '{slug}/index.html'
+
+PAGE_PATHS = ['campaigns', 'pages']
+ARTICLE_PATHS = []
+DEFAULT_DATE = 'fs'
+
 
 # Direct templates
 DIRECT_TEMPLATES = []
@@ -78,3 +83,4 @@ AUTHOR_FEED_RSS = None
 # Pagination
 DEFAULT_PAGINATION = False
 RELATIVE_URLS = True
+

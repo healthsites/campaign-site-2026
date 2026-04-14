@@ -1,6 +1,33 @@
-node_modules/
+# Pelican
 output/
-venv/
+cache/
+*.pid
 __pycache__/
 *.pyc
-.cache/
+
+# Python
+venv/
+*.egg-info/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Plugins (if using git submodule)
+pelican-plugins/
+
+# Build artifacts
+*.log
+
+# Backups
+*.backup
+*-backup-*/
+
+.obsidian
+
