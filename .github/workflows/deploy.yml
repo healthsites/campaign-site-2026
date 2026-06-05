@@ -38,6 +38,8 @@ jobs:
 
       - name: Build the site (production settings)
         run: pelican content -s publishconf.py -o output
+        env:
+          PYTHONPATH: ${{ github.workspace }}
 
       - name: Add custom domain and disable Jekyll
         run: |
