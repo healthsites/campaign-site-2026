@@ -1,251 +1,278 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Detect language from page.lang -->
-{% set is_french = (page and page.lang == 'fr') %}
+{% set is_fr = (page and page.lang == 'fr') or DEFAULT_LANG == 'fr' %}
+{% set is_pt = (page and page.lang == 'pt') or DEFAULT_LANG == 'pt' %}
+{% set is_ar = (page and page.lang == 'ar') or DEFAULT_LANG == 'ar' %}
+{% set lang_prefix = '/fr' if is_fr else '/pt' if is_pt else '/ar' if is_ar else '' %}
 
 <!-- Hero Section -->
 <section class="hero">
     <div class="container">
         <div class="hero-content">
-            {% if is_french %}
-            <h1 class="hero-title">Cartographier les Établissements de Santé pour un Meilleur Accès aux Soins</h1>
-            {% else %}
-            <h1 class="hero-title">Mapping Health Facilities for Better Healthcare Access</h1>
+            <span class="hero-eyebrow">The Global Healthsites Mapping Project</span>
+            {% if is_fr %}<h1 class="hero-title">Cartographier les Établissements de Santé pour un Meilleur Accès aux Soins</h1>
+            {% elif is_pt %}<h1 class="hero-title">Mapeando Estabelecimentos de Saúde para Melhor Acesso à Saúde</h1>
+            {% elif is_ar %}<h1 class="hero-title">رسم خرائط المرافق الصحية لتحسين الرعاية الصحية</h1>
+            {% else %}<h1 class="hero-title">Mapping Health Facilities for Better Healthcare Access</h1>
             {% endif %}
 
-            <p class="hero-subtitle">
-                <span id="typed-subtitle"></span>
-            </p>
+            <p class="hero-subtitle"><span id="typed-subtitle"></span></p>
 
             <div class="hero-buttons">
-                {% if is_french %}
-                <a href="#comment-ca-marche" class="btn btn-primary">En savoir plus</a>
-                <a href="{{ SITEURL }}/fr/about.html" class="btn btn-secondary">À propos</a>
+                {% if is_fr %}
+                <a href="/fr/campaigns/" class="btn btn-primary">Découvrir les campagnes</a>
+                <a href="/fr/about/methodology/" class="btn btn-secondary">Lire la méthodologie</a>
+                {% elif is_pt %}
+                <a href="/pt/campaigns/" class="btn btn-primary">Explorar as campanhas</a>
+                <a href="/pt/about/methodology/" class="btn btn-secondary">Ler a metodologia</a>
+                {% elif is_ar %}
+                <a href="/ar/campaigns/" class="btn btn-primary">استكشف الحملات</a>
+                <a href="/ar/about/methodology/" class="btn btn-secondary">اقرأ المنهجية</a>
                 {% else %}
-                <a href="#how-it-works" class="btn btn-primary">Learn More</a>
-                <a href="{{ SITEURL }}/about.html" class="btn btn-secondary">About Us</a>
+                <a href="/campaigns/" class="btn btn-primary">Explore the Campaigns</a>
+                <a href="/about/methodology/" class="btn btn-secondary">Read the Methodology</a>
                 {% endif %}
             </div>
         </div>
-
         <div class="hero-image">
-            <img src="{{ SITEURL }}/theme/images/1-Map-of-Republic-of-Senegal-and-its-regions.png" alt="Health facility mapping">
+            <img src="/theme/images/healthsites-saint-louis-2019.jpg" alt="OpenStreetMap community members validating health facilities in Saint-Louis, Senegal">
         </div>
     </div>
 </section>
 
-<!-- How It Works Section -->
-<section class="how-it-works" id="{% if is_french %}comment-ca-marche{% else %}how-it-works{% endif %}">
+<!-- Proven in the Field -->
+<section class="proof">
     <div class="container">
         <h2 class="section-title">
-            {% if is_french %}Comment Nous Travaillons{% else %}How We Work{% endif %}
+            {% if is_fr %}Une méthode éprouvée sur le terrain{% elif is_pt %}Comprovado no terreno{% elif is_ar %}مُثبت ميدانيًا{% else %}Proven in the Field{% endif %}
         </h2>
-
-        <div class="steps">
-            <div class="step">
-                <div class="step-icon">
-                    <svg width="80" height="80" viewBox="0 0 80 80">
-                        <circle cx="40" cy="40" r="35" fill="#f44a52" opacity="0.2"/>
-                        <text x="40" y="50" font-family="Arial" font-size="32" fill="#f44a52" text-anchor="middle" font-weight="bold">1</text>
-                    </svg>
-                </div>
-                <h3>{% if is_french %}Collecte de Données{% else %}Data Collection{% endif %}</h3>
-                <p>
-                    {% if is_french %}
-                    Collecter des données sur les établissements de santé auprès des gouvernements, des ONG et des sources communautaires.
-                    {% else %}
-                    Collect health facility data from governments, NGOs, and community sources.
-                    {% endif %}
-                </p>
+        <p class="proof-lead">
+            {% if is_fr %}Lancée dans le district sanitaire de Saint-Louis, au Sénégal, pendant la pandémie de COVID-19, une équipe de 12 membres de la communauté OpenStreetMap a validé des établissements de santé en trois mois — des données qui restent librement accessibles sur OpenStreetMap aujourd'hui.
+            {% elif is_pt %}Lançada no distrito médico de Saint-Louis, no Senegal, durante a pandemia de COVID-19, uma equipa de 12 membros da comunidade OpenStreetMap validou estabelecimentos de saúde em três meses — dados que permanecem livremente disponíveis no OpenStreetMap hoje.
+            {% elif is_ar %}أُطلقت في المنطقة الطبية في سان لويس بالسنغال خلال جائحة كوفيد-19، حيث قام فريق من 12 عضوًا من مجتمع OpenStreetMap بالتحقق من المرافق الصحية في ثلاثة أشهر — وهي بيانات لا تزال متاحة مجانًا على OpenStreetMap اليوم.
+            {% else %}Launched in the medical district of Saint-Louis, Senegal during the COVID-19 pandemic, a team of 12 OpenStreetMap community members validated health facilities in three months — data that remains freely available on OpenStreetMap today.{% endif %}
+        </p>
+        <div class="proof-grid">
+            <div class="proof-stat">
+                <div class="proof-number">398</div>
+                <div class="proof-label">{% if is_fr %}Établissements de santé validés et téléversés sur OpenStreetMap{% elif is_pt %}Estabelecimentos de saúde validados e carregados no OpenStreetMap{% elif is_ar %}مرفقًا صحيًا تم التحقق منها ورفعها إلى OpenStreetMap{% else %}Health facilities validated &amp; uploaded to OpenStreetMap{% endif %}</div>
             </div>
-
-            <div class="step">
-                <div class="step-icon">
-                    <svg width="80" height="80" viewBox="0 0 80 80">
-                        <circle cx="40" cy="40" r="35" fill="#f44a52" opacity="0.2"/>
-                        <text x="40" y="50" font-family="Arial" font-size="32" fill="#f44a52" text-anchor="middle" font-weight="bold">2</text>
-                    </svg>
-                </div>
-                <h3>{% if is_french %}Validation{% else %}Validation{% endif %}</h3>
-                <p>
-                    {% if is_french %}
-                    Vérifier et valider les emplacements, les services et l'état opérationnel des établissements.
-                    {% else %}
-                    Verify and validate facility locations, services, and operational status.
-                    {% endif %}
-                </p>
+            <div class="proof-stat">
+                <div class="proof-number">1,325</div>
+                <div class="proof-label">{% if is_fr %}Lits documentés dans le district{% elif is_pt %}Camas documentadas no distrito{% elif is_ar %}سريرًا موثقًا في المنطقة{% else %}Beds documented across the district{% endif %}</div>
             </div>
-
-            <div class="step">
-                <div class="step-icon">
-                    <svg width="80" height="80" viewBox="0 0 80 80">
-                        <circle cx="40" cy="40" r="35" fill="#f44a52" opacity="0.2"/>
-                        <text x="40" y="50" font-family="Arial" font-size="32" fill="#f44a52" text-anchor="middle" font-weight="bold">3</text>
-                    </svg>
-                </div>
-                <h3>{% if is_french %}Accès Ouvert{% else %}Open Access{% endif %}</h3>
-                <p>
-                    {% if is_french %}
-                    Publier les données validées sur OpenStreetMap pour un usage humanitaire mondial.
-                    {% else %}
-                    Publish validated data to OpenStreetMap for global humanitarian use.
-                    {% endif %}
-                </p>
+            <div class="proof-stat">
+                <div class="proof-number">315</div>
+                <div class="proof-label">{% if is_fr %}Établissements confirmés avec accès à l'électricité{% elif is_pt %}Estabelecimentos confirmados com acesso a energia{% elif is_ar %}مرفقًا مؤكدًا لديه إمكانية الوصول إلى الكهرباء{% else %}Facilities confirmed with access to power{% endif %}</div>
             </div>
+            <div class="proof-stat">
+                <div class="proof-number">35</div>
+                <div class="proof-label">{% if is_fr %}Établissements d'urgence spécialisés identifiés{% elif is_pt %}Estabelecimentos de emergência especializados identificados{% elif is_ar %}مرفق طوارئ متخصص تم تحديده{% else %}Specialist emergency facilities identified{% endif %}</div>
+            </div>
+        </div>
+        <p class="proof-foot">
+            {% if is_fr %}16 personas et 101 récits utilisateurs co-développés avec les communautés locales · Données partagées directement avec les autorités sanitaires nationales, le COUS et PATH · <a href="/fr/campaigns/senegal/saint-louis/">Voir la campagne de Saint-Louis →</a>
+            {% elif is_pt %}16 personas e 101 histórias de utilizador co-desenvolvidas com as comunidades locais · Dados partilhados diretamente com as autoridades nacionais de saúde, o COUS e a PATH · <a href="/pt/campaigns/senegal/saint-louis/">Ver a campanha de Saint-Louis →</a>
+            {% elif is_ar %}16 شخصية و101 قصة مستخدم طُوّرت بالتعاون مع المجتمعات المحلية · تمت مشاركة البيانات مباشرة مع السلطات الصحية الوطنية وCOUS وPATH · <a href="/ar/campaigns/senegal/saint-louis/">اطّلع على حملة سان لويس ←</a>
+            {% else %}16 personas &amp; 101 user stories co-developed with local communities · Data shared directly with national health authorities, COUS and PATH · <a href="/campaigns/senegal/saint-louis/">See the Saint-Louis campaign →</a>{% endif %}
+        </p>
+    </div>
+</section>
+
+<!-- How We Work: two Étapes -->
+<section class="how-it-works" id="{% if is_fr %}comment-ca-marche{% elif is_pt %}como-trabalhamos{% else %}how-it-works{% endif %}">
+    <div class="container">
+        <h2 class="section-title">
+            {% if is_fr %}Comment Nous Travaillons{% elif is_pt %}Como Trabalhamos{% elif is_ar %}كيف نعمل{% else %}How We Work{% endif %}
+        </h2>
+        <p class="section-subtitle">
+            {% if is_fr %}Chaque campagne suit une méthodologie structurée en deux étapes — de la production de données ouvertes à leur transformation en politiques de santé durables.
+            {% elif is_pt %}Cada campanha segue uma metodologia estruturada em duas etapas — desde a produção de dados abertos até à sua transformação em políticas de saúde duradouras.
+            {% elif is_ar %}تتبع كل حملة منهجية منظمة من مرحلتين — من إنتاج البيانات المفتوحة إلى تحويلها إلى سياسات صحية دائمة.
+            {% else %}Every campaign follows a structured, two-stage methodology — from producing open data to turning it into lasting health policy.{% endif %}
+        </p>
+        <div class="etapes">
+            <div class="etape">
+                <img src="/theme/images/1-OSM-Senegal.jpg" alt="OpenStreetMap Senegal community session">
+                <div class="etape-body">
+                    <span class="etape-kicker">Étape 1</span>
+                    <h3>{% if is_fr %}Campagne de validation{% elif is_pt %}Campanha de validação{% elif is_ar %}حملة التحقق{% else %}Validation Campaign{% endif %}</h3>
+                    <p>{% if is_fr %}Une campagne de terrain structurée produisant un recensement géolocalisé des établissements de santé dans une région médicale ciblée. Toutes les données validées sont publiées sur OpenStreetMap — maintenues en permanence et librement accessibles.
+                    {% elif is_pt %}Uma campanha de campo estruturada que produz um censo georreferenciado dos estabelecimentos de saúde numa região médica-alvo. Todos os dados validados são publicados no OpenStreetMap — mantidos permanentemente e livremente acessíveis.
+                    {% elif is_ar %}حملة ميدانية منظمة تنتج إحصاءً موثّق المواقع للمرافق الصحية في منطقة طبية مستهدفة. تُنشر جميع البيانات المتحقق منها على OpenStreetMap — وتُصان بشكل دائم وتتاح بحرية.
+                    {% else %}A structured field campaign producing a GPS-verified census of health facilities in a target medical region. All validated data is published to OpenStreetMap — permanently maintained and freely accessible.{% endif %}</p>
+                    <ul class="etape-list">
+                        {% if is_fr %}
+                        <li>Ateliers de conception centrée sur l'humain et de parties prenantes</li>
+                        <li>Audit et réconciliation des données (outils R open source)</li>
+                        <li>Formation géospatiale sur OSM et QGIS</li>
+                        <li>Validation sur le terrain de chaque établissement</li>
+                        <li>Publication et partage sur OpenStreetMap</li>
+                        {% elif is_pt %}
+                        <li>Workshops de Design Centrado no Humano e de partes interessadas</li>
+                        <li>Auditoria e reconciliação de dados (ferramentas R de código aberto)</li>
+                        <li>Formação geoespacial em OSM e QGIS</li>
+                        <li>Validação no terreno de cada estabelecimento</li>
+                        <li>Publicação e partilha no OpenStreetMap</li>
+                        {% elif is_ar %}
+                        <li>ورش عمل التصميم المتمحور حول الإنسان وأصحاب المصلحة</li>
+                        <li>تدقيق البيانات ومطابقتها (أدوات R مفتوحة المصدر)</li>
+                        <li>تدريب جغرافي مكاني على OSM وQGIS</li>
+                        <li>التحقق الميداني من كل مرفق</li>
+                        <li>النشر والمشاركة على OpenStreetMap</li>
+                        {% else %}
+                        <li>Human-Centred Design &amp; stakeholder workshops</li>
+                        <li>Data audit &amp; reconciliation (open-source R toolset)</li>
+                        <li>Geospatial training in OSM &amp; QGIS</li>
+                        <li>Field validation of every facility</li>
+                        <li>Publication &amp; sharing to OpenStreetMap</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="etape">
+                <img src="/theme/images/img_20190723_124138100_48355995842_o.jpg" alt="Data governance workshop with national stakeholders">
+                <div class="etape-body">
+                    <span class="etape-kicker">Étape 2</span>
+                    <h3>{% if is_fr %}Données probantes et engagement politique{% elif is_pt %}Evidência e Envolvimento Político{% elif is_ar %}الأدلة والمشاركة في السياسات{% else %}Evidence &amp; Policy Engagement{% endif %}</h3>
+                    <p>{% if is_fr %}Appliquer les données validées aux défis institutionnels qui déterminent un impact durable — confirmation clinique, gouvernance des données et financement public durable.
+                    {% elif is_pt %}Aplicar os dados validados aos desafios institucionais que determinam um impacto duradouro — confirmação clínica, governança de dados e financiamento público sustentável.
+                    {% elif is_ar %}تطبيق البيانات المتحقق منها على التحديات المؤسسية التي تحدد الأثر الدائم — التأكيد السريري، وحوكمة البيانات، والتمويل العام المستدام.
+                    {% else %}Taking validated data and applying it to the institutional challenges that determine lasting impact — clinical confirmation, data governance, and sustainable public financing.{% endif %}</p>
+                    <ul class="etape-list">
+                        {% if is_fr %}
+                        <li>Confirmation clinique des établissements prioritaires</li>
+                        <li>Cadre d'interopérabilité ANS–Ministère de la Santé–OSM</li>
+                        <li>Plaidoyer auprès du ministère des Finances : les données comme infrastructure</li>
+                        {% elif is_pt %}
+                        <li>Confirmação clínica dos estabelecimentos prioritários</li>
+                        <li>Quadro de interoperabilidade INE–Ministério da Saúde–OSM</li>
+                        <li>Advocacia junto do Ministério das Finanças: dados como infraestrutura</li>
+                        {% elif is_ar %}
+                        <li>التأكيد السريري للمرافق ذات الأولوية</li>
+                        <li>إطار التشغيل البيني بين مكتب الإحصاء ووزارة الصحة وOSM</li>
+                        <li>المناصرة لدى وزارة المالية: البيانات كبنية تحتية</li>
+                        {% else %}
+                        <li>Clinical confirmation of priority user-story facilities</li>
+                        <li>NSO–MoH–OSM interoperability framework</li>
+                        <li>Ministry of Finance advocacy: data as infrastructure</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="how-foot">
+            <a href="{{ lang_prefix }}/about/methodology/" class="btn btn-secondary">
+                {% if is_fr %}Lire la méthodologie complète{% elif is_pt %}Ler a metodologia completa{% elif is_ar %}اقرأ المنهجية الكاملة{% else %}Read the Full Methodology{% endif %}
+            </a>
         </div>
     </div>
 </section>
 
-<!-- Participation Section -->
+<!-- Data Governance -->
+<section class="governance">
+    <div class="container">
+        <div class="gov-text">
+            <p class="governance-quote">
+                {% if is_fr %}« Un bien commun de données n'est pas une technologie, c'est une <span class="accent">forme de gouvernance</span>. »
+                {% elif is_pt %}“Um bem comum de dados não é uma tecnologia, é uma <span class="accent">forma de governança</span>.”
+                {% elif is_ar %}«المشاع البياني ليس تقنية، بل هو <span class="accent">شكل من أشكال الحوكمة</span>.»
+                {% else %}“A data commons is not a technology, it is a <span class="accent">form of governance</span>.”{% endif %}
+            </p>
+            <p>{% if is_fr %}healthsites.io construit un bien commun de données ouvertes sur les établissements de santé avec OpenStreetMap. Les données sur les établissements de santé, comme l'eau potable ou l'air pur, constituent un bien commun — et leur gouvernance doit le refléter.
+            {% elif is_pt %}A healthsites.io está a construir um bem comum de dados abertos sobre estabelecimentos de saúde com o OpenStreetMap. Os dados sobre estabelecimentos de saúde, como a água potável ou o ar puro, funcionam como um bem comum — e a sua governança deve refletir isso.
+            {% elif is_ar %}تبني healthsites.io مشاعًا مفتوحًا لبيانات المرافق الصحية مع OpenStreetMap. تعمل بيانات المرافق الصحية، مثل المياه النظيفة أو الهواء النقي، كمنفعة عامة — وينبغي أن تعكس حوكمتها ذلك.
+            {% else %}healthsites.io is building an open data commons of health facility data with OpenStreetMap. Health facility data, like clean water or fresh air, functions as a common good — and its governance should reflect that.{% endif %}</p>
+            <p>{% if is_fr %}Pour les ministères de la Santé, cela reformule l'argument à présenter à leurs ministères des Finances : les données validées sur les établissements de santé ne sont pas un coût de projet récurrent, mais un actif d'infrastructure nationale entretenu en permanence.
+            {% elif is_pt %}Para os Ministérios da Saúde, isto reformula o argumento a apresentar aos seus Ministérios das Finanças: os dados validados sobre estabelecimentos de saúde não são um custo recorrente de projeto, mas um ativo de infraestrutura nacional permanentemente mantido.
+            {% elif is_ar %}بالنسبة لوزارات الصحة، يعيد هذا صياغة الحجة التي تُقدَّم إلى وزارات المالية: بيانات المرافق الصحية المتحقق منها ليست تكلفة مشروع متكررة، بل أصل بنية تحتية وطنية يُصان بشكل دائم.
+            {% else %}For Ministries of Health, this reframes the case to bring to their Ministries of Finance: validated health facility data is not a recurring project cost, but a permanently maintained national infrastructure asset.{% endif %}</p>
+        </div>
+        <div class="gov-media">
+            <img src="/theme/images/1-230209-healthsites-SL-hospital.png" alt="A validated health facility record on OpenStreetMap, showing emergency status and attributes">
+        </div>
+    </div>
+</section>
+
+<!-- Get Involved: Partner / Invest / Support -->
 <section class="participation">
     <div class="container">
         <h2 class="section-title">
-            {% if is_french %}Participez{% else %}Get Involved{% endif %}
+            {% if is_fr %}Participez{% elif is_pt %}Participe{% elif is_ar %}شارك معنا{% else %}Get Involved{% endif %}
         </h2>
-
+        <p class="section-subtitle">
+            {% if is_fr %}healthsites.io accueille l'engagement des organisations qui partagent un attachement aux données de santé ouvertes et à un accès équitable aux services de santé.
+            {% elif is_pt %}A healthsites.io acolhe o envolvimento de organizações que partilham o compromisso com dados de saúde abertos e o acesso equitativo aos serviços de saúde.
+            {% elif is_ar %}ترحّب healthsites.io بمشاركة المنظمات التي تشترك في الالتزام ببيانات صحية مفتوحة وبالوصول العادل إلى الخدمات الصحية.
+            {% else %}healthsites.io welcomes engagement from organisations that share a commitment to open health data and equitable access to health services.{% endif %}
+        </p>
         <div class="cards">
             <div class="card">
-                <div class="card-image">
-                    <svg width="100%" height="200" viewBox="0 0 400 200">
-                        <rect width="400" height="200" fill="#e8f4f8"/>
-                        <circle cx="200" cy="100" r="40" fill="#f44a52"/>
-                        <text x="200" y="110" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">MAP</text>
-                    </svg>
-                </div>
+                <div class="card-image"><img src="/theme/images/healthsites-workshop-ama.jpg" alt="Multi-stakeholder data governance workshop"></div>
                 <div class="card-content">
-                    <h3>{% if is_french %}Commencer à Cartographier{% else %}Start Mapping{% endif %}</h3>
-                    <p>
-                        {% if is_french %}
-                        Rejoignez notre communauté et aidez à cartographier les établissements de santé.
-                        {% else %}
-                        Join our community and help map health facilities in your region.
-                        {% endif %}
-                    </p>
-                    <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/about.html" class="card-link">
-                        {% if is_french %}En savoir plus →{% else %}Learn More →{% endif %}
-                    </a>
+                    <h3>{% if is_fr %}Partenaire{% elif is_pt %}Parceiro{% elif is_ar %}كن شريكًا{% else %}Partner{% endif %}</h3>
+                    <p>{% if is_fr %}Co-gouvernez un bien public numérique qui met des données de santé précises entre les mains de ceux qui en ont le plus besoin.
+                    {% elif is_pt %}Co-governe um Bem Público Digital que coloca dados de saúde precisos nas mãos de quem mais precisa.
+                    {% elif is_ar %}شارك في حوكمة منفعة عامة رقمية تضع بيانات صحية دقيقة في أيدي من هم في أمسّ الحاجة إليها.
+                    {% else %}Co-govern a Digital Public Good that puts accurate health facility data in the hands of those who need it most.{% endif %}</p>
+                    <a href="https://healthsites.io/contact" class="card-link">{% if is_fr %}Devenir partenaire →{% elif is_pt %}Tornar-se parceiro →{% elif is_ar %}كن شريكًا ←{% else %}Become a partner →{% endif %}</a>
                 </div>
             </div>
-
             <div class="card">
-                <div class="card-image">
-                    <svg width="100%" height="200" viewBox="0 0 400 200">
-                        <rect width="400" height="200" fill="#f9f4e8"/>
-                        <circle cx="200" cy="100" r="40" fill="#f44a52"/>
-                        <text x="200" y="110" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">DATA</text>
-                    </svg>
-                </div>
+                <div class="card-image"><img src="/theme/images/1-infirmary.jpg" alt="A rural health infirmary in Senegal"></div>
                 <div class="card-content">
-                    <h3>{% if is_french %}Partager des Données{% else %}Share Data{% endif %}</h3>
-                    <p>
-                        {% if is_french %}
-                        Contribuez des données sur les établissements de santé.
-                        {% else %}
-                        Contribute health facility data from your organization.
-                        {% endif %}
-                    </p>
-                    <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/about.html" class="card-link">
-                        {% if is_french %}Partager →{% else %}Share Data →{% endif %}
-                    </a>
+                    <h3>{% if is_fr %}Investir{% elif is_pt %}Investir{% elif is_ar %}استثمر{% else %}Invest{% endif %}</h3>
+                    <p>{% if is_fr %}Soutenez l'innovation dans l'infrastructure des données de santé et contribuez aux objectifs de couverture sanitaire universelle.
+                    {% elif is_pt %}Apoie a inovação na infraestrutura de dados de saúde e contribua para os objetivos de Cobertura Universal de Saúde.
+                    {% elif is_ar %}ادعم الابتكار في البنية التحتية لبيانات الصحة وساهم في أهداف التغطية الصحية الشاملة.
+                    {% else %}Support innovation in health data infrastructure and contribute to Universal Health Coverage goals.{% endif %}</p>
+                    <a href="https://healthsites.io/contact" class="card-link">{% if is_fr %}Soutenir l'innovation →{% elif is_pt %}Apoiar a inovação →{% elif is_ar %}ادعم الابتكار ←{% else %}Support innovation →{% endif %}</a>
                 </div>
             </div>
-
             <div class="card">
-                <div class="card-image">
-                    <svg width="100%" height="200" viewBox="0 0 400 200">
-                        <rect width="400" height="200" fill="#e8f8f0"/>
-                        <circle cx="200" cy="100" r="40" fill="#f44a52"/>
-                        <text x="200" y="110" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">API</text>
-                    </svg>
-                </div>
+                <div class="card-image"><img src="/theme/images/1-ambulance.jpg" alt="Emergency health transport in Senegal"></div>
                 <div class="card-content">
-                    <h3>{% if is_french %}Utiliser Notre API{% else %}Use Our API{% endif %}</h3>
-                    <p>
-                        {% if is_french %}
-                        Accédez aux données via notre API ouverte.
-                        {% else %}
-                        Access health facility data through our open API.
-                        {% endif %}
-                    </p>
-                    <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/about.html" class="card-link">
-                        {% if is_french %}Documentation →{% else %}API Docs →{% endif %}
-                    </a>
+                    <h3>{% if is_fr %}Soutenir{% elif is_pt %}Apoiar{% elif is_ar %}ساند{% else %}Support{% endif %}</h3>
+                    <p>{% if is_fr %}Engagez-vous dans une campagne ciblée qui produit un impact mesurable et durable dans une région mal desservie.
+                    {% elif is_pt %}Participe numa campanha direcionada que gera um impacto mensurável e duradouro numa região desfavorecida.
+                    {% elif is_ar %}شارك في حملة موجّهة تحقق أثرًا قابلًا للقياس ودائمًا في منطقة محرومة من الخدمات.
+                    {% else %}Engage in a targeted campaign that delivers measurable, lasting impact in an underserved region.{% endif %}</p>
+                    <a href="{{ lang_prefix }}/campaigns/" class="card-link">{% if is_fr %}Soutenir une campagne →{% elif is_pt %}Apoiar uma campanha →{% elif is_ar %}ساند حملة ←{% else %}Support a campaign →{% endif %}</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Stats Section -->
-<section class="stats">
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat">
-                <i class="fa fa-hospital-o stat-icon"></i>
-                <div class="stat-number">150K+</div>
-                <div class="stat-label">
-                    {% if is_french %}Établissements de Santé{% else %}Health Facilities{% endif %}
-                </div>
-            </div>
-
-            <div class="stat">
-                <i class="fa fa-globe stat-icon"></i>
-                <div class="stat-number">150+</div>
-                <div class="stat-label">
-                    {% if is_french %}Pays{% else %}Countries{% endif %}
-                </div>
-            </div>
-
-            <div class="stat">
-                <i class="fa fa-users stat-icon"></i>
-                <div class="stat-number">1000+</div>
-                <div class="stat-label">
-                    {% if is_french %}Contributeurs{% else %}Contributors{% endif %}
-                </div>
-            </div>
-
-            <div class="stat">
-                <i class="fa fa-code stat-icon"></i>
-                <div class="stat-number">Open</div>
-                <div class="stat-label">
-                    {% if is_french %}Source{% else %}Source{% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Partners Section -->
+<!-- Partners -->
 <section class="partners">
     <div class="container">
         <h2 class="section-title">
-            {% if is_french %}Nos Partenaires{% else %}Our Partners{% endif %}
+            {% if is_fr %}Nos Partenaires{% elif is_pt %}Nossos Parceiros{% elif is_ar %}شركاؤنا{% else %}Our Partners{% endif %}
         </h2>
         <p class="section-subtitle">
-            {% if is_french %}
-            healthsites.io est rendu possible grâce aux organisations suivantes
-            {% else %}
-            healthsites.io is made possible by the following organizations
-            {% endif %}
+            {% if is_fr %}La campagne de Saint-Louis a été menée en partenariat avec les organisations suivantes.
+            {% elif is_pt %}A campanha de Saint-Louis foi realizada em parceria com as seguintes organizações.
+            {% elif is_ar %}نُفِّذت حملة سان لويس بالشراكة مع المنظمات التالية.
+            {% else %}The Saint-Louis campaign was delivered in partnership with the following organisations.{% endif %}
         </p>
-
         <div class="partners-grid">
-            <div class="partner"><p>Missing Maps</p></div>
-            <div class="partner"><p>HOT OSM</p></div>
+            <div class="partner"><p>OpenStreetMap Senegal</p></div>
+            <div class="partner"><p>Ministry of Health &amp; Social Action</p></div>
             <div class="partner"><p>WHO</p></div>
             <div class="partner"><p>UNICEF</p></div>
+            <div class="partner"><p>Global Fund — C19RM</p></div>
+            <div class="partner"><p>PATH</p></div>
         </div>
-
         <div class="osm-section">
             <i class="fa fa-map-o osm-icon"></i>
             <h3>OpenStreetMap</h3>
             <p>
-                {% if is_french %}
-                OpenStreetMap est la plateforme de cartographie open data qui rend tout cela possible.
-                {% else %}
-                OpenStreetMap is the volunteer-driven open data mapping platform which makes much of this possible.
-                {% endif %}
+                {% if is_fr %}OpenStreetMap est la plateforme de données spatiales ouvertes, maintenue par des bénévoles, qui rend ce travail possible. En reversant les données validées sur les établissements de santé à OpenStreetMap, chaque campagne renforce ce bien commun pour tous.
+                {% elif is_pt %}O OpenStreetMap é a infraestrutura de dados espaciais aberta e mantida por voluntários que torna este trabalho possível. Ao devolver os dados validados sobre estabelecimentos de saúde ao OpenStreetMap, cada campanha reforça este bem comum para todos.
+                {% elif is_ar %}OpenStreetMap هي البنية التحتية للبيانات المكانية المفتوحة التي يصونها المتطوعون والتي تجعل هذا العمل ممكنًا. ومن خلال إعادة بيانات المرافق الصحية المتحقق منها إلى OpenStreetMap، تعزز كل حملة هذا المشاع للجميع.
+                {% else %}OpenStreetMap is the volunteer-driven, openly licensed spatial data infrastructure that makes this work possible. By contributing validated health facility data back to OpenStreetMap, every campaign strengthens this data commons for everyone.{% endif %}
             </p>
             <a href="https://www.openstreetmap.org" target="_blank" rel="noopener" class="btn btn-secondary">OpenStreetMap</a>
         </div>

@@ -4,7 +4,7 @@
 # Import development settings
 from pelicanconf import *
 
-# Production URL (update this to your actual domain)
+# Production URL — served from the custom domain via GitHub Pages.
 SITEURL = 'https://campaigns.healthsites.io'
 RELATIVE_URLS = False
 
@@ -20,3 +20,8 @@ WITH_FUTURE_DATES = False
 
 # Optional: Enable analytics
 # GOOGLE_ANALYTICS = 'UA-XXXXXXXXX-X'
+
+# Point each i18n subsite at the production domain.
+I18N_SUBSITES['fr']['SITEURL'] = f'{SITEURL}/fr'
+I18N_SUBSITES['pt']['SITEURL'] = f'{SITEURL}/pt'
+I18N_SUBSITES['ar']['SITEURL'] = f'{SITEURL}/ar'

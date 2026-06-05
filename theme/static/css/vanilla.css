@@ -177,7 +177,7 @@ section {
 
 .hero {
     background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
-    padding: 80px 0;
+    padding: 20px 0;
 }
 
 .hero .container {
@@ -477,7 +477,7 @@ section {
 
 .page-header {
     background: var(--bg-light);
-    padding: 4rem 0 2rem;
+    padding: 2rem 0 1.5rem;
     text-align: center;
 }
 
@@ -487,7 +487,7 @@ section {
 }
 
 .page-content {
-    padding: 4rem 0;
+    padding: 1.5rem 0 4rem;
     background: var(--white);
 }
 
@@ -497,7 +497,7 @@ section {
 }
 
 .content h2 {
-    margin-top: 2.5rem;
+    margin-top: 1rem; /* Reduced from 2.5rem */
     margin-bottom: 1.5rem;
     color: var(--dark-gray);
 }
@@ -511,6 +511,23 @@ section {
 .content p {
     margin-bottom: 1.5rem;
     line-height: 1.8;
+}
+
+/* Update these existing lines in Section 12 */
+.page-header {
+    background: var(--bg-light);
+    padding: 2rem 0 1rem; /* Reduced from 4rem 0 2rem to close the gap */
+    text-align: center;
+}
+
+/* Add these new lines right below .page-header */
+.country-header h1 {
+    margin-bottom: 0.5rem;
+}
+
+.country-meta {
+    margin-bottom: 0;
+    color: var(--medium-gray);
 }
 
 /* ============================================================================
@@ -1187,4 +1204,357 @@ section {
     .regions-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* ============================================================================
+   RTL SUPPORT — ARABIC (ar)
+   Applied when <html dir="rtl"> is set in base.html
+   ============================================================================ */
+
+[dir="rtl"] {
+    font-family: 'Noto Sans Arabic', 'Ubuntu', sans-serif;
+}
+
+/* Flip header layout */
+[dir="rtl"] .header-content {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .main-nav ul {
+    flex-direction: row-reverse;
+}
+
+/* Language switcher — keep LTR order for language codes */
+[dir="rtl"] .language-switcher {
+    flex-direction: row-reverse;
+}
+
+/* Hero — flip two-column grid */
+[dir="rtl"] .hero .container {
+    direction: rtl;
+}
+
+[dir="rtl"] .hero-image {
+    order: 1;
+}
+
+[dir="rtl"] .hero-content {
+    order: 2;
+    text-align: right;
+}
+
+[dir="rtl"] .hero-buttons {
+    justify-content: flex-end;
+}
+
+/* Steps and cards — text alignment */
+[dir="rtl"] .step,
+[dir="rtl"] .card-content {
+    text-align: right;
+}
+
+/* Breadcrumb */
+[dir="rtl"] .breadcrumb {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Region layout sidebar */
+[dir="rtl"] .region-layout {
+    direction: rtl;
+}
+
+/* Campaign stats */
+[dir="rtl"] .campaign-stats .stat {
+    flex-direction: row-reverse;
+}
+
+/* Footer */
+[dir="rtl"] .footer-content {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .footer-social {
+    justify-content: flex-end;
+}
+
+/* Section titles and subtitles */
+[dir="rtl"] .section-title,
+[dir="rtl"] .section-subtitle,
+[dir="rtl"] .page-header h1,
+[dir="rtl"] .country-header h1 {
+    direction: rtl;
+}
+
+/* General text */
+[dir="rtl"] p,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4 {
+    text-align: right;
+}
+
+/* Content article */
+[dir="rtl"] .content {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Mobile nav — slide from left instead of right for RTL */
+@media (max-width: 968px) {
+    [dir="rtl"] .main-nav {
+        right: auto;
+        left: -100%;
+        transition: left 0.3s ease;
+    }
+
+    [dir="rtl"] .main-nav.active {
+        left: 0;
+        right: auto;
+    }
+}
+
+/* Country language badge on campaigns grid */
+.country-langs {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--medium-gray);
+    background: var(--bg-light);
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 0.2rem 0.65rem;
+    margin-top: 0.5rem;
+    letter-spacing: 0.03em;
+}
+
+/* ============================================================================
+   PAGE MAP — country & region hero image
+   ============================================================================ */
+
+.page-map {
+    padding: 2rem 0 0;
+}
+.page-map figure {
+    margin: 0;
+    text-align: center;
+}
+.page-map img {
+    max-width: 720px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+}
+.page-map figcaption {
+    margin-top: 0.75rem;
+    color: var(--medium-gray);
+    font-size: 0.875rem;
+    font-style: italic;
+}
+@media (max-width: 640px) {
+    .page-map { padding: 1.25rem 0 0; }
+    .page-map img { border-radius: 6px; }
+}
+
+/* ============================================================================
+   PHASE 2 SIDEBAR BLOCK
+   ============================================================================ */
+
+.phase2-block {
+    margin-top: 1.5rem;
+    border-top: 2px solid var(--primary-color);
+    padding-top: 1.5rem;
+    position: relative;
+}
+
+.phase2-block h3 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+/* ============================================================================
+   HOMEPAGE 2026 — concept-note realignment
+   Append to vanilla.css. Extends existing rules; nothing here is destructive.
+   ============================================================================ */
+
+/* Hero image (replaces placeholder SVG) */
+.hero-image img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(60, 76, 87, 0.18);
+}
+
+.hero-eyebrow {
+    display: inline-block;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+/* "Proven in the Field" results band */
+.proof { background: var(--dark-gray); color: #fff; }
+.proof .section-title { color: #fff; }
+
+.proof-lead {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto 3rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1.05rem;
+}
+
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.proof-stat {
+    text-align: center;
+    padding: 0 0.5rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.proof-stat:first-child { border-left: none; }
+
+.proof-number {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 0.6rem;
+}
+
+.proof-label { color: rgba(255, 255, 255, 0.85); font-size: 0.98rem; }
+
+.proof-foot {
+    text-align: center;
+    margin-top: 3rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+}
+
+.proof-foot a { color: #fff; text-decoration: underline; }
+
+/* Two-Étape "How We Work" */
+.etapes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.etape {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border-top: 4px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.etape img { width: 100%; height: 200px; object-fit: cover; }
+.etape-body { padding: 2rem; }
+
+.etape-kicker {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.etape h3 { font-size: 1.6rem; margin-bottom: 0.75rem; }
+.etape p { color: var(--medium-gray); }
+.etape-list { margin: 1rem 0 0; padding: 0; }
+
+.etape-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.5rem;
+    color: var(--medium-gray);
+    line-height: 1.6;
+}
+
+.etape-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-color);
+}
+
+.how-foot { text-align: center; margin-top: 2.5rem; }
+
+/* RTL: flip the bullet to the right side for Arabic */
+[dir="rtl"] .etape-list li { padding-left: 0; padding-right: 1.6rem; }
+[dir="rtl"] .etape-list li::before { left: auto; right: 0; }
+
+/* Data governance band */
+.governance { background: var(--bg-light); }
+
+.governance .container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.governance img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(60, 76, 87, 0.15);
+}
+
+.governance-quote {
+    font-family: var(--font-heading);
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--dark-gray);
+    margin-bottom: 1.5rem;
+}
+
+.governance-quote .accent { color: var(--primary-color); }
+.governance p { color: var(--medium-gray); font-size: 1.05rem; }
+
+/* Real photos inside Get Involved cards */
+.card-image img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Partners grid: 3 across on desktop (6 partners = 2 tidy rows).
+   Tablet/mobile keep the existing 2-col / 1-col rules in vanilla.css. */
+@media (min-width: 969px) {
+    .partners-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Homepage responsive */
+@media (max-width: 968px) {
+    .proof-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 1rem; }
+    .proof-stat:nth-child(odd) { border-left: none; }
+    .etapes { grid-template-columns: 1fr; }
+    .governance .container { grid-template-columns: 1fr; gap: 2rem; }
+    .governance .gov-media { order: -1; }
+    .hero-image img { height: 300px; }
+}
+
+@media (max-width: 640px) {
+    .proof-grid { grid-template-columns: 1fr; }
+    .proof-stat { border-left: none; }
 }

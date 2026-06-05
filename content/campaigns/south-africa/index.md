@@ -1,9 +1,5 @@
 Title: South Africa
-Save_as: campaigns/south-africa/index.html
 Template: country
-Status: published
+Slug: campaigns/south-africa
 Lang: en
-Country: South Africa
-Total_regions: 10
-
-## Content here...
+Status: draft

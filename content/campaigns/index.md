@@ -1,16 +1,9 @@
 Title: Campaigns
-Save_as: campaigns/index.html
 Template: campaigns
-Status: published
+Slug: campaigns
 Lang: en
-Country_campaigns: senegal, mozambique, nigeria
-
-## Active Campaigns
-
-We are conducting health facility validation campaigns in multiple countries 
-to improve healthcare data quality and accessibility.
-
-### Our Approach
-
-Each campaign focuses on validating health facility locations, services, 
-and operational status through community-led mapping and field verification.
+Status: published
+Senegal_summary: 14 medical regions — Phase 1 complete, Phase 2 seeking support
+Mozambique_summary: 0 active campaigns
+Southsudan_summary: 0 active campaigns
+Nigeria_summary: Planned 2026

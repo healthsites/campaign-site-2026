@@ -3,84 +3,114 @@
 
 AUTHOR = 'Healthsites.io'
 SITENAME = 'healthsites.io'
-SITEURL = ''
+SITEURL = 'http://127.0.0.1:8000'
 
 PATH = 'content'
 TIMEZONE = 'UTC'
 DEFAULT_LANG = 'en'
 
-# Theme
 THEME = 'theme'
 THEME_STATIC_DIR = 'theme'
 
 # ============================================================================
 # NAVIGATION MENUS
+# Leading slash is required on all paths.
 # ============================================================================
 
-# English menu
 MENUITEMS = (
-    ('About', '/about.html'),
+    ('About', '/about/'),
     ('Campaigns', '/campaigns/'),
 )
 
-# French menu
 MENUITEMS_FR = (
-    ('À propos', '/fr/about.html'),
-    ('Campagnes', '/fr/campaigns/'),
+    ('À propos', '/about/'),
+    ('Campagnes', '/campaigns/'),
 )
 
-# Campaigns submenu (for future dropdown)
-CAMPAIGNS_MENU = {
-    'senegal': {
-        'en': 'Senegal',
-        'fr': 'Sénégal',
-        'url': '/campaigns/senegal/',
-        'regions': [
-            {'slug': 'saint-louis', 'name': {'en': 'Saint-Louis', 'fr': 'Saint-Louis'}},
-            {'slug': 'tambacounda', 'name': {'en': 'Tambacounda', 'fr': 'Tambacounda'}},
-            {'slug': 'matam', 'name': {'en': 'Matam', 'fr': 'Matam'}},
-        ]
-    },
-    'mozambique': {
-        'en': 'Mozambique',
-        'fr': 'Mozambique',
-        'url': '/campaigns/mozambique/',
-    },
-    'nigeria': {
-        'en': 'Nigeria',
-        'fr': 'Nigéria',
-        'url': '/campaigns/nigeria/',
-    },
-}
+MENUITEMS_PT = (
+    ('Sobre', '/about/'),
+    ('Campanhas', '/campaigns/'),
+)
+
+MENUITEMS_AR = (
+    ('حول', '/about/'),
+    ('الحملات', '/campaigns/'),
+)
 
 # ============================================================================
 # CONTENT SETTINGS
 # ============================================================================
 
-# Disable blog/articles
-ARTICLE_SAVE_AS = ''
-ARTICLE_URL = ''
-
-# Pages
 PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = '{slug}/index.html'
 
-PAGE_PATHS = ['campaigns', 'pages']
+# '' catches root-level pages (about.md etc.)
+PAGE_PATHS = ['', 'campaigns', 'pages', 'about']
+
+PAGE_EXCLUDES = ['fr', 'pt', 'ar']
+ARTICLE_EXCLUDES = ['fr', 'pt', 'ar']
+
+ARTICLE_URL = ''
+ARTICLE_SAVE_AS = ''
 ARTICLE_PATHS = []
-DEFAULT_DATE = 'fs'
 
+# ============================================================================
+# PLUGINS & i18n
+# ============================================================================
 
-# Direct templates
-DIRECT_TEMPLATES = []
+PLUGINS = ['i18n_subsites']
 
-# Feeds
+I18N_TEMPLATES_LANG = 'en'
+
+I18N_SUBSITES = {
+    'fr': {
+        'SITENAME': 'healthsites.io (FR)',
+        'SITEURL': 'http://127.0.0.1:8000/fr',
+        'PAGE_PATHS': ['', 'about', 'campaigns'],
+        'PAGE_EXCLUDES': ['pages', 'campaigns'],
+        'MENUITEMS': (
+            ('À propos', '/about/'),
+            ('Campagnes', '/campaigns/'),
+        ),
+    },
+    'pt': {
+        'SITENAME': 'healthsites.io (PT)',
+        'SITEURL': 'http://127.0.0.1:8000/pt',
+        'PAGE_PATHS': ['', 'about', 'campaigns'],
+        'PAGE_EXCLUDES': ['pages', 'campaigns'],
+        'MENUITEMS': (
+            ('Sobre', '/about/'),
+            ('Campanhas', '/campaigns/'),
+        ),
+    },
+    'ar': {
+        'SITENAME': 'healthsites.io (AR)',
+        'SITEURL': 'http://127.0.0.1:8000/ar',
+        'PAGE_PATHS': ['', 'about', 'campaigns'],
+        'PAGE_EXCLUDES': ['pages', 'campaigns'],
+        'MENUITEMS': (
+            ('حول', '/about/'),
+            ('الحملات', '/campaigns/'),
+        ),
+    },
+}
+
+I18N_UNTRANSLATED_PAGES = 'cleanurl'
+
+# ============================================================================
+# TECHNICAL SETTINGS
+# ============================================================================
+
+DELETE_OUTPUT_DIRECTORY = True
+RELATIVE_URLS = False
+
+DIRECT_TEMPLATES = ['index']
+INDEX_SAVE_AS = 'index.html'
+
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# Pagination
 DEFAULT_PAGINATION = False
-RELATIVE_URLS = True
-

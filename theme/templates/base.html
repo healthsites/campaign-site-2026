@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang if page else 'en' }}">
+<html lang="{{ page.lang if page else DEFAULT_LANG }}" {% if (page and page.lang == 'ar') or DEFAULT_LANG == 'ar' %}dir="rtl"{% endif %}>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,35 +8,53 @@
     <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Raleway:wght@300;400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Site CSS -->
-    <link href="{{ SITEURL }}/theme/css/vanilla.css" rel="stylesheet">
+    <link href="/theme/css/vanilla.css" rel="stylesheet">
 </head>
 <body>
+
+{% set is_fr = (page and page.lang == 'fr') or DEFAULT_LANG == 'fr' %}
+{% set is_pt = (page and page.lang == 'pt') or DEFAULT_LANG == 'pt' %}
+{% set is_ar = (page and page.lang == 'ar') or DEFAULT_LANG == 'ar' %}
+
 <!-- Header -->
 <header class="site-header">
     <div class="container">
         <div class="header-content">
-            <a href="{{ SITEURL }}{% if page and page.lang == 'fr' %}/fr/{% else %}/{% endif %}" class="logo">
+            <a href="{% if is_fr %}/fr/{% elif is_pt %}/pt/{% elif is_ar %}/ar/{% else %}/{% endif %}" class="logo">
                 <span class="logo-text">healthsites.io</span>
             </a>
 
-            <!-- Language Switcher -->
+<!-- Language Switcher -->
             <div class="language-switcher">
-                {% if page and page.lang == 'fr' %}
-                <a href="{{ SITEURL }}/" class="lang-link">EN</a>
-                <span class="lang-separator">|</span>
-                <a href="{{ SITEURL }}/fr/" class="lang-link active">FR</a>
-                {% else %}
-                <a href="{{ SITEURL }}/" class="lang-link active">EN</a>
-                <span class="lang-separator">|</span>
-                <a href="{{ SITEURL }}/fr/" class="lang-link">FR</a>
+                {# Languages this page actually exists in: the current language plus
+                   any translations (Senegal = EN+FR, Mozambique = EN+PT, etc.).
+                   We only render links that exist, so a switch never hits a 404. #}
+                {% set langs = [] %}
+                {% if page %}
+                    {% set _ = langs.append(page.lang) %}
+                    {% for t in page.translations %}
+                        {% set _ = langs.append(t.lang) %}
+                    {% endfor %}
                 {% endif %}
+                {% set labels = {'en': 'EN', 'fr': 'FR', 'pt': 'PT', 'ar': 'AR'} %}
+                {% set shown = [] %}
+                {% for code in ['en', 'fr', 'pt', 'ar'] %}
+                    {% if (not page) or (code in langs) %}
+                        {% set base = lang_siteurls[code] if lang_siteurls and code in lang_siteurls else SITEURL %}
+                        {% set href = (base ~ '/' ~ page.url) if page else (base ~ '/') %}
+                        {% if shown %}<span class="lang-separator">|</span>{% endif %}
+                        <a href="{{ href }}" class="lang-link {% if (page.lang if page else DEFAULT_LANG) == code %}active{% endif %}">{{ labels[code] }}</a>
+                        {% set _ = shown.append(code) %}
+                    {% endif %}
+                {% endfor %}
             </div>
+
 
             <!-- Mobile Menu Button -->
             <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menu">
@@ -48,15 +66,25 @@
             <!-- Desktop Navigation -->
             <nav class="main-nav" id="main-nav">
                 <ul>
-                    {% if page and page.lang == 'fr' %}
-                    <li><a href="{{ SITEURL }}/fr/">Accueil</a></li>
+                    {% if is_fr %}
+                    <li><a href="/fr/">Accueil</a></li>
                     {% for title, link in MENUITEMS_FR %}
-                    <li><a href="{{ SITEURL }}{{ link }}">{{ title }}</a></li>
+                    <li><a href="/fr{{ link }}">{{ title }}</a></li>
+                    {% endfor %}
+                    {% elif is_pt %}
+                    <li><a href="/pt/">Início</a></li>
+                    {% for title, link in MENUITEMS_PT %}
+                    <li><a href="/pt{{ link }}">{{ title }}</a></li>
+                    {% endfor %}
+                    {% elif is_ar %}
+                    <li><a href="/ar/">الرئيسية</a></li>
+                    {% for title, link in MENUITEMS_AR %}
+                    <li><a href="/ar{{ link }}">{{ title }}</a></li>
                     {% endfor %}
                     {% else %}
-                    <li><a href="{{ SITEURL }}/">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     {% for title, link in MENUITEMS %}
-                    <li><a href="{{ SITEURL }}{{ link }}">{{ title }}</a></li>
+                    <li><a href="{{ link }}">{{ title }}</a></li>
                     {% endfor %}
                     {% endif %}
                 </ul>
@@ -77,8 +105,12 @@
             <div class="footer-logo">
                 <span class="logo-text">healthsites.io</span>
                 <p class="tagline">
-                    {% if page and page.lang == 'fr' %}
+                    {% if is_fr %}
                     Construire des données fiables sur les établissements de santé
+                    {% elif is_pt %}
+                    Construindo dados confiáveis sobre estabelecimentos de saúde
+                    {% elif is_ar %}
+                    بناء بيانات موثوقة عن المرافق الصحية
                     {% else %}
                     Building reliable health facility data
                     {% endif %}
@@ -87,11 +119,10 @@
 
             <div class="footer-links">
                 <h4>Contact:</h4>
-                <p><a href="mailto:info@healthsites.io">info@healthsites.io</a></p>
+                <p><a href="mailto:sharehealthdata@healthsites.io">sharehealthdata@healthsites.io</a></p>
             </div>
 
             <div class="footer-social">
-
                 <a href="https://www.linkedin.com/company/healthsites-io/" target="_blank" rel="noopener" aria-label="Linkedin">
                     <i class="fa fa-linkedin"></i>
                 </a>
@@ -114,6 +145,6 @@
 <script src="https://unpkg.com/ityped@1.0.3"></script>
 
 <!-- JavaScript -->
-<script src="{{ SITEURL }}/theme/js/vanilla.js"></script>
+<script src="/theme/js/vanilla.js"></script>
 </body>
 </html>

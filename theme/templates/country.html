@@ -1,60 +1,120 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% set is_french = (page and page.lang == 'fr') %}
+{% set is_fr = (page and page.lang == 'fr') or DEFAULT_LANG == 'fr' %}
+{% set is_pt = (page and page.lang == 'pt') or DEFAULT_LANG == 'pt' %}
+{% set is_ar = (page and page.lang == 'ar') or DEFAULT_LANG == 'ar' %}
+{% set lang_prefix = '/fr' if is_fr else '/pt' if is_pt else '/ar' if is_ar else '' %}
+
+{#
+  Per-country language rules:
+    Senegal      → EN + FR only
+    Mozambique   → EN + PT only
+    South Sudan  → EN + AR only
+  valid_prefix is used for region card links so they never point to
+  a non-existent translated page.
+#}
+{% set country_key = page.country|lower %}
+{% if country_key in ['senegal', 'sénégal'] %}
+    {% set valid_prefix = '/fr' if is_fr else '' %}
+{% elif country_key in ['mozambique', 'moçambique'] %}
+    {% set valid_prefix = '/pt' if is_pt else '' %}
+{% elif country_key in ['south sudan', 'جنوب السودان'] %}
+    {% set valid_prefix = '/ar' if is_ar else '' %}
+{% else %}
+    {% set valid_prefix = lang_prefix %}
+{% endif %}
 
 <section class="country-header">
     <div class="container">
+        <nav class="breadcrumb">
+            <a href="{{ lang_prefix }}/campaigns/">
+                {% if is_fr %}Campagnes{% elif is_pt %}Campanhas{% elif is_ar %}الحملات{% else %}Campaigns{% endif %}
+            </a>
+            →
+            <span>{{ page.country }}</span>
+        </nav>
         <h1>{{ page.country }}</h1>
         {% if page.total_regions %}
         <p class="country-meta">
-            {{ page.total_regions }} {% if is_french %}régions médicales{% else %}medical regions{% endif %}
+            {{ page.total_regions }}
+            {% if is_fr %}régions médicales{% elif is_pt %}regiões médicas{% elif is_ar %}منطقة طبية{% else %}medical regions{% endif %}
         </p>
         {% endif %}
     </div>
 </section>
+
+{% if page.map_image %}
+<section class="page-map">
+    <div class="container">
+        <figure>
+            <img src="{{ page.map_image }}"
+                 alt="{{ page.map_alt if page.map_alt else 'Map of ' ~ page.country }}">
+            {% if page.map_caption %}
+            <figcaption>{{ page.map_caption }}</figcaption>
+            {% endif %}
+        </figure>
+    </div>
+</section>
+{% endif %}
 
 <section class="country-content">
     <div class="container">
         <article class="content">
             {{ page.content }}
         </article>
-        
-        <h2>{% if is_french %}Campagnes Régionales{% else %}Regional Campaigns{% endif %}</h2>
-        
+
+        <h2>{% if is_fr %}Campagnes Régionales{% elif is_pt %}Campanhas Regionais{% elif is_ar %}الحملات الإقليمية{% else %}Regional Campaigns{% endif %}</h2>
+
         <div class="regions-grid">
-            {% if page.country == 'Senegal' or page.country == 'Sénégal' %}
-            
+
+            {# ── SENEGAL (EN + FR) ────────────────────────────────────────── #}
+            {% if page.country in ['Senegal', 'Sénégal'] %}
+
+           
+
             <div class="region-card status-completed">
-                <h3>
-                    <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/campaigns/senegal/saint-louis/">
-                        Saint-Louis
-                    </a>
-                </h3>
-                <span class="status">{% if is_french %}Complété{% else %}Completed{% endif %}</span>
-                <p>1,265 {% if is_french %}établissements validés{% else %}facilities validated{% endif %}</p>
+                <h3><a href="{{ valid_prefix }}/campaigns/senegal/saint-louis/">Saint-Louis</a></h3>
+                <span class="status">{% if is_fr %}Complété{% else %}Completed{% endif %}</span>
+                <p>1,265 {% if is_fr %}établissements validés{% else %}facilities validated{% endif %}</p>
             </div>
-            
+
             <div class="region-card status-active">
-                <h3>
-                    <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/campaigns/senegal/tambacounda/">
-                        Tambacounda
-                    </a>
-                </h3>
-                <span class="status">{% if is_french %}Actif - Recherche de financement{% else %}Active - Seeking Funding{% endif %}</span>
-                <p>€60,000 {% if is_french %}nécessaire{% else %}needed{% endif %}</p>
+                <h3><a href="{{ valid_prefix }}/campaigns/senegal/tambacounda/">Tambacounda</a></h3>
+                <span class="status">{% if is_fr %}Actif — Recherche de financement{% else %}Active — Seeking Funding{% endif %}</span>
+                <p>€60,000 {% if is_fr %}nécessaire{% else %}needed{% endif %}</p>
             </div>
-            
+
             <div class="region-card status-planned">
-                <h3>
-                    <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/campaigns/senegal/matam/">
-                        Matam
-                    </a>
-                </h3>
-                <span class="status">{% if is_french %}Planifié 2026{% else %}Planned 2026{% endif %}</span>
+                <h3><a href="{{ valid_prefix }}/campaigns/senegal/matam/">Matam</a></h3>
+                <span class="status">{% if is_fr %}Planifié 2026{% else %}Planned 2026{% endif %}</span>
             </div>
-            
+
+            {# ── MOZAMBIQUE (EN + PT) ─────────────────────────────────────── #}
+            {% elif page.country in ['Mozambique', 'Moçambique'] %}
+
+            <div class="region-card status-active">
+                <h3><a href="{{ valid_prefix }}/campaigns/mozambique/maputo/">Maputo</a></h3>
+                <span class="status">{% if is_pt %}Activo — Em busca de financiamento{% else %}Active — Seeking Funding{% endif %}</span>
+                <p>€75,000 {% if is_pt %}necessário{% else %}needed{% endif %}</p>
+            </div>
+
+            <div class="region-card status-planned">
+                <h3><a href="{{ valid_prefix }}/campaigns/mozambique/nampula/">Nampula</a></h3>
+                <span class="status">{% if is_pt %}Previsto 2026{% else %}Planned 2026{% endif %}</span>
+            </div>
+
+            {# ── SOUTH SUDAN (EN + AR) ────────────────────────────────────── #}
+            {% elif page.country in ['South Sudan', 'جنوب السودان'] %}
+
+            <div class="region-card status-active">
+                <h3><a href="{{ valid_prefix }}/campaigns/south-sudan/juba/">Juba</a></h3>
+                <span class="status">{% if is_ar %}نشط — يبحث عن تمويل{% else %}Active — Seeking Funding{% endif %}</span>
+                <p>€90,000 {% if is_ar %}مطلوب{% else %}needed{% endif %}</p>
+            </div>
+
             {% endif %}
+
         </div>
     </div>
 </section>
