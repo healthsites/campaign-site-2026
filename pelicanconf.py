@@ -114,3 +114,22 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 DEFAULT_PAGINATION = False
+
+# ============================================================================
+# CAMPAIGN SETTINGS (v2.2)  — add these to pelicanconf.py
+# All are exposed to templates as {{ GOFUNDME_URL }}, {{ WORKING_GROUP_FORM_URL }}, etc.
+# ============================================================================
+
+# Live GoFundMe donation campaign (the primary "Fund" action).
+GOFUNDME_URL = 'https://www.gofundme.com/f/senegal-health-facility-data-collaborative'
+
+# Google Form to join a working group / register interest (institutional channel).
+WORKING_GROUP_FORM_URL = 'https://forms.gle/REPLACE_ME'
+
+# GitHub discussion forum for working groups.
+GITHUB_DISCUSSION_URL = 'https://github.com/healthsites/healthsites/discussions'
+
+# NOTE for i18n_subsites: custom settings are inherited by the 'fr' subsite
+# automatically, so the French pages pick these up with no extra config.
+#
+# No analytics: the site sets no cookies and needs no consent banner.

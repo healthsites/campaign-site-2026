@@ -1,21 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% set is_fr = (page and page.lang == 'fr') or DEFAULT_LANG == 'fr' %}
-{% set is_pt = (page and page.lang == 'pt') or DEFAULT_LANG == 'pt' %}
-{% set is_ar = (page and page.lang == 'ar') or DEFAULT_LANG == 'ar' %}
-{% set lang_prefix = '/fr' if is_fr else '/pt' if is_pt else '/ar' if is_ar else '' %}
-
-{#
-  Per-country language rules — country links fall back to EN if
-  the current language is not supported for that country.
-    Senegal     → EN + FR
-    Mozambique  → EN + PT
-    South Sudan → EN + AR
-#}
-{% set senegal_prefix    = '/fr' if is_fr else '' %}
-{% set mozambique_prefix = '/pt' if is_pt else '' %}
-{% set southsudan_prefix = '/ar' if is_ar else '' %}
 
 <section class="page-header">
     <div class="container">
@@ -30,42 +15,14 @@
         </article>
 
         <div class="campaigns-grid">
-
+            {% for c in pages | selectattr('campaign_country') | sort(attribute='order') %}
             <div class="campaign-country">
-                <h3>
-                    <a href="{{ senegal_prefix }}/campaigns/senegal/">
-                        {% if is_fr %}Sénégal{% else %}Senegal{% endif %}
-                    </a>
-                </h3>
-                <p>{{ page.senegal_summary }}</p>
-                <p class="country-langs">EN / FR</p>
+                <h3><a href="{{ SITEURL }}/{{ c.url }}">{{ c.country|default(c.title) }}</a></h3>
+                {% if c.summary %}{{ c.summary }}{% endif %}
+                {% if c.languages %}<p class="country-langs">{{ c.languages }}</p>{% endif %}
+                {% if c.stage %}<span class="stage-badge stage-{{ c.stage|lower }}">{{ c.stage|capitalize }}</span>{% endif %}
             </div>
-
-            <div class="campaign-country">
-                <h3>
-                    <a href="{{ mozambique_prefix }}/campaigns/mozambique/">
-                        {% if is_pt %}Moçambique{% else %}Mozambique{% endif %}
-                    </a>
-                </h3>
-                <p>{{ page.mozambique_summary }}</p>
-                <p class="country-langs">EN / PT</p>
-            </div>
-
-            <div class="campaign-country">
-                <h3>
-                    <a href="{{ southsudan_prefix }}/campaigns/south-sudan/">
-                        {% if is_ar %}جنوب السودان{% else %}South Sudan{% endif %}
-                    </a>
-                </h3>
-                <p>{{ page.southsudan_summary }}</p>
-                <p class="country-langs">EN / AR</p>
-            </div>
-
-            <div class="campaign-country">
-                <h3>Nigeria</h3>
-                <p>{{ page.nigeria_summary }}</p>
-            </div>
-
+            {% endfor %}
         </div>
     </div>
 </section>

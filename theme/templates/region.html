@@ -1,155 +1,127 @@
 {% extends "base.html" %}
 
+{% block title %}{{ page.title }} - {{ SITENAME }}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+{% endblock %}
+
 {% block content %}
-{% set is_fr = (page and page.lang == 'fr') or DEFAULT_LANG == 'fr' %}
-{% set is_pt = (page and page.lang == 'pt') or DEFAULT_LANG == 'pt' %}
-{% set is_ar = (page and page.lang == 'ar') or DEFAULT_LANG == 'ar' %}
-{% set lang_prefix = '/fr' if is_fr else '/pt' if is_pt else '/ar' if is_ar else '' %}
+{% set is_french = (page and page.lang == 'fr') %}
 
 <section class="region-header">
     <div class="container">
         <nav class="breadcrumb">
-            <a href="{{ lang_prefix }}/campaigns/">
-                {% if is_fr %}Campagnes{% elif is_pt %}Campanhas{% elif is_ar %}الحملات{% else %}Campaigns{% endif %}
-            </a>
-            →
-            <a href="{{ lang_prefix }}/campaigns/{{ page.country_slug|default(page.country|lower) }}/">
-                {{ page.country }}
-            </a>
-            →
-            <span>{{ page.region }}</span>
+            <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/campaigns/">{% if is_french %}Campagnes{% else %}Campaigns{% endif %}</a>
+            → <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/campaigns/{{ page.country|lower }}/">{{ page.country }}</a>
+            → <span>{{ page.region }}</span>
         </nav>
-
         <h1>{{ page.title }}</h1>
-
         {% if page.campaign_status %}
-        <p class="campaign-status status-{{ page.campaign_status|lower|replace(' ', '-') }}">
-            {{ page.campaign_status }}
-        </p>
+        <p class="campaign-status status-{{ page.campaign_status|lower|replace(' ', '-') }}">{{ page.campaign_status }}</p>
         {% endif %}
     </div>
 </section>
-
-{% if page.map_image %}
-<section class="page-map">
-    <div class="container">
-        <figure>
-            <img src="{{ page.map_image }}"
-                 alt="{{ page.map_alt if page.map_alt else 'Map of ' ~ page.country }}">
-            {% if page.map_caption %}
-            <figcaption>{{ page.map_caption }}</figcaption>
-            {% endif %}
-        </figure>
-    </div>
-</section>
-{% endif %}
 
 <section class="region-content">
     <div class="container">
         <div class="region-layout">
             <article class="content">
+                <!-- Priority user story -->
+                <blockquote class="user-story">
+                    {% if is_french %}
+                    « En tant que future mère, je veux savoir où se trouve le service d'urgence le plus proche, afin de pouvoir anticiper d'éventuelles complications lors de l'accouchement. »
+                    {% else %}
+                    "As a pregnant mother, I want to know where the nearest emergency health service is, so I can plan for potential complications during childbirth."
+                    {% endif %}
+                </blockquote>
+
                 {{ page.content }}
+
+                <!-- Native Leaflet map (no iframe) -->
+                <h2>{% if is_french %}Établissements validés{% else %}Validated facilities{% endif %}</h2>
+                <p class="map-caption">
+                    {% if is_french %}Les 35 établissements d'orientation pour les urgences maternelles sont indiqués en rouge.{% else %}The 35 emergency maternal referral facilities are shown in red.{% endif %}
+                </p>
+                <div id="map" class="campaign-map" role="img"
+                     aria-label="{% if is_french %}Carte des établissements de santé validés à Saint-Louis{% else %}Map of validated health facilities in Saint-Louis{% endif %}"></div>
             </article>
 
             <aside class="region-sidebar">
-
-                {# ── PHASE 1 STATS ─────────────────────────────────────────── #}
                 <div class="campaign-stats">
-                    <h3>
-                        {% if page.phase2_status %}
-                            {% if is_fr %}Phase 1 — Résultats{% elif is_pt %}Fase 1 — Resultados{% else %}Phase 1 — Results{% endif %}
-                        {% else %}
-                            {% if is_fr %}Statistiques{% elif is_pt %}Estatísticas{% elif is_ar %}إحصائيات{% else %}Campaign Stats{% endif %}
-                        {% endif %}
-                    </h3>
-
-                    {% if page.budget_needed %}
-                    <div class="stat">
-                        <strong>{% if is_fr %}Budget Nécessaire{% elif is_pt %}Orçamento Necessário{% elif is_ar %}الميزانية المطلوبة{% else %}Budget Needed{% endif %}</strong>
-                        <span>{{ page.budget_needed }}</span>
-                    </div>
-                    {% endif %}
-
-                    {% if page.facilities_target %}
-                    <div class="stat">
-                        <strong>{% if is_fr %}Établissements Cibles{% elif is_pt %}Estabelecimentos Alvo{% elif is_ar %}المرافق المستهدفة{% else %}Target Facilities{% endif %}</strong>
-                        <span>{{ page.facilities_target }}+</span>
-                    </div>
-                    {% endif %}
-
+                    <h3>{% if is_french %}Résultats de la campagne{% else %}Campaign results{% endif %}</h3>
                     {% if page.facilities_validated %}
-                    <div class="stat">
-                        <strong>{% if is_fr %}Établissements Validés{% elif is_pt %}Estabelecimentos Validados{% elif is_ar %}المرافق المُتحقق منها{% else %}Facilities Validated{% endif %}</strong>
-                        <span>{{ page.facilities_validated }}</span>
-                    </div>
+                    <div class="stat"><strong>{% if is_french %}Établissements validés{% else %}Facilities validated{% endif %}</strong><span>{{ page.facilities_validated }}</span></div>
                     {% endif %}
-
                     {% if page.emergency_facilities %}
-                    <div class="stat">
-                        <strong>{% if is_fr %}Services d'Urgence Identifiés{% elif is_pt %}Serviços de Emergência Identificados{% else %}Emergency Facilities Identified{% endif %}</strong>
-                        <span>{{ page.emergency_facilities }}</span>
-                    </div>
+                    <div class="stat"><strong>{% if is_french %}Orientation d'urgence maternelle{% else %}Emergency maternal referral{% endif %}</strong><span>{{ page.emergency_facilities }}</span></div>
                     {% endif %}
-
-                    {% if page.start_date %}
-                    <div class="stat">
-                        <strong>{% if is_fr %}Date de Début{% elif is_pt %}Data de Início{% elif is_ar %}تاريخ البدء{% else %}Start Date{% endif %}</strong>
-                        <span>{{ page.start_date }}</span>
-                    </div>
-                    {% endif %}
-                </div>
-
-                {# Phase 1 CTAs #}
-                <div class="campaign-actions">
-                    <a href="{{ page.cta_primary_url if page.cta_primary_url else 'https://healthsites.io/contact' }}"
-                       class="btn btn-primary"
-                       {% if page.cta_primary_url and page.cta_primary_url.startswith('http') %}target="_blank" rel="noopener"{% endif %}>
-                        {{ page.cta_primary_label if page.cta_primary_label else 'Support' }}
-                    </a>
-
-                    <a href="{{ page.cta_secondary_url if page.cta_secondary_url else 'https://healthsites.io/map' }}"
-                       class="btn btn-secondary"
-                       {% if page.cta_secondary_url and page.cta_secondary_url.startswith('http') %}target="_blank" rel="noopener"{% endif %}>
-                        {{ page.cta_secondary_label if page.cta_secondary_label else 'Map' }}
-                    </a>
-                </div>
-
-                {# ── PHASE 2 BLOCK — only renders if phase2_status is set ─── #}
-                {% if page.phase2_status %}
-                <div class="campaign-stats phase2-block">
-                    <h3>{% if is_fr %}Phase 2 — Prochaine Étape{% elif is_pt %}Fase 2 — Próxima Etapa{% else %}Phase 2 — Next Step{% endif %}</h3>
-
-                    <div class="stat">
-                        <strong>{% if is_fr %}Statut{% elif is_pt %}Estado{% else %}Status{% endif %}</strong>
-                        <span>{{ page.phase2_status }}</span>
-                    </div>
-
-                    {% if page.phase2_target %}
-                    <div class="stat">
-                        <strong>{% if is_fr %}Établissements à Confirmer{% elif is_pt %}Estabelecimentos a Confirmar{% else %}Facilities to Confirm{% endif %}</strong>
-                        <span>{{ page.phase2_target }}</span>
-                    </div>
-                    {% endif %}
-
-                    {% if page.phase2_budget %}
-                    <div class="stat">
-                        <strong>{% if is_fr %}Budget Estimé{% elif is_pt %}Orçamento Estimado{% else %}Estimated Budget{% endif %}</strong>
-                        <span>{{ page.phase2_budget }}</span>
-                    </div>
+                    {% if page.budget_needed %}
+                    <div class="stat"><strong>{% if is_french %}Budget Étape 2{% else %}Phase 2 budget{% endif %}</strong><span>{{ page.budget_needed }}</span></div>
                     {% endif %}
                 </div>
 
                 <div class="campaign-actions">
-                    <a href="{{ page.phase2_cta_url if page.phase2_cta_url else 'https://healthsites.io/contact' }}"
-                       class="btn btn-primary"
-                       target="_blank" rel="noopener">
-                        {{ page.phase2_cta_label if page.phase2_cta_label else 'Support Phase 2' }}
+                    <a href="{{ GOFUNDME_URL }}" target="_blank" rel="noopener" class="btn btn-primary">
+                        {% if is_french %}Financer la collaboration{% else %}Fund the data collaborative{% endif %}
+                    </a>
+                    <a href="{{ WORKING_GROUP_FORM_URL }}" target="_blank" rel="noopener" class="btn btn-secondary">
+                        {% if is_french %}Rejoindre le groupe Santé des femmes{% else %}Join the Women's Health working group{% endif %}
                     </a>
                 </div>
-                {% endif %}
-
             </aside>
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+(function () {
+    var el = document.getElementById('map');
+    if (!el || typeof L === 'undefined') return;
+
+    // Saint-Louis, Senegal
+    var center = [16.0179, -16.4896];
+    var map = L.map('map').setView(center, 11);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Marker styles
+    function dot(color) {
+        return L.divIcon({
+            className: 'facility-dot',
+            html: '<span style="background:' + color + '"></span>',
+            iconSize: [14, 14]
+        });
+    }
+
+    // ---------------------------------------------------------------
+    // DATA HOOK — replace this sample with live healthsites.io API data.
+    // Endpoint pattern (confirm params against the API wiki):
+    //   https://healthsites.io/api/v3/facilities/?api-key=KEY&country=Senegal&extent=...
+    // Use `from=<unix timestamp>` for delta sync; `contact_number` holds the phone.
+    // Emergency referral facilities: filter on the campaign tag/attribute,
+    // render with the red dot; all others with the neutral dot.
+    // ---------------------------------------------------------------
+    var sampleFacilities = [
+        { name: "Hôpital régional de Saint-Louis", lat: 16.0307, lng: -16.5089, emergency: true },
+        { name: "Centre de santé de Sor",          lat: 16.0125, lng: -16.4790, emergency: true },
+        { name: "Poste de santé de Guet Ndar",     lat: 15.9990, lng: -16.5160, emergency: false },
+        { name: "Poste de santé de Ndiolofène",    lat: 16.0260, lng: -16.4920, emergency: false }
+    ];
+
+    sampleFacilities.forEach(function (f) {
+        L.marker([f.lat, f.lng], { icon: dot(f.emergency ? '#f44a52' : '#3c4c57') })
+            .addTo(map)
+            .bindPopup('<strong>' + f.name + '</strong>');
+    });
+})();
+</script>
 {% endblock %}

@@ -1558,3 +1558,190 @@ section {
     .proof-grid { grid-template-columns: 1fr; }
     .proof-stat { border-left: none; }
 }
+
+/* ============================================================
+   v2.2 additions — append to vanilla.css
+   Reuses existing :root variables (--primary-color, etc.)
+   ============================================================ */
+
+/* Hero kicker */
+.kicker {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+}
+
+/* Priority user story / pull quote */
+.user-story {
+    border-left: 4px solid var(--primary-color);
+    background: var(--bg-light);
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--dark-gray);
+}
+
+/* Trust strip under the primary CTA */
+.trust-strip {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    padding: 0;
+    margin: 1.25rem 0 0;
+    font-size: 0.9rem;
+    color: var(--medium-gray);
+}
+.trust-strip li { display: flex; align-items: center; gap: 0.4rem; }
+.trust-strip i { color: var(--primary-color); }
+
+/* Stage badge on country pages */
+.stage-badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: var(--font-heading);
+}
+.stage-active  { background: rgba(244, 74, 82, 0.12); color: var(--primary-color); }
+.stage-forming { background: rgba(60, 76, 87, 0.10);  color: var(--dark-gray); }
+
+/* Forming-country call to action block */
+.forming-cta {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-light);
+    border-radius: 8px;
+}
+.forming-cta h2 { margin-top: 0; }
+
+/* Leaflet campaign map */
+.campaign-map {
+    width: 100%;
+    height: 420px;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    z-index: 0; /* keep below the fixed header */
+}
+.map-caption { font-size: 0.9rem; color: var(--medium-gray); margin-bottom: 0.5rem; }
+.facility-dot span {
+    display: block;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
+}
+@media (max-width: 600px) { .campaign-map { height: 300px; } }
+
+/* Analytics consent banner */
+.consent-banner {
+    position: fixed;
+    left: 1rem; right: 1rem; bottom: 1rem;
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--white);
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    z-index: 1000;
+}
+.consent-banner p { margin: 0; flex: 1 1 280px; font-size: 0.9rem; }
+.consent-banner .consent-actions { display: flex; gap: 0.5rem; }
+.consent-banner .btn { padding: 0.4rem 1rem; font-size: 0.9rem; }
+
+/* ============================================================
+   v2.2 additions — append to vanilla.css
+   Reuses existing :root variables (--primary-color, etc.)
+   ============================================================ */
+
+/* Hero kicker */
+.kicker {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+}
+
+/* Priority user story / pull quote */
+.user-story {
+    border-left: 4px solid var(--primary-color);
+    background: var(--bg-light);
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--dark-gray);
+}
+
+/* Trust strip under the primary CTA */
+.trust-strip {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    padding: 0;
+    margin: 1.25rem 0 0;
+    font-size: 0.9rem;
+    color: var(--medium-gray);
+}
+.trust-strip li { display: flex; align-items: center; gap: 0.4rem; }
+.trust-strip i { color: var(--primary-color); }
+
+/* Stage badge on country pages */
+.stage-badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: var(--font-heading);
+}
+.stage-active  { background: rgba(244, 74, 82, 0.12); color: var(--primary-color); }
+.stage-forming { background: rgba(60, 76, 87, 0.10);  color: var(--dark-gray); }
+
+/* Forming-country call to action block */
+.forming-cta {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-light);
+    border-radius: 8px;
+}
+.forming-cta h2 { margin-top: 0; }
+
+/* Leaflet campaign map */
+.campaign-map {
+    width: 100%;
+    height: 420px;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    z-index: 0; /* keep below the fixed header */
+}
+.map-caption { font-size: 0.9rem; color: var(--medium-gray); margin-bottom: 0.5rem; }
+.facility-dot span {
+    display: block;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
+}
+@media (max-width: 600px) { .campaign-map { height: 300px; } }
