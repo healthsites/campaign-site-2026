@@ -50,7 +50,7 @@
                 {% if is_french %}Financer cette campagne{% else %}Fund this campaign{% endif %}
             </a>
             <a href="{{ WORKING_GROUP_FORM_URL }}" target="_blank" rel="noopener" class="btn btn-secondary">
-                {% if is_french %}Rejoindre le groupe de travail{% else %}Join the working group{% endif %}
+                {% if is_french %}Demander à rejoindre le groupe de travail{% else %}Request to join the working group{% endif %}
             </a>
         </div>
 
@@ -69,11 +69,6 @@
                 <a href="{{ WORKING_GROUP_FORM_URL }}" target="_blank" rel="noopener" class="btn btn-primary">
                     {% if is_french %}Enregistrer mon intérêt{% else %}Register interest{% endif %}
                 </a>
-                {% if GITHUB_DISCUSSION_URL %}
-                <a href="{{ GITHUB_DISCUSSION_URL }}" target="_blank" rel="noopener" class="btn btn-secondary">
-                    {% if is_french %}Forum de discussion{% else %}Discussion forum{% endif %}
-                </a>
-                {% endif %}
             </div>
         </div>
         {% endif %}

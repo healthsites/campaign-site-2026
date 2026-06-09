@@ -124,7 +124,7 @@ DEFAULT_PAGINATION = False
 GOFUNDME_URL = 'https://www.gofundme.com/f/senegal-health-facility-data-collaborative'
 
 # Google Form to join a working group / register interest (institutional channel).
-WORKING_GROUP_FORM_URL = 'https://forms.gle/REPLACE_ME'
+WORKING_GROUP_FORM_URL = 'https://healthsites.io/contact'
 
 # GitHub discussion forum for working groups.
 GITHUB_DISCUSSION_URL = 'https://github.com/healthsites/healthsites/discussions'
