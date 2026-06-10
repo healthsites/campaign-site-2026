@@ -26,6 +26,11 @@
 <section class="country-content">
     <div class="container">
         <article class="content">
+            {% if page.hero_image %}
+            <img src="{{ SITEURL }}{{ page.hero_image }}"
+                 alt="{{ page.hero_image_alt|default(page.country ~ ' — medical regions map') }}"
+                 class="page-hero-image">
+            {% endif %}
             {{ page.content }}
         </article>
 

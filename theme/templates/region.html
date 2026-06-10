@@ -3,8 +3,10 @@
 {% block title %}{{ page.title }} - {{ SITENAME }}{% endblock %}
 
 {% block extra_head %}
+{% if not page.map_image %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -44,8 +46,14 @@
                 <p class="map-caption">
                     {% if is_french %}Les 35 établissements d'orientation pour les urgences maternelles sont indiqués en rouge.{% else %}The 35 emergency maternal referral facilities are shown in red.{% endif %}
                 </p>
+                {% if page.map_image %}
+                <img src="{{ SITEURL }}{{ page.map_image }}"
+                     alt="{% if is_french %}Carte des établissements de santé validés à {{ page.region }}{% else %}Map of validated health facilities in {{ page.region }}{% endif %}"
+                     class="campaign-map-static">
+                {% else %}
                 <div id="map" class="campaign-map" role="img"
-                     aria-label="{% if is_french %}Carte des établissements de santé validés à Saint-Louis{% else %}Map of validated health facilities in Saint-Louis{% endif %}"></div>
+                     aria-label="{% if is_french %}Carte des établissements de santé validés à {{ page.region }}{% else %}Map of validated health facilities in {{ page.region }}{% endif %}"></div>
+                {% endif %}
             </article>
 
             <aside class="region-sidebar">
@@ -77,6 +85,7 @@
 {% endblock %}
 
 {% block extra_js %}
+{% if not page.map_image %}
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
@@ -124,4 +133,5 @@
     });
 })();
 </script>
+{% endif %}
 {% endblock %}

@@ -1745,3 +1745,6 @@ section {
     box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
 }
 @media (max-width: 600px) { .campaign-map { height: 300px; } }
+
+.page-hero-image { width: 100%; height: auto; border-radius: 8px; margin-bottom: 1.5rem; }
+.campaign-map-static { width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem; }

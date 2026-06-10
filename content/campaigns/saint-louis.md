@@ -9,6 +9,7 @@ campaign_status: Phase 1 complete
 facilities_validated: ~400
 emergency_facilities: 35
 budget_needed: Seeking funding
+map_image: /theme/images/validated-healthsites-saint-louis1.png
 
 We ran the Emergency Health Mapping Campaign in Saint-Louis with the local OpenStreetMap
 community and Senegal's regional health office. Étape 1 is complete: around 400 health
