@@ -1,82 +1,95 @@
 {% extends "base.html" %}
 
-{% block title %}{{ page.country|default(page.title) }} - {{ SITENAME }}{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+{% endblock %}
 
 {% block content %}
-{% set is_french = (page and page.lang == 'fr') %}
-{% set stage = (page.stage|default('forming'))|lower %}
-
 <section class="country-header">
     <div class="container">
-        <nav class="breadcrumb">
-            <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/campaigns/">{% if is_french %}Campagnes{% else %}Campaigns{% endif %}</a>
-            → <span>{{ page.country|default(page.title) }}</span>
-        </nav>
-        <h1>{{ page.country|default(page.title) }}</h1>
-        <span class="stage-badge stage-{{ stage }}">
-            {% if stage == 'active' %}
-                {% if is_french %}Campagne active{% else %}Active campaign{% endif %}
-            {% else %}
-                {% if is_french %}Groupe de travail en formation{% else %}Working group forming{% endif %}
-            {% endif %}
-        </span>
+        <h1>{{ page.title }}</h1>
+        {% if page.summary %}<p class="summary">{{ page.summary }}</p>{% endif %}
     </div>
 </section>
 
+{# ── LEAFLET MAP ─────────────────────────────────────── #}
+{% if page.geojson_file %}
+<section class="page-map">
+    <div class="container">
+        <div id="map" class="campaign-map" role="img" aria-label="Map of {{ page.country }}"></div>
+    </div>
+</section>
+{% endif %}
+
+{# ── COUNTRY CONTENT ─────────────────────────────────────── #}
 <section class="country-content">
     <div class="container">
-        <article class="content">
-            {% if page.hero_image %}
-            <img src="{{ SITEURL }}{{ page.hero_image }}"
-                 alt="{{ page.hero_image_alt|default(page.country ~ ' — medical regions map') }}"
-                 class="page-hero-image">
-            {% endif %}
-            {{ page.content }}
-        </article>
-
-        {% if stage == 'active' %}
-        <!-- ACTIVE: link to the live regional campaign + fund it -->
-        {% if page.active_region %}
-        <h2>{% if is_french %}Campagnes régionales{% else %}Regional campaigns{% endif %}</h2>
-        <div class="regions-grid">
-            <div class="region-card status-active">
-                <h3>
-                    <a href="{{ SITEURL }}{{ page.active_region_url }}">{{ page.active_region }}</a>
-                </h3>
-                {% if page.facilities_validated %}
-                <p>{{ page.facilities_validated }} {% if is_french %}établissements validés{% else %}facilities validated{% endif %}</p>
-                {% endif %}
-            </div>
-        </div>
-        {% endif %}
-
-        <div class="campaign-actions">
-            <a href="{{ GOFUNDME_URL }}" target="_blank" rel="noopener" class="btn btn-primary">
-                {% if is_french %}Financer cette campagne{% else %}Fund this campaign{% endif %}
-            </a>
-            <a href="{{ WORKING_GROUP_FORM_URL }}" target="_blank" rel="noopener" class="btn btn-secondary">
-                {% if is_french %}Demander à rejoindre le groupe de travail{% else %}Request to join the working group{% endif %}
-            </a>
-        </div>
-
-        {% else %}
-        <!-- FORMING: institutional engagement only, no donation -->
-        <div class="forming-cta">
-            <h2>{% if is_french %}Aidez à lancer une campagne ici{% else %}Help start a campaign here{% endif %}</h2>
-            <p>
-                {% if is_french %}
-                Nous constituons un groupe de travail avec les communautés OpenStreetMap locales, le Ministère de la Santé et l'Office National de la Statistique. Enregistrez votre intérêt pour être informé dès son lancement.
-                {% else %}
-                We are forming a working group with local OpenStreetMap communities, the Ministry of Health, and the National Statistics Office. Register your interest to be notified when it launches.
-                {% endif %}
-            </p>
-            <div class="campaign-actions">
-                <a href="{{ WORKING_GROUP_FORM_URL }}" target="_blank" rel="noopener" class="btn btn-primary">
-                    {% if is_french %}Enregistrer mon intérêt{% else %}Register interest{% endif %}
-                </a>
-            </div>
-        </div>
-        {% endif %}
+        {{ page.content }}
     </div>
 </section>
+
+{# ── REGIONAL PAGES NAVIGATION ─────────────────────────────────────── #}
+{% set country_slug = page.country_slug|default(page.country|lower) %}
+{% set regional_pages = articles + pages | selectattr('country_slug', 'equalto', country_slug) | list %}
+
+{% if regional_pages %}
+<section class="regional-pages">
+    <div class="container">
+        <h2>Regional Campaigns</h2>
+        <div class="regions-grid">
+            {% for region_page in regional_pages %}
+                {% if region_page.region %}
+                <div class="region-card">
+                    <h3><a href="{{ SITEURL }}/{{ region_page.url }}">{{ region_page.region }}</a></h3>
+                    {% if region_page.campaign_status %}<p class="status">{{ region_page.campaign_status }}</p>{% endif %}
+                    {% if region_page.summary %}<p>{{ region_page.summary }}</p>{% endif %}
+                    <a href="{{ SITEURL }}/{{ region_page.url }}" class="btn btn-secondary">Learn More</a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script>
+(function () {
+    var mapEl = document.getElementById('map');
+    if (!mapEl || typeof L === 'undefined') return;
+
+    var center = [14.5, -14.5];
+    var map = L.map('map').setView(center, 6);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    {% if page.geojson_file %}
+    var geoJsonUrl = '{{ SITEURL }}/theme/geojson/{{ page.geojson_file }}';
+    
+    fetch(geoJsonUrl)
+        .then(response => response.json())
+        .then(geojson => {
+            L.geoJSON(geojson, {
+                style: {
+                    color: '#000000',
+                    weight: 1,
+                    opacity: 0.8,
+                    fillColor: '#ffffff',
+                    fillOpacity: 0
+                }
+            }).addTo(map);
+        })
+        .catch(error => console.error('Error loading GeoJSON:', error));
+    {% endif %}
+})();
+</script>
 {% endblock %}

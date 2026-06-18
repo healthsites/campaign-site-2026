@@ -1,0 +1,125 @@
+content/campaigns/campaigns-ar.md
+  Template: campaigns
+  Map_image: None
+  hero_image: None
+
+content/campaigns/campaigns-fr.md
+  Template: campaigns
+  Map_image: None
+  hero_image: None
+
+content/campaigns/campaigns-pt.md
+  Template: campaigns
+  Map_image: None
+  hero_image: None
+
+content/campaigns/ghana.md
+  Template: country
+  Map_image: None
+  hero_image: None
+
+content/campaigns/index.md
+  Template: campaigns
+  Map_image: None
+  hero_image: None
+
+content/campaigns/mozambique/index-pt.md
+  Template: country
+  Map_image: None
+  hero_image: None
+
+content/campaigns/mozambique/maputo-pt.md
+  Template: region
+  Map_image: None
+  hero_image: None
+
+content/campaigns/mozambique/maputo.md
+  Template: region
+  Map_image: None
+  hero_image: None
+
+content/campaigns/mozambique/nampula-pt.md
+  Template: region
+  Map_image: None
+  hero_image: None
+
+content/campaigns/mozambique/nampula.md
+  Template: region
+  Map_image: None
+  hero_image: None
+
+content/campaigns/mozambique.md
+  Template: country
+  Map_image: None
+  hero_image: None
+
+content/campaigns/saint-louis.md
+  Template: region
+  Map_image: /theme/images/validated-healthsites-saint-louis1.png
+  hero_image: None
+
+content/campaigns/senegal/index-fr.md
+  Template: country
+  Map_image: /theme/images/senegal-regions.png
+  hero_image: None
+
+content/campaigns/senegal/saint-louis-fr.md
+  Template: region
+  Map_image: None
+  hero_image: None
+
+content/campaigns/senegal/tambacounda-fr.md
+  Template: region
+  Map_image: None
+  hero_image: None
+
+content/campaigns/senegal/tambacounda.md
+  Template: region
+  Map_image: None
+  hero_image: None
+
+content/campaigns/senegal.md
+  Template: country
+  Map_image: None
+  hero_image: /theme/images/senegal-regions.png
+
+content/campaigns/south-africa/index.md
+  Template: country
+  Map_image: None
+  hero_image: None
+
+content/campaigns/south-africa/western-cape.md
+  Template: region
+  Map_image: None
+  hero_image: None
+
+content/campaigns/south-africa.md
+  Template: country
+  Map_image: None
+  hero_image: None
+
+content/campaigns/south-sudan/index-ar.md
+  Template: country
+  Map_image: None
+  hero_image: None
+
+content/campaigns/south-sudan/juba-ar.md
+  Template: region
+  Map_image: None
+  hero_image: None
+
+content/campaigns/south-sudan/juba.md
+  Template: region
+  Map_image: None
+  hero_image: None
+
+content/campaigns/south-sudan.md
+  Template: country
+  Map_image: None
+  hero_image: None
+
+content/campaigns/tunisia.md
+  Template: country
+  Map_image: None
+  hero_image: None
+

@@ -3,6 +3,7 @@ Template: region
 Slug: campaigns/senegal/saint-louis
 Lang: fr
 Status: published
+geojson_file: sen_admin1.geojson
 Country: Sénégal
 Country_slug: senegal
 Region: Saint-Louis
