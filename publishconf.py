@@ -5,7 +5,7 @@
 from pelicanconf import *
 
 # Production URL — served from the custom domain via GitHub Pages
-SITEURL = 'https://campaigns.healthsites.io'
+SITEURL = 'https://campaigns.healthsites.io'  # Cache bust 1781867500
 RELATIVE_URLS = False
 
 # Feed settings (enable in production)
