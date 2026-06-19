@@ -34,19 +34,6 @@
                 <span class="logo-text">healthsites.io</span>
             </a>
 
-            <!-- Language Switcher -->
-            <div class="language-switcher">
-                {% set lang_labels = {'en':'EN','fr':'FR','pt':'PT','ar':'AR'} %}
-                {% set cur = page.lang if page else DEFAULT_LANG %}
-                <a href="{{ SITEURL }}/{{ page.url if page else '' }}" class="lang-link active">
-                    {{ lang_labels[cur]|default(cur|upper) }}
-                </a>
-                {% for t in (page.translations if page else []) %}
-                <span class="lang-separator">|</span>
-                <a href="{{ main_siteurl }}/{{ t.url }}"
-                   class="lang-link">{{ lang_labels[t.lang]|default(t.lang|upper) }}</a>
-                {% endfor %}
-            </div>
 
             <!-- Mobile Menu Button -->
             <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menu">
@@ -58,17 +45,9 @@
             <!-- Desktop Navigation -->
             <nav class="main-nav" id="main-nav">
                 <ul>
-                    {% if page and page.lang == 'fr' %}
-                    <li><a href="{{ SITEURL }}/fr/">Accueil</a></li>
-                    {% for title, link in MENUITEMS_FR %}
-                    <li><a href="{{ SITEURL }}{{ link }}">{{ title }}</a></li>
-                    {% endfor %}
-                    {% else %}
-                    <li><a href="{{ SITEURL }}/">Home</a></li>
                     {% for title, link in MENUITEMS %}
                     <li><a href="{{ SITEURL }}{{ link }}">{{ title }}</a></li>
                     {% endfor %}
-                    {% endif %}
                 </ul>
             </nav>
         </div>
