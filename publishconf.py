@@ -4,7 +4,7 @@
 # Import development settings
 from pelicanconf import *
 
-# Production URL — served from the custom domain via GitHub Pages.
+# Production URL — served from the custom domain via GitHub Pages
 SITEURL = 'https://campaigns.healthsites.io'
 RELATIVE_URLS = False
 
@@ -18,10 +18,8 @@ DELETE_OUTPUT_DIRECTORY = True
 # Disable drafts in production
 WITH_FUTURE_DATES = False
 
-# Optional: Enable analytics
-# GOOGLE_ANALYTICS = 'UA-XXXXXXXXX-X'
-
-# Point each i18n subsite at the production domain.
-I18N_SUBSITES['fr']['SITEURL'] = f'{SITEURL}/fr'
-I18N_SUBSITES['pt']['SITEURL'] = f'{SITEURL}/pt'
-I18N_SUBSITES['ar']['SITEURL'] = f'{SITEURL}/ar'
+# i18n subsites reserved for Phase 2
+# When adding French/Portuguese/Arabic support, uncomment and update:
+# I18N_SUBSITES['fr']['SITEURL'] = f'{SITEURL}/fr'
+# I18N_SUBSITES['pt']['SITEURL'] = f'{SITEURL}/pt'
+# I18N_SUBSITES['ar']['SITEURL'] = f'{SITEURL}/ar'
