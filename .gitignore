@@ -31,3 +31,4 @@ pelican-plugins/
 
 .obsidian
 
+/twitter_timeline_data.json

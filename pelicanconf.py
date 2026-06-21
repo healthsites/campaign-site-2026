@@ -59,4 +59,5 @@ GOFUNDME_URL = 'https://www.gofundme.com/f/senegal-health-facility-data-collabor
 WORKING_GROUP_FORM_URL = 'https://healthsites.io/contact'
 GITHUB_DISCUSSION_URL = 'https://github.com/healthsites/healthsites/discussions'
 
-PLUGINS = []
+PLUGIN_PATHS = ['plugins']
+PLUGINS = ['twitter_timeline_loader']

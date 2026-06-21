@@ -1,0 +1,32 @@
+{
+  "title": "healthsites.io Twitter Timeline",
+  "description": "A curated archive of our journey (2015–2024)",
+  "sections": [
+    {
+      "title": "#Senegal & #ShareHealthData",
+      "items": [
+        {
+          "title": "Senegal Published in Open Mapping SDGs Paper",
+          "date": "Dec 2022",
+          "quote": "Great to see healthsites.io published in the ‘Open Mapping towards SDG’s’ paper. Well done @Patiflafla @YouthmappersUgb @OpenStreetMapSn @NdyeKhadyNdoye1 and Ibrahima Diallo. #sharehealthdata #senegal #MFL #openstreetmap #health",
+          "why": "Peer-reviewed validation — healthsites.io data underpinning published SDG research on health facility mapping in Senegal, with local youth mappers as named co-authors.",
+          "tweet_url": "https://twitter.com/healthsitesio/status/1599782696351563776"
+        },
+        {
+          "title": "Celebrating Senegal Community Mappers",
+          "date": "Sep 2019",
+          "quote": "Well done! @OpenStreetMapSn, @lamineyasey @CSenegalaise, @ndongamadu #dakar #senegal #sharehealthdata",
+          "why": "Grassroots community validation in action — local partners doing the ground-level work in Dakar that makes open health data credible and sustainable.",
+          "tweet_url": "https://twitter.com/healthsitesio/status/1172850180909096961"
+        },
+        {
+          "title": "First Call to Share Health Data in Senegal",
+          "date": "Jul 2016",
+          "quote": "@lamineyasey can you #sharehealthdata #Senegal #Dakar?",
+          "why": "The seed of a multi-year campaign — an early direct ask to local mappers in Dakar. What started as a single question grew into a sustained Senegal health facility mapping programme.",
+          "tweet_url": "https://twitter.com/healthsitesio/status/756101788382748678"
+        }
+      ]
+    }
+  ]
+}

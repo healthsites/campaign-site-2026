@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<article class="page-content">
+  <h1>{{ page.title }}</h1>
+  <p>{{ page.description }}</p>
+  
+  {{ page.content }}
+  
+  <div class="timeline-container">
+    <p>Loading timeline...</p>
+  </div>
+  
+  <script>
+    // Data embedded at build time (NOT fetched from public file)
+    const timelineData = {{ timeline_data | safe }};
+
+    const container = document.querySelector('.timeline-container');
+    container.innerHTML = '';
+    timelineData.sections.forEach(section => {
+      const sectionEl = document.createElement('div');
+      sectionEl.className = 'timeline-section';
+      sectionEl.innerHTML = `<h2 class="timeline-section-title">${section.title}</h2>`;
+      section.items.forEach(item => {
+        const itemEl = document.createElement('div');
+        itemEl.className = 'timeline-item';
+        itemEl.innerHTML = `
+          <div class="timeline-marker"><span class="timeline-date-marker">${item.date}</span></div>
+          <div class="timeline-body">
+            <h3 class="timeline-item-title">${item.title}</h3>
+            <blockquote class="timeline-quote"><p>${item.quote}</p></blockquote>
+            <div class="timeline-why-matter"><strong>Why it matters:</strong> ${item.why}</div>
+            <a href="${item.tweet_url}" class="timeline-link" target="_blank">View on Twitter →</a>
+          </div>
+        `;
+        sectionEl.appendChild(itemEl);
+      });
+      container.appendChild(sectionEl);
+    });
+  </script>
+</article>
+{% endblock %}
