@@ -33,7 +33,6 @@ ARTICLE_URL = ''
 ARTICLE_SAVE_AS = ''
 ARTICLE_PATHS = []
 
-PLUGINS = ['i18n_subsites']
 I18N_TEMPLATES_LANG = 'en'
 
 # French subsite configuration reserved for Phase 2
@@ -59,3 +58,5 @@ DEFAULT_PAGINATION = False
 GOFUNDME_URL = 'https://www.gofundme.com/f/senegal-health-facility-data-collaborative'
 WORKING_GROUP_FORM_URL = 'https://healthsites.io/contact'
 GITHUB_DISCUSSION_URL = 'https://github.com/healthsites/healthsites/discussions'
+
+PLUGINS = []
