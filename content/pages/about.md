@@ -1,27 +1,75 @@
-Title: About healthsites.io
+Title: About
 Slug: about
-Status: published
 Lang: en
+Status: published
+
+healthsites.io is a Digital Public Good that builds and maintains an open, community-validated baseline of health facility data in OpenStreetMap. We drive this through Emergency Health Mapping Campaigns, with a focus on maternal and women's health services.
+
+---
 
 ## Our Vision
 
-Health facility data is a public good. **Accurate, current, and openly licensed data about where health services exist is the foundation of emergency response, capacity planning, and equitable access.**
+<details markdown="1">
+<summary markdown="1">
+
+### Health facility data as critical infrastructure
+
+</summary>
+
+Accurate, current, and openly licensed data about where health services exist is the foundation of emergency response, capacity planning, and equitable access.
 
 We build that foundation. healthsites.io is a data collaborative that combines OpenStreetMap's global mapping infrastructure with community validation, institutional partnership, and governance rooted in the accountability of Ministries of Health.
+
+</details>
 
 ---
 
 ## The Problem We Solve
 
+<details markdown="1">
+<summary markdown="1">
+
+### Incomplete or outdated facility lists cost lives
+
+</summary>
+
 Incomplete or outdated health facility lists cost lives. When emergency services cannot locate the nearest functioning facility, or when maternal health emergencies go unrouted to emergency obstetric care, the result is preventable mortality.
 
 **This is solvable through sustained collaboration at scale.**
 
-In Saint-Louis, Senegal, our first campaign identified 398 validated health facilities — and 35 emergency pregnancy referral services that were not on the official list. That gap would have cost lives. It is also replicable across sub-Saharan Africa and beyond, once we systematize the work.
+In Saint-Louis, Senegal, our first campaign identified **398 validated health facilities** — and **35 emergency pregnancy referral services that were not on the official list.** That gap would have cost lives. It is also replicable across sub-Saharan Africa and beyond, once we systematize the work.
+
+</details>
+
+---
+
+## Why Women's Health
+
+<details markdown="1">
+<summary markdown="1">
+
+### The structural barriers that affect women
+
+</summary>
+
+Our campaigns are guided by a question from [The 100 Questions Initiative](https://womenshealth.the100questions.org/):
+
+> What structural, social, and policy factors perpetuate women's disadvantages across health, political, and economic domains, and what evidence-based transdisciplinary strategies can effectively dismantle these barriers?
+
+Accurate, findable health facility data is one concrete answer. When the nearest emergency maternal facility is on the map, a woman and her family can plan for complications before they become emergencies.
+
+</details>
 
 ---
 
 ## How We Work
+
+<details markdown="1">
+<summary markdown="1">
+
+### The Emergency Health Mapping Campaign
+
+</summary>
 
 **The Emergency Health Mapping Campaign** is our cornerstone activity. Working with local OpenStreetMap chapters, Missing Maps partners, and Ministry of Health teams, we:
 
@@ -33,9 +81,18 @@ In Saint-Louis, Senegal, our first campaign identified 398 validated health faci
 
 All data is contributed to OpenStreetMap under the Open Database Licence (ODbL), making it a permanent public good. healthsites.io applies validation governance and connects government, NGOs, and the private sector through a sustainable subscription model.
 
+</details>
+
 ---
 
 ## Data Governance & Trust
+
+<details markdown="1">
+<summary markdown="1">
+
+### Why institutions say yes to open data
+
+</summary>
 
 Our collaboration is built on a framework of trust, transparency, and responsibility:
 
@@ -47,102 +104,133 @@ Our collaboration is built on a framework of trust, transparency, and responsibi
 
 **This is why cautious institutions say yes:** the framework aligns with data sovereignty, regulatory requirements, and public accountability.
 
----
-
-## Sustainable Finance
-
-We fund ourselves through a blended finance model:
-
-**Public funds** (World Bank, development finance)
-: Infrastructure-category investment in the data intermediary, mapping campaigns, capacity development, and governance — not project grants
-
-**Philanthropic funding** 
-: Support for Emergency Health Mapping Campaigns in remote and resource-constrained regions, building geospatial capacity where it is needed most
-
-**Private sector revenue**
-: Tiered API subscriptions, analytics tools, and platform services generate sustainable revenue while maintaining open access for government and NGOs
-
-This mix de-risks investment and ensures healthsites.io serves all sectors — governments setting health policy, NGOs delivering services, and companies building on trusted data.
+</details>
 
 ---
 
-## Who We Are
+## Data Stewardship
 
-**Mark Herringer** — Director of Open Healthsite Consulting and Co-founder of healthsites.io — has dedicated more than a decade to building open health facility data infrastructure, working with Ministries of Health, OpenStreetMap communities, UN agencies, and academic partners across sub-Saharan Africa and beyond.
+healthsites.io is led by **Mark Herringer**, Data Steward of the healthsites.io data commons. Mark is a [bilingual practitioner](https://the100questions.org/bilinguals.html) in The 100 Questions Initiative — combining domain knowledge with data-science expertise — and a member of the [NGI Commons Digital Commons Task Force](https://commons.ngi.eu/dctf/), an EU Horizon Europe expert body advising on digital commons.
 
 healthsites.io is operated by **Open Healthsite Consulting** (registered in the Netherlands, No. 90806891) and is a **Digital Public Good** recognized by the Digital Public Goods Alliance.
 
 ---
 
-## Our Partners
+## Our Campaigns
+
+<details markdown="1">
+<summary markdown="1">
+
+### Emergency Health Mapping Campaigns across Africa
+
+</summary>
+
+We run time-bound campaigns in priority regions, validating health facility data and building institutional capacity.
+
+**Current and completed campaigns:**
+
+- **Saint-Louis, Senegal** (2021-present) — 398 facilities validated; 35 emergency maternal referral facilities identified
+- **Mozambique** (2022-present) — Regional health system mapping
+- **South Africa** (2023-present) — Township and community health facility mapping
+- **South Sudan** (2024) — Emergency capacity assessment
+- **Tunisia** (2024) — Health systems research partnership
+- **Ghana** (2024-planning) — Regional expansion
+
+Each campaign follows the same rigorous methodology: community-led validation, Ministry of Health partnership, permanent publication to OpenStreetMap.
+
+</details>
+
+---
+
+## Partners & Collaborators
+
+<details markdown="1">
+<summary markdown="1">
+
+### Institutions across government, civil society, the UN system, and geospatial innovation
+
+</summary>
 
 We partner with institutions across government, civil society, the UN system, and geospatial innovation:
 
-**Government & national systems**
-: Ministries of Health; National Statistics Offices; eHealth and health information systems projects
+**Government & national systems**  
+Ministries of Health; National Statistics Offices; eHealth and health information systems projects
 
-**Mapping & data communities**
-: OpenStreetMap; Missing Maps; Humanitarian OpenStreetMap Team (HOTOSM); CartONG; Heigit
+**Mapping & data communities**  
+OpenStreetMap; Missing Maps; Humanitarian OpenStreetMap Team (HOTOSM); CartONG; Heigit
 
-**Geospatial & development**
-: Group on Earth Observations (GEO); Humanitarian Data Exchange (HDX); The Data Tank; European Citizen Science
+**Geospatial & development**  
+Group on Earth Observations (GEO); Humanitarian Data Exchange (HDX); The Data Tank; European Citizen Science
 
-**International health & data governance**
-: WHO; UNICEF; UNDP Singapore Global Centre; International Committee of the Red Cross (ICRC); Digital Public Goods Alliance
+**International health & data governance**  
+WHO; UNICEF; UNDP Singapore Global Centre; International Committee of the Red Cross (ICRC); Digital Public Goods Alliance
+
+</details>
 
 ---
 
 ## How to Engage
 
-**Fund a campaign**
-: Support Emergency Health Mapping Campaigns in priority regions. [Join the Saint-Louis campaign on GoFundMe]({{ GOFUNDME_URL }})
+<details markdown="1">
+<summary markdown="1">
 
-**Subscribe to the API**
-: Become an API partner to access and contribute validated health facility data. [Register for the paid-tier waitlist]({{ WORKING_GROUP_FORM_URL }})
+### Ways to participate and support
 
-**Integrate the standard**
-: Adopt the healthsites.io data model to maintain and publish your national Master Facility List. [Learn more about integration]({{ WORKING_GROUP_FORM_URL }})
+</summary>
 
-**Map with us**
-: Join the OpenStreetMap and Missing Maps communities to ground-truth facility data in your country. [Join the OpenStreetMap community](https://www.openstreetmap.org/)
+**Fund a campaign**  
+Support Emergency Health Mapping Campaigns in priority regions. [Get in touch](/contact)
 
-**Advocate for change**
-: Build the cross-ministry business case for open health facility data as national infrastructure. [Request our business case guide]({{ WORKING_GROUP_FORM_URL }})
+**Subscribe to the API**  
+Become an API partner to access and contribute validated health facility data. [Register your interest](/contact)
+
+**Integrate the standard**  
+Adopt the healthsites.io data model to maintain and publish your national Master Facility List. [Learn more](/contact)
+
+**Map with us**  
+Join the OpenStreetMap and Missing Maps communities to ground-truth facility data in your country. [Join the OpenStreetMap community](https://www.openstreetmap.org/)
+
+**Advocate for change**  
+Build the cross-ministry business case for open health facility data as national infrastructure. [Request our business case guide](/contact)
+
+</details>
 
 ---
 
-## Contact
+## Twitter Timeline
 
-Questions about partnerships, funding, API integration, or mapping campaigns?
+<details markdown="1">
+<summary markdown="1">
+
+### Our Journey: Foundation to Impact to Sustainability
+
+</summary>
+
+View the [Twitter Timeline]({filename}/pages/twitter-timeline.md) — 1,067 tweets documenting our evolution from **2015 (Foundation) → 2024 (Institutional Impact)**
+
+</details>
+
+---
+
+## Contact & Learn More
+
+<details markdown="1">
+<summary markdown="1">
+
+### Get in touch
+
+</summary>
+
+Questions about partnerships, funding, API integration, campaigns, or mapping?
 
 **Email:** sharehealthdata@healthsites.io
 
-**Work with us:** [Register your interest]({{ WORKING_GROUP_FORM_URL }})
+**Follow our progress:**  
+- Twitter: [@healthsitesio](https://twitter.com/healthsitesio)
+- GitHub: [healthsites](https://github.com/healthsites)
+- Academic: [ORCID 0000-0002-0605-8348](https://orcid.org/0000-0002-0605-8348)
 
-**Follow our progress:** [GitHub Discussions]({{ GITHUB_DISCUSSION_URL }})
-
----
-
-## Data & Impact
-
-We measure impact through indicators aligned with **SDG 3.8.1** (health facility coverage and health service access):
-
-- **Data quality:** Location Validation Index (LVI) score improvements per country
-- **System usability:** Monthly API calls; organizations using the data; datasets downloaded
-- **Ecosystem growth:** Active validators in the network; facilities updated per quarter
-- **Government integration:** Percentage of a country's Master Facility List marked as "MoH-validated"
-- **Interoperability:** Facilities linked to national census systems via UUID
-
-Results are shared quarterly with partners and reported to the relevant Ministry of Health every six months.
-
----
-
-## Further Reading
-
-- **Data Re-use Strategy (v4.4):** Comprehensive framework for sustainable finance, API models, and institutional engagement
-- **Location Validation Index:** LVI methodology on GitHub
-- **Global Healthsites Mapping Project:** Data standard and harmonization approach
-- **Validation Campaign Guide:** Step-by-step approach to running an Emergency Health Mapping Campaign
+</details>
 
 ---
 
