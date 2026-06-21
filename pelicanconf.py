@@ -69,3 +69,12 @@ if _tl_path.exists():
     JINJA_GLOBALS = {'timeline': json.loads(_tl_path.read_text(encoding='utf-8'))}
 else:
     JINJA_GLOBALS = {}
+
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+        'markdown.extensions.md_in_html': {},
+    },
+    'output_format': 'html5',
+}
