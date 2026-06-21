@@ -32,3 +32,5 @@ pelican-plugins/
 .obsidian
 
 /twitter_timeline_data.json
+design_handoff_twitter_timeline/
+DESIGN_TWITTER_TIMELINE_README.md
