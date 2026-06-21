@@ -1,41 +1,173 @@
-{% extends "base.html" %}
-{% block content %}
-<article class="page-content">
-  <h1>{{ page.title }}</h1>
-  <p>{{ page.description }}</p>
-  
-  {{ page.content }}
-  
-  <div class="timeline-container">
-    <p>Loading timeline...</p>
-  </div>
-  
-  <script>
-    // Data embedded at build time (NOT fetched from public file)
-    const timelineData = {{ timeline_data | safe }};
+{# ============================================================================
+   Twitter Timeline page  —  campaigns.healthsites.io  (Pelican / Jinja2)
+   Suggested location: theme/templates/twitter-timeline.html
 
-    const container = document.querySelector('.timeline-container');
-    container.innerHTML = '';
-    timelineData.sections.forEach(section => {
-      const sectionEl = document.createElement('div');
-      sectionEl.className = 'timeline-section';
-      sectionEl.innerHTML = `<h2 class="timeline-section-title">${section.title}</h2>`;
-      section.items.forEach(item => {
-        const itemEl = document.createElement('div');
-        itemEl.className = 'timeline-item';
-        itemEl.innerHTML = `
-          <div class="timeline-marker"><span class="timeline-date-marker">${item.date}</span></div>
-          <div class="timeline-body">
-            <h3 class="timeline-item-title">${item.title}</h3>
-            <blockquote class="timeline-quote"><p>${item.quote}</p></blockquote>
-            <div class="timeline-why-matter"><strong>Why it matters:</strong> ${item.why}</div>
-            <a href="${item.tweet_url}" class="timeline-link" target="_blank">View on Twitter →</a>
+   Faithful translation of the HTML design reference (../Twitter Timeline.dc.html).
+   Assumes a Pelican `base.html` providing the site header/footer + {% block content %}.
+   Styling lives in twitter-timeline.css (namespaced `.tt-`).
+
+   DATA
+   ----
+   • Hashtags + collaborators: small, defined inline below as {% set %} lists.
+   • Timeline: driven by `timeline` — the parsed twitter_timeline_data.json
+     (1,067 tweets). Expose it to this template as a Jinja global. In
+     pelicanconf.py:
+
+         import json, pathlib
+         _tl = json.loads((pathlib.Path('theme/static') /
+                           'twitter_timeline_data.json').read_text(encoding='utf-8'))
+         JINJA_GLOBALS = {'timeline': _tl}
+
+     The template iterates `timeline.phases[].tweets[]`. See README for the
+     full schema and how to regenerate the JSON from the Twitter/X archive.
+   ============================================================================ #}
+{% extends "base.html" %}
+
+{% block title %}Twitter Timeline — healthsites.io{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ SITEURL }}/theme/css/twitter-timeline.css">
+{% endblock %}
+
+{% block content %}
+
+{% set hashtags = [
+  {"tag": "#opendata",       "count": 55, "pct": 100, "focus": "Making facility data accessible as a public good."},
+  {"tag": "#sharehealthdata","count": 52, "pct": 95,  "focus": "Our core mission — shared health data infrastructure."},
+  {"tag": "#openstreetmap",  "count": 23, "pct": 42,  "focus": "Community mapping methodology and tooling."},
+  {"tag": "#covid19",        "count": 23, "pct": 42,  "focus": "Pandemic response: vaccine and testing-site mapping."},
+  {"tag": "#health",         "count": 16, "pct": 29,  "focus": "Health systems and emergency response."},
+  {"tag": "#senegal",        "count": 13, "pct": 24,  "focus": "Saint-Louis campaign and West Africa."},
+  {"tag": "#missingmaps",    "count": 12, "pct": 22,  "focus": "Missing Maps partnership and validators."},
+  {"tag": "#ebola",          "count": 11, "pct": 20,  "focus": "DRC Ebola response integration."}
+] %}
+
+{% set collaborators = [
+  {"handle": "@TheMissingMaps", "count": 50, "key": true,  "desc": "Validator networks and community mapping."},
+  {"handle": "@humdata",        "count": 50, "key": true,  "desc": "Humanitarian Data Exchange partnership."},
+  {"handle": "@sharehealthdata","count": 48, "key": false, "desc": "Our own account and community hub."},
+  {"handle": "@hotosm",         "count": 42, "key": false, "desc": "Humanitarian OpenStreetMap Team."},
+  {"handle": "@afrimapr",       "count": 27, "key": false, "desc": "African mapping community."},
+  {"handle": "@openstreetmap",  "count": 25, "key": false, "desc": "OSM infrastructure and community."},
+  {"handle": "@MSF",            "count": 23, "key": true,  "desc": "Médecins Sans Frontières emergency response."},
+  {"handle": "@assocCartONG",   "count": 20, "key": false, "desc": "CartONG geospatial development."},
+  {"handle": "@WHO",            "count": 16, "key": true,  "desc": "World Health Organization partnership."},
+  {"handle": "@youthmappers",   "count": 16, "key": false, "desc": "Youth mapping community."}
+] %}
+
+{# ---- PAGE HEADER -------------------------------------------------------- #}
+<section class="tt-pagehead">
+  <div class="container">
+    <nav class="tt-breadcrumb">
+      <a href="/about/">About</a><span class="sep">→</span><span>Twitter Timeline</span>
+    </nav>
+    <p class="tt-eyebrow">Nine Years of Open Health Data</p>
+    <h1>A Public Record of Sustained, Multi-Stakeholder Work</h1>
+    <p>Our Twitter timeline documents the evolution of healthsites.io from 2015 to 2024 — a transparent, time-stamped record of the partnerships, crises, and community work behind the world's open map of health facilities.</p>
+  </div>
+</section>
+
+{# ---- METRICS BAND ------------------------------------------------------- #}
+<section class="tt-metrics">
+  <div class="container">
+    <div class="tt-metric"><div class="tt-metric-num">1,067</div><div class="tt-metric-label">tweets documenting our evolution</div></div>
+    <div class="tt-metric"><div class="tt-metric-num">25</div><div class="tt-metric-label">hashtags spanning open data &amp; mapping</div></div>
+    <div class="tt-metric"><div class="tt-metric-num">15</div><div class="tt-metric-label">key collaborators, Missing Maps to WHO</div></div>
+    <div class="tt-metric"><div class="tt-metric-num accent">9 yrs</div><div class="tt-metric-label">of continuous public engagement, 2015–2024</div></div>
+  </div>
+</section>
+
+{# ---- HASHTAGS ----------------------------------------------------------- #}
+<section class="tt-section">
+  <div class="container">
+    <p class="tt-eyebrow">What We Talk About</p>
+    <h2>The mission, in our own words</h2>
+    <p class="tt-lede">Nine years of hashtags map directly to the project's purpose — open data as a public good, community mapping methodology, and crisis-tested health infrastructure.</p>
+
+    <div class="tt-hashtags">
+      {% for h in hashtags %}
+      <div class="tt-hashtag">
+        <div class="tt-hashtag-head">
+          <span class="tt-hashtag-tag">{{ h.tag }}</span>
+          <span class="tt-hashtag-count">{{ h.count }}</span>
+        </div>
+        <div class="tt-bar"><span style="width: {{ h.pct }}%;"></span></div>
+        <p>{{ h.focus }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <a class="tt-viewall" href="https://github.com/healthsites/campaign-site-2026">View all 25 hashtags →</a>
+  </div>
+</section>
+
+{# ---- COLLABORATORS ------------------------------------------------------ #}
+<section class="tt-section tt-section--soft">
+  <div class="container">
+    <p class="tt-eyebrow">Who We Work With</p>
+    <h2>Institutional backing, on the public record</h2>
+    <p class="tt-lede">Our most-mentioned collaborators are not marketing claims — they are nine years of documented engagement with the humanitarian mapping and global health community.</p>
+
+    <div class="tt-collabs">
+      {% for c in collaborators %}
+      <div class="tt-collab">
+        <div class="tt-avatar">{{ c.handle[1] | upper }}</div>
+        <div class="tt-collab-body">
+          <div class="tt-collab-head">
+            <span class="tt-handle">{{ c.handle }}</span>
+            <span class="tt-mentions{% if c.key %} is-key{% endif %}">{{ c.count }} mentions</span>
           </div>
-        `;
-        sectionEl.appendChild(itemEl);
-      });
-      container.appendChild(sectionEl);
-    });
-  </script>
-</article>
+          <p>{{ c.desc }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ---- TIMELINE  (all tweets, lightweight feed, linked to source) --------- #}
+<section class="tt-section">
+  <div class="container">
+    <div class="tt-timeline-wrap">
+      <div class="tt-timeline-head">
+        <p class="tt-eyebrow">The Timeline</p>
+        <h2>2015–2024</h2>
+        <p class="tt-lede">Every tweet from
+          <a href="{{ timeline.profile_url|default('https://x.com/healthsites_io') }}">@{{ timeline.account|default('healthsites_io') }}</a>
+          between 2015 and 2024 — {{ '{:,}'.format(timeline.total_tweets|default(1067)) }} posts documenting nine years of open health-data work, each linked to its source on X.</p>
+      </div>
+
+      <div class="tt-rail">
+        {% for phase in timeline.phases %}
+        <div class="tt-phase"><span class="tt-phase-pill">{{ phase.label }} · {{ phase.range }}</span></div>
+        {% for t in phase.tweets %}
+        <a class="tt-tweet-row" href="{{ t.url }}" target="_blank" rel="noopener">
+          <span class="tt-tweet-date">{{ t.date_display }}</span>
+          <span class="tt-tweet-text">{{ t.text }}{% for tag in t.hashtags %} <span class="tt-hashtag-inline">#{{ tag }}</span>{% endfor %}</span>
+          <span class="tt-tweet-link">View on X →</span>
+        </a>
+        {% endfor %}
+        {% endfor %}
+      </div>
+
+      <p class="tt-rail-note">{{ '{:,}'.format(timeline.total_tweets|default(1067)) }} tweets in total — see the full archive on
+        <a href="{{ timeline.profile_url|default('https://x.com/healthsites_io') }}">X</a>.</p>
+    </div>
+  </div>
+</section>
+
+{# ---- CTA ---------------------------------------------------------------- #}
+<section class="tt-cta">
+  <div class="container">
+    <div class="tt-cta-inner">
+      <h2>Ready to Integrate Health Facility Data?</h2>
+      <p>Institutions like WHO, UNICEF and national health systems work with healthsites.io because we prioritise data sovereignty, transparent governance, and long-term partnership.</p>
+      <div class="tt-cta-actions">
+        <a class="btn btn-primary" href="/contact/">Subscribe to the API Waitlist</a>
+        <a class="btn btn-on-dark" href="/contact/">Start a Partnership</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% endblock %}

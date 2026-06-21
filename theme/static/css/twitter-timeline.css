@@ -1,0 +1,381 @@
+/* ============================================================================
+   TWITTER TIMELINE PAGE  —  /about/twitter-timeline/
+   Drop-in stylesheet for campaigns.healthsites.io (Pelican / vanilla CSS).
+   Depends ONLY on the CSS custom properties already defined in vanilla.css
+   (--primary-color, --dark-gray, --medium-gray, --bg-light, --container-width,
+   --font-heading, --font-body, --transition). No framework required.
+
+   Suggested location: theme/static/css/twitter-timeline.css
+   Load it after vanilla.css in the page's <head> (or @import from vanilla.css).
+   All selectors are namespaced with `.tt-` so nothing leaks into other pages.
+   ============================================================================ */
+
+/* ---------- shared section shell ---------- */
+.tt-section { padding: 80px 0; }
+.tt-section--soft { background: var(--bg-light); }       /* #f9f9f9 */
+.tt-eyebrow {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+}
+.tt-section h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 3.5vw, 32px);
+  font-weight: 700;
+  color: var(--dark-gray);
+  margin: 0 0 12px;
+}
+.tt-lede {
+  font-size: 17px;
+  color: var(--medium-gray);
+  max-width: 60ch;
+  margin: 0 0 40px;
+  line-height: 1.7;
+}
+
+/* ============================================================================
+   1. PAGE HEADER  (the one site gradient: 135deg #fff -> #f9f9f9)
+   ============================================================================ */
+.tt-pagehead {
+  background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+  padding: 56px 0 48px;
+  border-bottom: 1px solid #f1f0f0;
+}
+.tt-breadcrumb {
+  font-size: 13px;
+  color: var(--medium-gray);
+  margin-bottom: 18px;
+}
+.tt-breadcrumb a { color: var(--primary-color); text-decoration: none; }
+.tt-breadcrumb a:hover { text-decoration: underline; }
+.tt-breadcrumb .sep { color: #a3a8ac; margin: 0 8px; }
+.tt-pagehead h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(34px, 5vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--dark-gray);
+  margin: 0 0 18px;
+  max-width: 18ch;
+}
+.tt-pagehead p {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--medium-gray);
+  line-height: 1.7;
+  max-width: 62ch;
+  margin: 0;
+}
+
+/* ============================================================================
+   2. METRICS BAND  (solid slate, 4 hero stats)
+   ============================================================================ */
+.tt-metrics { background: var(--dark-gray); }   /* #3c4c57 */
+.tt-metrics .container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding-left: 20px; padding-right: 20px;
+}
+.tt-metric {
+  padding: 44px 28px;
+  border-right: 1px solid rgba(255,255,255,0.10);
+}
+.tt-metric:last-child { border-right: none; }
+.tt-metric-num {
+  font-family: var(--font-heading);
+  font-size: clamp(40px, 5vw, 52px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+.tt-metric-num.accent { color: var(--primary-color); }
+.tt-metric-label {
+  color: rgba(255,255,255,0.72);
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+/* ============================================================================
+   3. HASHTAG CARDS
+   ============================================================================ */
+.tt-hashtags {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.tt-hashtag {
+  background: #fff;
+  border: 1px solid #f1f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 24px;
+  transition: var(--transition);
+}
+.tt-hashtag:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+  transform: translateY(-4px);
+}
+.tt-hashtag-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.tt-hashtag-tag {
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--dark-gray);
+}
+.tt-hashtag-count {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+.tt-bar {
+  height: 6px;
+  background: #f1f0f0;
+  border-radius: 999px;
+  margin: 14px 0;
+  overflow: hidden;
+}
+.tt-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--primary-color);
+  border-radius: 999px;
+}
+.tt-hashtag p {
+  font-size: 14px;
+  color: var(--light-gray);
+  line-height: 1.6;
+  margin: 14px 0 0;
+}
+.tt-viewall {
+  display: inline-block;
+  margin-top: 28px;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+/* ============================================================================
+   4. COLLABORATOR CARDS
+   ============================================================================ */
+.tt-collabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 18px;
+}
+.tt-collab {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 22px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: var(--transition);
+}
+.tt-collab:hover {
+  box-shadow: 0 8px 22px rgba(0,0,0,0.13);
+  transform: translateY(-3px);
+}
+.tt-avatar {
+  flex: none;
+  width: 46px; height: 46px;
+  border-radius: 999px;
+  background: #fef0f0;
+  color: var(--primary-color);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tt-collab-body { flex: 1; min-width: 0; }
+.tt-collab-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.tt-handle {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--dark-gray);
+}
+.tt-mentions {
+  flex: none;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 3px 10px;
+  color: var(--light-gray);
+  background: #eceff1;
+}
+/* amber highlight for institutional / headline partners */
+.tt-mentions.is-key { color: #856404; background: #fff3cd; }
+.tt-collab p {
+  font-size: 14px;
+  color: var(--light-gray);
+  line-height: 1.55;
+  margin: 6px 0 0;
+}
+
+/* ============================================================================
+   5. TIMELINE
+   ============================================================================ */
+.tt-timeline-wrap { max-width: 760px; margin: 0 auto; }
+.tt-timeline-head { text-align: center; margin-bottom: 48px; }
+.tt-timeline-head .tt-lede { margin-left: auto; margin-right: auto; }
+.tt-rail {
+  position: relative;
+  padding-left: 30px;
+}
+.tt-rail::before {                       /* the vertical line */
+  content: "";
+  position: absolute;
+  left: 9px; top: 6px; bottom: 30px;
+  width: 2px;
+  background: #f1f0f0;
+}
+/* phase marker — red node + pill */
+.tt-phase { position: relative; margin: 36px 0 6px; }
+.tt-phase:first-child { margin-top: 0; }
+.tt-phase::before {                      /* solid node */
+  content: "";
+  position: absolute;
+  left: -30px; top: 1px;
+  width: 20px; height: 20px;
+  border-radius: 999px;
+  background: var(--primary-color);
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 1px var(--primary-color);
+}
+.tt-phase-pill {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  background: var(--primary-color);
+  border-radius: 999px;
+  padding: 5px 14px;
+}
+
+/* tweet row — minimal, the whole row links to the source on X */
+.tt-tweet-row {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  border-bottom: 1px solid #f1f0f0;
+  padding: 14px 8px 14px 0;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+.tt-tweet-row:hover { background: #fafafa; opacity: 1; }   /* override site a:hover */
+.tt-tweet-row::before {                  /* small hollow node on the rail */
+  content: "";
+  position: absolute;
+  left: -25px; top: 20px;
+  width: 9px; height: 9px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--primary-color);
+}
+.tt-tweet-row > * { /* row layout via the inner flex below */ }
+.tt-tweet-row {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.tt-tweet-date {
+  flex: none;
+  width: 90px;
+  font-size: 13px;
+  color: #a3a8ac;
+}
+.tt-tweet-text {
+  flex: 1;
+  min-width: 220px;
+  font-size: 15px;
+  color: var(--dark-gray);
+  line-height: 1.6;
+}
+.tt-hashtag-inline { color: var(--primary-color); }
+.tt-tweet-link {
+  flex: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary-color);
+  white-space: nowrap;
+}
+.tt-rail-note {
+  margin-top: 24px;
+  font-size: 13px;
+  color: #a3a8ac;
+  text-align: center;
+}
+.tt-rail-note a { color: var(--primary-color); }
+
+/* ============================================================================
+   6. CTA BAND  (slate)
+   ============================================================================ */
+.tt-cta { background: var(--dark-gray); padding: 72px 0; }
+.tt-cta-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+.tt-cta h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 3.5vw, 34px);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 18px;
+}
+.tt-cta p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.7;
+  margin: 0 0 32px;
+}
+.tt-cta-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+/* reuses .btn / .btn-primary from vanilla.css; this is the white-outline
+   variant for use on the slate band */
+.btn-on-dark {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.55);
+}
+.btn-on-dark:hover {
+  background: #fff;
+  color: var(--dark-gray);
+  border-color: #fff;
+}
+
+/* ============================================================================
+   7. RESPONSIVE
+   ============================================================================ */
+@media (max-width: 968px) {
+  .tt-metrics .container { grid-template-columns: repeat(2, 1fr); }
+  .tt-metric:nth-child(2) { border-right: none; }
+  .tt-metric { border-bottom: 1px solid rgba(255,255,255,0.10); }
+}
+@media (max-width: 640px) {
+  .tt-section { padding: 48px 0; }
+  .tt-metrics .container { grid-template-columns: 1fr; }
+  .tt-metric { border-right: none; }
+  .tt-hashtags, .tt-collabs { grid-template-columns: 1fr; }
+  .tt-collab-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+}

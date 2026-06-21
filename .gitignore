@@ -2,35 +2,72 @@
 output/
 cache/
 *.pid
-__pycache__/
-*.pyc
 
 # Python
+__pycache__/
+*.pyc
+*.pyo
 venv/
 *.egg-info/
+
+# Environment / secrets
 .env
+.env.local
+.env.*.local
 
 # OS
 .DS_Store
 Thumbs.db
+.Spotlight-V100
+.Trashes
 
 # IDE
 .vscode/
 .idea/
 *.swp
+*.swo
+*~
 
-# Plugins (if using git submodule)
-pelican-plugins/
+# Backup files
+*.bak
+*.backup
+*-backup-*/
 
 # Build artifacts
 *.log
 
-# Backups
-*.backup
-*-backup-*/
+# Plugins (if using git submodule)
+pelican-plugins/
 
-.obsidian
+# OMC session data
+.omc/
 
-/twitter_timeline_data.json
+# Design handoff (reference only — not production)
 design_handoff_twitter_timeline/
 DESIGN_TWITTER_TIMELINE_README.md
+
+# Twitter archive working files
+/twitter_timeline_data.json
+/twitter-timeline.md
+/260620-healthsites-twitter-greatest-hits.md
+twitter_stats_section.md
+senegal_sharehealthdata_tweets.json
+
+# Twitter archive scripts (working tools, not production)
+analyze_twitter_archive*.py
+parse_twitter_archive.py
+extract_twitter_stats.py
+
+# Task documents (not production)
+CLAUDE_CODE_TASK_*.md
+
+# Content working files
+content/pages/twitter-timeline-data.json
+
+# Audit outputs and scripts
+audit_*.py
+audit_report_markdown.txt
+site_structure.txt
+
+# Other
+.obsidian

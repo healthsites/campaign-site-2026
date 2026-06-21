@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
+import json
+import pathlib
 
 AUTHOR = 'Healthsites.io'
 SITENAME = 'healthsites.io'
@@ -61,3 +63,9 @@ GITHUB_DISCUSSION_URL = 'https://github.com/healthsites/healthsites/discussions'
 
 PLUGIN_PATHS = ['plugins']
 PLUGINS = ['twitter_timeline_loader']
+
+_tl_path = pathlib.Path('theme/static/twitter_timeline_data.json')
+if _tl_path.exists():
+    JINJA_GLOBALS = {'timeline': json.loads(_tl_path.read_text(encoding='utf-8'))}
+else:
+    JINJA_GLOBALS = {}
