@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% set is_fr = (page and page.lang == 'fr') or DEFAULT_LANG == 'fr' %}
+
+<!-- Header band -->
+<section class="page-header-band">
+    <div class="container">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+            <a href="{{ SITEURL }}/campaigns/">{% if is_fr %}Campagnes{% else %}Campaigns{% endif %}</a>
+            <span class="breadcrumb-sep">→</span>
+            <span>{% if is_fr %}Sénégal{% else %}Senegal{% endif %}</span>
+        </nav>
+        <h1>{% if is_fr %}Sénégal{% else %}Senegal{% endif %}</h1>
+        <p class="page-lede">{% if is_fr %}14 régions médicales — le fer de lance de la méthodologie de campagne healthsites.io.{% else %}14 medical regions — the flagship of the healthsites.io campaign methodology.{% endif %}</p>
+    </div>
+</section>
+
+<!-- Intro split: Why Senegal + regions map -->
+<section class="country-intro">
+    <div class="container">
+        <div class="country-intro-split">
+            <div>
+                <div class="eyebrow">{% if is_fr %}Pourquoi le Sénégal{% else %}Why Senegal{% endif %}</div>
+                <h2>{% if is_fr %}Un modèle éprouvé, région par région{% else %}A proven model, region by region{% endif %}</h2>
+                <p>{% if is_fr %}La région médicale de Saint-Louis a complété l'Étape 1 en 2021 avec 398 établissements validés et publiés sur OpenStreetMap — en partenariat avec le Ministère sénégalais de la Santé et de l'Action sociale, l'OMS, l'UNICEF et OpenStreetMap Sénégal.{% else %}The Saint-Louis medical region completed Étape 1 in 2021 with 398 facilities validated and uploaded to OpenStreetMap — in partnership with the Senegalese Ministry of Health and Social Action, WHO, UNICEF, and OpenStreetMap Senegal.{% endif %}</p>
+                <p>{% if is_fr %}Cette campagne est désormais le modèle pour le reste du pays. Chaque région suit la même validation en cinq phases, puis passe à des travaux d'analyse et de politique pour maintenir les données comme infrastructure nationale permanente.{% else %}That campaign is now the template for the rest of the country. Each region runs the same five-phase validation, then moves into evidence and policy work to keep the data maintained as national infrastructure.{% endif %}</p>
+            </div>
+            <figure class="country-map-card">
+                <img src="{{ SITEURL }}/theme/images/senegal-regions.png" alt="{% if is_fr %}Carte des régions médicales du Sénégal, Saint-Louis en surbrillance{% else %}Map of Senegal's medical regions, with Saint-Louis highlighted{% endif %}">
+                <figcaption>{% if is_fr %}Les régions médicales du Sénégal — Saint-Louis ombrée.{% else %}Senegal's medical regions — Saint-Louis shaded.{% endif %}</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- Country stat band (light) -->
+<section class="country-stat-band">
+    <div class="cstat-inner">
+        <div class="cstat-cell">
+            <div class="cstat-number">398</div>
+            <div class="cstat-label">{% if is_fr %}Établissements cartographiés &amp; publiés{% else %}Facilities mapped &amp; published{% endif %}</div>
+        </div>
+        <div class="cstat-cell cstat-cell--divider">
+            <div class="cstat-number">14</div>
+            <div class="cstat-label">{% if is_fr %}Régions médicales{% else %}Medical regions{% endif %}</div>
+        </div>
+        <div class="cstat-cell cstat-cell--divider">
+            <div class="cstat-number">1</div>
+            <div class="cstat-label">{% if is_fr %}Région complète{% else %}Region complete{% endif %}</div>
+        </div>
+        <div class="cstat-cell cstat-cell--divider">
+            <div class="cstat-number">2</div>
+            <div class="cstat-label">{% if is_fr %}Campagnes invitant au soutien{% else %}Campaigns inviting support{% endif %}</div>
+        </div>
+    </div>
+</section>
+
+<!-- Regional campaigns -->
+<section class="senegal-campaigns">
+    <div class="container">
+        <h2>{% if is_fr %}Campagnes régionales{% else %}Regional Campaigns{% endif %}</h2>
+        <p class="section-sub">{% if is_fr %}Trois régions à trois étapes de la méthodologie.{% else %}Three regions at three stages of the methodology.{% endif %}</p>
+        <div class="senegal-region-grid">
+
+            <a href="{{ SITEURL }}/campaigns/senegal/saint-louis/" class="sreg-card">
+                <span class="status-chip status-chip--complete">{% if is_fr %}Étape 1 Complète{% else %}Étape 1 Complete{% endif %}</span>
+                <h3>Saint-Louis</h3>
+                <p>{% if is_fr %}398 établissements validés et 1 325 lits documentés — l'un des jeux de données de santé ouverts les plus complets d'Afrique de l'Ouest.{% else %}398 facilities validated and 1,325 beds documented — one of the most complete open health datasets in West Africa.{% endif %}</p>
+                <span class="sreg-learn-more">{% if is_fr %}En savoir plus →{% else %}Learn More →{% endif %}</span>
+            </a>
+
+            <a href="{{ SITEURL }}/campaigns/senegal/tambacounda/" class="sreg-card">
+                <span class="status-chip status-chip--active">{% if is_fr %}Actif — Recherche de financement{% else %}Active — Seeking Funding{% endif %}</span>
+                <h3>Tambacounda</h3>
+                <p>{% if is_fr %}L'une des régions les plus vastes et les plus éloignées du Sénégal — une zone immense avec une population rurale dispersée et d'importantes lacunes en données. €60 000 nécessaires pour lancer l'Étape 1.{% else %}One of Senegal's largest and most remote regions — a vast area with a dispersed rural population and significant data gaps. €60,000 needed to launch Étape 1.{% endif %}</p>
+                <span class="sreg-learn-more">{% if is_fr %}En savoir plus →{% else %}Learn More →{% endif %}</span>
+            </a>
+
+            <div class="sreg-card sreg-card--no-link">
+                <span class="status-chip status-chip--planned">{% if is_fr %}Planifié 2026{% else %}Planned 2026{% endif %}</span>
+                <h3>Matam</h3>
+                <p>{% if is_fr %}Cadrage en cours avec les autorités sanitaires régionales avant une campagne de validation prévue en 2026.{% else %}Scoping under way with regional health authorities ahead of a planned 2026 validation campaign.{% endif %}</p>
+                <span class="sreg-learn-more sreg-learn-more--muted">{% if is_fr %}À venir{% else %}Coming soon{% endif %}</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

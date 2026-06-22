@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
 {% block extra_head %}
+{% if page.geojson_file %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -11,31 +13,74 @@
 {% set is_ar = (page and page.lang == 'ar') or DEFAULT_LANG == 'ar' %}
 {% set lang_prefix = '/fr' if is_fr else '/pt' if is_pt else '/ar' if is_ar else '' %}
 
-<section class="region-header">
+<!-- Header band -->
+<section class="page-header-band">
     <div class="container">
-        <nav class="breadcrumb">
-            <a href="{{ lang_prefix }}/campaigns/">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+            <a href="{{ SITEURL }}{{ lang_prefix }}/campaigns/">
                 {% if is_fr %}Campagnes{% elif is_pt %}Campanhas{% elif is_ar %}الحملات{% else %}Campaigns{% endif %}
             </a>
-            →
-            <a href="{{ lang_prefix }}/campaigns/{{ page.country_slug|default(page.country|lower) }}/">
+            <span class="breadcrumb-sep">→</span>
+            <a href="{{ SITEURL }}{{ lang_prefix }}/campaigns/{{ page.country_slug|default(page.country|lower) }}/">
                 {{ page.country }}
             </a>
-            →
+            <span class="breadcrumb-sep">→</span>
             <span>{{ page.region }}</span>
         </nav>
 
         <h1>{{ page.title }}</h1>
 
         {% if page.campaign_status %}
-        <p class="campaign-status status-{{ page.campaign_status|lower|replace(' ', '-') }}">
+        <span class="status-pill {% if 'complete' in page.campaign_status|lower %}status-pill--complete{% elif 'active' in page.campaign_status|lower or 'inviting' in page.campaign_status|lower %}status-pill--active{% else %}status-pill--planned{% endif %}">
             {{ page.campaign_status }}
-        </p>
+        </span>
+        {% endif %}
+
+        {% if page.lede %}
+        <p class="page-lede">{{ page.lede }}</p>
         {% endif %}
     </div>
 </section>
 
-{# ── LEAFLET MAP OR STATIC IMAGE ─────────────────────────────────────── #}
+{# ── RESULTS STAT BAND (completed campaigns with validated data) ─── #}
+{% if page.facilities_validated %}
+<section class="results-band">
+    <div class="cstat-inner">
+        <div class="cstat-cell">
+            <div class="cstat-number cstat-number--white">{{ page.facilities_validated }}</div>
+            <div class="cstat-label cstat-label--white">
+                {% if is_fr %}Établissements validés &amp; publiés sur OSM{% else %}Facilities validated &amp; uploaded to OSM{% endif %}
+            </div>
+        </div>
+        {% if page.beds_documented %}
+        <div class="cstat-cell cstat-cell--divider-white">
+            <div class="cstat-number cstat-number--white">{{ page.beds_documented }}</div>
+            <div class="cstat-label cstat-label--white">
+                {% if is_fr %}Lits documentés dans le district{% else %}Beds documented across the district{% endif %}
+            </div>
+        </div>
+        {% endif %}
+        {% if page.emergency_facilities %}
+        <div class="cstat-cell cstat-cell--divider-white">
+            <div class="cstat-number cstat-number--red">{{ page.emergency_facilities }}</div>
+            <div class="cstat-label cstat-label--white">
+                {% if is_fr %}Établissements d'urgence identifiés{% else %}Emergency referral facilities identified{% endif %}
+            </div>
+        </div>
+        {% endif %}
+        {% if page.validators_trained %}
+        <div class="cstat-cell cstat-cell--divider-white">
+            <div class="cstat-number cstat-number--white">{{ page.validators_trained }}</div>
+            <div class="cstat-label cstat-label--white">
+                {% if is_fr %}Membres OSM formés comme validateurs{% else %}OSM members trained as field validators{% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+{# ── LEAFLET MAP (optional, for campaigns with geojson) ─── #}
 {% if page.geojson_file %}
 <section class="page-map">
     <div class="container">
@@ -56,23 +101,65 @@
 </section>
 {% endif %}
 
+{# ── ARTICLE + SIDEBAR ─── #}
 <section class="region-content">
     <div class="container">
         <div class="region-layout">
+
             <article class="content">
                 {{ page.content }}
             </article>
 
             <aside class="region-sidebar">
 
-                {# ── PHASE 1 STATS ─────────────────────────────────────────── #}
+                {% if page.phase2_status %}
+                {# Completed campaign: Phase 2 funding card #}
+                <div class="funding-card">
+                    <div class="eyebrow">
+                        {% if is_fr %}Phase 2 — Prochaine Étape{% else %}Phase 2 — Next Step{% endif %}
+                    </div>
+                    <div class="funding-card-rows">
+                        <div class="funding-row">
+                            <span>{% if is_fr %}Statut{% else %}Status{% endif %}</span>
+                            <strong>{{ page.phase2_status }}</strong>
+                        </div>
+                        {% if page.phase2_target %}
+                        <div class="funding-row">
+                            <span>{% if is_fr %}Établissements à confirmer{% else %}Facilities to confirm{% endif %}</span>
+                            <strong>{{ page.phase2_target }}</strong>
+                        </div>
+                        {% endif %}
+                        {% if page.phase2_budget %}
+                        <div class="funding-row funding-row--last">
+                            <span>{% if is_fr %}Budget estimé{% else %}Estimated budget{% endif %}</span>
+                            <strong>{{ page.phase2_budget }}</strong>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <a href="{{ page.phase2_cta_url if page.phase2_cta_url else 'https://healthsites.io/contact' }}"
+                       class="btn btn-primary btn-full"
+                       target="_blank" rel="noopener">
+                        {{ page.phase2_cta_label if page.phase2_cta_label else 'Support Phase 2' }}
+                    </a>
+                    {% if page.cta_secondary_url %}
+                    <a href="{{ page.cta_secondary_url }}"
+                       class="btn btn-secondary btn-full funding-card-secondary"
+                       {% if page.cta_secondary_url.startswith('http') %}target="_blank" rel="noopener"{% endif %}>
+                        {{ page.cta_secondary_label if page.cta_secondary_label else 'View on healthsites.io' }}
+                    </a>
+                    {% endif %}
+                </div>
+
+                <div class="open-data-note">
+                    <div class="eyebrow">{% if is_fr %}Données ouvertes{% else %}Open Data{% endif %}</div>
+                    <p>{% if is_fr %}Chaque établissement est publié sur OpenStreetMap sous la licence Open Database — un bien public permanent que tout programme peut utiliser.{% else %}Every facility is published to OpenStreetMap under the Open Database Licence — a permanent public asset any programme can build on.{% endif %}</p>
+                </div>
+
+                {% else %}
+                {# In-progress campaign: Phase 1 stats + CTAs #}
                 <div class="campaign-stats">
                     <h3>
-                        {% if page.phase2_status %}
-                            {% if is_fr %}Phase 1 — Résultats{% elif is_pt %}Fase 1 — Resultados{% else %}Phase 1 — Results{% endif %}
-                        {% else %}
-                            {% if is_fr %}Statistiques{% elif is_pt %}Estatísticas{% elif is_ar %}إحصائيات{% else %}Campaign Stats{% endif %}
-                        {% endif %}
+                        {% if is_fr %}Statistiques{% elif is_pt %}Estatísticas{% elif is_ar %}إحصائيات{% else %}Campaign Stats{% endif %}
                     </h3>
 
                     {% if page.budget_needed %}
@@ -89,20 +176,6 @@
                     </div>
                     {% endif %}
 
-                    {% if page.facilities_validated %}
-                    <div class="stat">
-                        <strong>{% if is_fr %}Établissements Validés{% elif is_pt %}Estabelecimentos Validados{% elif is_ar %}المرافق المُتحقق منها{% else %}Facilities Validated{% endif %}</strong>
-                        <span>{{ page.facilities_validated }}</span>
-                    </div>
-                    {% endif %}
-
-                    {% if page.emergency_facilities %}
-                    <div class="stat">
-                        <strong>{% if is_fr %}Services d'Urgence Identifiés{% elif is_pt %}Serviços de Emergência Identificados{% else %}Emergency Facilities Identified{% endif %}</strong>
-                        <span>{{ page.emergency_facilities }}</span>
-                    </div>
-                    {% endif %}
-
                     {% if page.start_date %}
                     <div class="stat">
                         <strong>{% if is_fr %}Date de Début{% elif is_pt %}Data de Início{% elif is_ar %}تاريخ البدء{% else %}Start Date{% endif %}</strong>
@@ -111,14 +184,12 @@
                     {% endif %}
                 </div>
 
-                {# Phase 1 CTAs #}
                 <div class="campaign-actions">
                     <a href="{{ page.cta_primary_url if page.cta_primary_url else 'https://healthsites.io/contact' }}"
                        class="btn btn-primary"
                        {% if page.cta_primary_url and page.cta_primary_url.startswith('http') %}target="_blank" rel="noopener"{% endif %}>
                         {{ page.cta_primary_label if page.cta_primary_label else 'Support' }}
                     </a>
-
                     <a href="{{ page.cta_secondary_url if page.cta_secondary_url else 'https://healthsites.io/map' }}"
                        class="btn btn-secondary"
                        {% if page.cta_secondary_url and page.cta_secondary_url.startswith('http') %}target="_blank" rel="noopener"{% endif %}>
@@ -126,47 +197,17 @@
                     </a>
                 </div>
 
-                {# ── PHASE 2 BLOCK ─── #}
-                {% if page.phase2_status %}
-                <div class="campaign-stats phase2-block">
-                    <h3>{% if is_fr %}Phase 2 — Prochaine Étape{% elif is_pt %}Fase 2 — Próxima Etapa{% else %}Phase 2 — Next Step{% endif %}</h3>
-
-                    <div class="stat">
-                        <strong>{% if is_fr %}Statut{% elif is_pt %}Estado{% else %}Status{% endif %}</strong>
-                        <span>{{ page.phase2_status }}</span>
-                    </div>
-
-                    {% if page.phase2_target %}
-                    <div class="stat">
-                        <strong>{% if is_fr %}Établissements à Confirmer{% elif is_pt %}Estabelecimentos a Confirmar{% else %}Facilities to Confirm{% endif %}</strong>
-                        <span>{{ page.phase2_target }}</span>
-                    </div>
-                    {% endif %}
-
-                    {% if page.phase2_budget %}
-                    <div class="stat">
-                        <strong>{% if is_fr %}Budget Estimé{% elif is_pt %}Orçamento Estimado{% else %}Estimated Budget{% endif %}</strong>
-                        <span>{{ page.phase2_budget }}</span>
-                    </div>
-                    {% endif %}
-                </div>
-
-                <div class="campaign-actions">
-                    <a href="{{ page.phase2_cta_url if page.phase2_cta_url else 'https://healthsites.io/contact' }}"
-                       class="btn btn-primary"
-                       target="_blank" rel="noopener">
-                        {{ page.phase2_cta_label if page.phase2_cta_label else 'Support Phase 2' }}
-                    </a>
-                </div>
                 {% endif %}
 
             </aside>
         </div>
     </div>
 </section>
+
 {% endblock %}
 
 {% block extra_js %}
+{% if page.geojson_file %}
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
@@ -183,9 +224,7 @@
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    {% if page.geojson_file %}
     var geoJsonUrl = '{{ SITEURL }}/theme/geojson/{{ page.geojson_file }}';
-    
     fetch(geoJsonUrl)
         .then(response => response.json())
         .then(geojson => {
@@ -200,7 +239,7 @@
             }).addTo(map);
         })
         .catch(error => console.error('Error loading GeoJSON:', error));
-    {% endif %}
 })();
 </script>
+{% endif %}
 {% endblock %}

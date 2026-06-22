@@ -1,5 +1,5 @@
 Title: Senegal
-Template: country
+Template: senegal
 Slug: campaigns/senegal
 Lang: en
 Status: published
