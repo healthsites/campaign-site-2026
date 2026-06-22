@@ -38,10 +38,6 @@
                    class="btn btn-primary">
                     {% if is_french %}Financer la collaboration{% else %}Fund the data collaborative{% endif %}
                 </a>
-                <a href="{{ WORKING_GROUP_FORM_URL }}" target="_blank" rel="noopener"
-                   class="btn btn-secondary">
-                    {% if is_french %}Demander à rejoindre un groupe de travail{% else %}Request to join a working group{% endif %}
-                </a>
             </div>
 
             <ul class="trust-strip">
@@ -49,11 +45,18 @@
                 <li><i class="fa fa-user-secret"></i> {% if is_french %}Aucune donnée personnelle collectée{% else %}No personal data collected{% endif %}</li>
                 <li><i class="fa fa-check-circle"></i> {% if is_french %}Validé par le Ministère de la Santé{% else %}MoH-validated{% endif %}</li>
             </ul>
+
+            <div class="hero-signpost">
+                <span>{% if is_french %}Vous êtes un Ministère de la Santé, une agence statistique ou un partenaire de données ?{% else %}Are you a Ministry of Health, NSO, or data partner?{% endif %}</span>
+                <a href="#engagement">{% if is_french %}Explorer les partenariats →{% else %}Explore partnership opportunities →{% endif %}</a>
+            </div>
         </div>
 
         <div class="hero-image">
-            <img src="{{ SITEURL }}/theme/images/Lamine-Ndiaye-OpenStreetMap-Senegal.jpg" alt="{% if is_french %}Lamine Ndiaye - OpenStreetMap Senegal{% else %}Lamine Ndiaye - OpenStreetMap Senegal{% endif %}">
-  
+            <img src="{{ SITEURL }}/theme/images/Lamine-Ndiaye-OpenStreetMap-Senegal.jpg" alt="Lamine Ndiaye - OpenStreetMap Senegal">
+            <p class="hero-image-caption">
+                <a href="https://www.openstreetmap.org/user/Lamine%20Ndiaye" target="_blank" rel="noopener">Lamine Ndiaye</a> — OpenStreetMap Senegal
+            </p>
         </div>
     </div>
 </section>
@@ -62,29 +65,22 @@
 <section class="how-it-works" id="{% if is_french %}comment-ca-marche{% else %}how-it-works{% endif %}">
     <div class="container">
         <h2 class="section-title">{% if is_french %}Comment Nous Travaillons{% else %}How We Work{% endif %}</h2>
-        <div class="steps">
-            <div class="step">
-                <div class="step-icon">
-                    <svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="35" fill="#f44a52" opacity="0.2"/><text x="40" y="50" font-family="Arial" font-size="32" fill="#f44a52" text-anchor="middle" font-weight="bold">1</text></svg>
-                </div>
-                <h3>{% if is_french %}Collecte{% else %}Collect{% endif %}</h3>
-                <p>{% if is_french %}Les validateurs de terrain recueillent les données des établissements avec MerginMaps.{% else %}Field validators collect facility data with MerginMaps.{% endif %}</p>
-            </div>
-            <div class="step">
-                <div class="step-icon">
-                    <svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="35" fill="#f44a52" opacity="0.2"/><text x="40" y="50" font-family="Arial" font-size="32" fill="#f44a52" text-anchor="middle" font-weight="bold">2</text></svg>
-                </div>
-                <h3>{% if is_french %}Validation{% else %}Validate{% endif %}</h3>
-                <p>{% if is_french %}Vérification des emplacements, services et état opérationnel dans QGIS.{% else %}Locations, services, and operational status are verified in QGIS.{% endif %}</p>
-            </div>
-            <div class="step">
-                <div class="step-icon">
-                    <svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="35" fill="#f44a52" opacity="0.2"/><text x="40" y="50" font-family="Arial" font-size="32" fill="#f44a52" text-anchor="middle" font-weight="bold">3</text></svg>
-                </div>
-                <h3>{% if is_french %}Publication{% else %}Publish{% endif %}</h3>
-                <p>{% if is_french %}Les données validées sont publiées sur OpenStreetMap — un bien commun permanent.{% else %}Validated data is published to OpenStreetMap — a permanent public good.{% endif %}</p>
-            </div>
+        <div class="process-flow">
+            <img src="{{ SITEURL }}/theme/images/healthsites-campaign-process-flow1.png"
+                 alt="{% if is_french %}Déroulé de la campagne{% else %}Healthsites campaign process flow{% endif %}">
         </div>
+        <ul class="process-steps">
+            <li><strong>{% if is_french %}Définir les priorités{% else %}Define priorities{% endif %}</strong>
+                {% if is_french %} lors d'ateliers de conception centrée sur l'humain avec les agents de santé et les districts sanitaires{% else %} through human-centred design workshops with health workers and district health offices{% endif %}</li>
+            <li><strong>{% if is_french %}Auditer les données existantes{% else %}Audit existing data{% endif %}</strong>
+                {% if is_french %} entre les sources du Ministère, de l'ANSD et d'OpenStreetMap — en harmonisant les noms d'établissements et en identifiant les lacunes{% else %} across Ministry, NSO, and OpenStreetMap sources — harmonizing facility names and identifying gaps{% endif %}</li>
+            <li><strong>{% if is_french %}Former sur le terrain{% else %}Train on the ground{% endif %}</strong>
+                {% if is_french %} — en enseignant QGIS aux services régionaux de santé pour qu'ils gèrent leurs propres données{% else %} — teaching regional health offices QGIS so they can manage their own data{% endif %}</li>
+            <li><strong>{% if is_french %}Valider sur le terrain{% else %}Validate in the field{% endif %}</strong>
+                {% if is_french %} — en recrutant et accompagnant des validateurs de confiance qui confirment les emplacements et services des établissements{% else %} — recruiting and supporting trusted validators who confirm facility locations and services on the ground{% endif %}</li>
+            <li><strong>{% if is_french %}Restituer au gouvernement{% else %}Feed back to government{% endif %}</strong>
+                {% if is_french %} — toutes les données validées reviennent au Ministère de la Santé en tant que validateur de référence{% else %} — all validated data flows back to the Ministry of Health as the validator of record{% endif %}</li>
+        </ul>
     </div>
 </section>
 
@@ -131,17 +127,81 @@
     </div>
 </section>
 
-<!-- Partners -->
-<section class="partners">
+<!-- Three ways to engage -->
+<section id="engagement" class="engagement">
     <div class="container">
-        <h2 class="section-title">{% if is_french %}Nos Partenaires{% else %}Our Partners{% endif %}</h2>
-        <p class="section-subtitle">{% if is_french %}healthsites.io est rendu possible grâce à :{% else %}healthsites.io is made possible by:{% endif %}</p>
-        <div class="partners-grid">
-            <div class="partner"><p>Missing Maps</p></div>
-            <div class="partner"><p>HOT OSM</p></div>
-            <div class="partner"><p>WHO</p></div>
-            <div class="partner"><p>UNICEF</p></div>
+        <h2 class="section-title">{% if is_french %}Trois façons de s'engager{% else %}Three ways to engage{% endif %}</h2>
+        <div class="engagement-grid">
+
+            <div class="engage-card">
+                <div class="engage-card-header">
+                    <span class="engage-badge">{% if is_french %}DON{% else %}FUND{% endif %}</span>
+                    <i class="fa fa-heart engage-icon"></i>
+                </div>
+                <div class="engage-card-body">
+                    <h3>{% if is_french %}Financer une campagne{% else %}Fund a Campaign{% endif %}</h3>
+                    <p>{% if is_french %}Soutenez la validation des établissements de santé sur le terrain et la constitution de données publiques permanentes.{% else %}Support health facility validation on the ground and the creation of permanent open data.{% endif %}</p>
+                    <a href="https://healthsites.io/contact" class="engage-link">{% if is_french %}En savoir plus →{% else %}Learn more →{% endif %}</a>
+                </div>
+            </div>
+
+            <div class="engage-card">
+                <div class="engage-card-header">
+                    <span class="engage-badge">API</span>
+                    <i class="fa fa-code engage-icon"></i>
+                </div>
+                <div class="engage-card-body">
+                    <h3>{% if is_french %}S'abonner à l'API{% else %}Subscribe to the API{% endif %}</h3>
+                    <p>{% if is_french %}Accédez à 1,18 million d'établissements validés via notre API REST ouverte.{% else %}Access 1.18M+ validated health facility records via our open REST API.{% endif %}</p>
+                    <a href="https://healthsites.io/contact" class="engage-link">{% if is_french %}Enregistrer votre intérêt →{% else %}Register interest →{% endif %}</a>
+                </div>
+            </div>
+
+            <div class="engage-card">
+                <div class="engage-card-header">
+                    <span class="engage-badge">{% if is_french %}DONNÉES{% else %}DATA{% endif %}</span>
+                    <i class="fa fa-handshake-o engage-icon"></i>
+                </div>
+                <div class="engage-card-body">
+                    <h3>{% if is_french %}Démarrer un partenariat{% else %}Start a Partnership{% endif %}</h3>
+                    <p>{% if is_french %}Intégrez le modèle de données healthsites.io pour valider et publier votre liste nationale d'établissements.{% else %}Integrate the healthsites.io data model to validate and publish your national facility list.{% endif %}</p>
+                    <a href="https://healthsites.io/contact" class="engage-link">{% if is_french %}Prendre contact →{% else %}Get in touch →{% endif %}</a>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
+
+<!-- Why institutions choose healthsites.io -->
+<section class="institutional">
+    <div class="container">
+        <h2 class="section-title">{% if is_french %}Pourquoi les institutions choisissent healthsites.io{% else %}Why institutions choose healthsites.io{% endif %}</h2>
+        <div class="institutional-grid">
+            <ul class="institutional-list">
+                <li><i class="fa fa-check"></i> <strong>{% if is_french %}Souveraineté des données{% else %}Data sovereignty{% endif %}</strong> — {% if is_french %}le Ministère de la Santé reste validateur de référence{% else %}the Ministry of Health remains the validator of record{% endif %}</li>
+                <li><i class="fa fa-check"></i> <strong>{% if is_french %}Licence Open Database{% else %}Open Database Licence{% endif %}</strong> — {% if is_french %}données publiées sous ODbL, bien commun permanent{% else %}data published under ODbL as a permanent public good{% endif %}</li>
+                <li><i class="fa fa-check"></i> <strong>{% if is_french %}Interopérabilité{% else %}Interoperability{% endif %}</strong> — {% if is_french %}modèle de données aligné sur les SIS nationaux et SDG 3.8.1{% else %}data model aligned with national HIS and SDG 3.8.1{% endif %}</li>
+                <li><i class="fa fa-check"></i> <strong>{% if is_french %}Gouvernance en commun{% else %}Commons governance{% endif %}</strong> — {% if is_french %}structure anti-capture : aucun acteur commercial ne contrôle la ressource partagée{% else %}anti-capture structure: no single commercial actor controls the shared resource{% endif %}</li>
+            </ul>
+        </div>
+        <div class="institutional-cta">
+            <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/campaigns/senegal/saint-louis/" class="btn btn-primary">
+                {% if is_french %}Voir comment Saint-Louis a validé ~400 établissements + 35 orientations d'urgence →{% else %}See how Saint-Louis validated ~400 facilities + 35 emergency referral services →{% endif %}
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Project strategy -->
+<section class="strategy">
+    <div class="container">
+        <h2 class="section-title">{% if is_french %}Stratégie du projet{% else %}Project strategy{% endif %}</h2>
+        <div class="strategy-diagram">
+            <img src="{{ SITEURL }}/theme/images/250511-healthsites-strategy.png"
+                 alt="{% if is_french %}Schéma de la stratégie du projet{% else %}Healthsites project strategy diagram{% endif %}">
+        </div>
+    </div>
+</section>
+
 {% endblock %}
