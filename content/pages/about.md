@@ -298,7 +298,7 @@ Questions about partnerships, funding, API integration, campaigns, or mapping?
 **[Contact us →](https://healthsites.io/contact)**
 
 **Follow our progress:**  
-- Twitter: [@healthsitesio](https://twitter.com/healthsitesio)
+- Bluesky: [@sharehealthdata.bsky.social](https://bsky.app/profile/sharehealthdata.bsky.social)
 - GitHub: [healthsites](https://github.com/healthsites)
 - Academic: [ORCID 0000-0002-0605-8348](https://orcid.org/0000-0002-0605-8348)
 
