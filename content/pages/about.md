@@ -29,7 +29,7 @@ Incomplete or outdated health facility lists cost lives. When emergency services
 
 **This is solvable through sustained collaboration at scale.**
 
-In Saint-Louis, Senegal, our first campaign identified **398 validated health facilities** — and **35 emergency pregnancy referral services that were not on the official list.** That gap would have cost lives. It is also replicable across sub-Saharan Africa and beyond, once we systematize the work.
+In Saint-Louis, Senegal, our first campaign identified **398 validated health facilities** — and **35 potential emergency pregnancy referral services**. We are inviting support for [phase 2](/campaigns/senegal/saint-louis/). This open campaign method is replicable across sub-Saharan Africa and beyond, once we systematize the work.
 
 </details>
 
@@ -40,7 +40,7 @@ In Saint-Louis, Senegal, our first campaign identified **398 validated health fa
 <details markdown="1">
 <summary><h3>The structural barriers that affect women</h3></summary>
 
-Our campaigns are guided by a question from [The 100 Questions Initiative](https://womenshealth.the100questions.org/):
+Our campaigns are guided by a question from [The Women's Health Innovation domain of the 100 Questions Initiative](https://womenshealth.the100questions.org/):
 
 > What structural, social, and policy factors perpetuate women's disadvantages across health, political, and economic domains, and what evidence-based transdisciplinary strategies can effectively dismantle these barriers?
 
@@ -160,7 +160,7 @@ Our collaboration is built on a framework of trust, transparency, and responsibi
   </div>
 </div>
 
-healthsites.io is operated by **Open Healthsite Consulting** (registered in the Netherlands, No. 90806891) and is a **Digital Public Good** recognized by the Digital Public Goods Alliance. Mark Herringer is a [bilingual practitioner](https://the100questions.org/bilinguals.html) in The 100 Questions Initiative and a member of the [NGI Commons Digital Commons Task Force](https://commons.ngi.eu/dctf/).
+healthsites.io is operated by **Open Healthsite Consulting** (registered in the Netherlands, No. 90806891) and is a **Digital Public Good** recognized by the Digital Public Goods Alliance. Mark Herringer is a [bilingual practitioner in The Women's Health Innovation domain of the 100 Questions Initiative](https://womenshealth.the100questions.org/) and a member of the [NGI Commons Digital Commons Task Force](https://commons.ngi.eu/dctf/).
 
 <ul class="pub-list">
 <li><a href="https://orcid.org/0000-0002-0605-8348">Academic publications — ORCID 0000-0002-0605-8348 →</a></li>
@@ -180,11 +180,12 @@ We run time-bound campaigns in priority regions, validating health facility data
 **Current and completed campaigns:**
 
 - **Saint-Louis, Senegal** (2021-present) — 398 facilities validated; 35 emergency maternal referral facilities identified
-- **Mozambique** (2022-present) — Regional health system mapping
-- **South Africa** (2023-present) — Township and community health facility mapping
-- **South Sudan** (2024) — Emergency capacity assessment
-- **Tunisia** (2024) — Health systems research partnership
-- **Ghana** (2024-planning) — Regional expansion
+- **Matam, Senegal** (2023) — 212 health facilities validated; supporting geospatial data: 93,286 buildings, 1,803 km² of roads, place names, waterways, and infrastructure
+- **Mozambique** (2026-present) — Emergency capacity assessment
+- **South Africa** (2027-planning) — Emergency capacity assessment
+- **South Sudan** (2027-planning) — Emergency capacity assessment
+- **Tunisia** (2027-planning) — Health systems research partnership
+- **Ghana** (2027-planning) — Regional expansion
 
 Each campaign follows the same rigorous methodology: community-led validation, Ministry of Health partnership, permanent publication to OpenStreetMap.
 
@@ -234,7 +235,7 @@ Support Emergency Health Mapping Campaigns in priority regions. Each campaign va
 </div>
 <p class="pathway-trust"><strong>Trust signals:</strong> ODbL-licensed · no personal data collected · Ministry of Health as validator of record.</p>
 <p class="pathway-actions">
-<a class="pathway-cta pathway-cta--primary" href="mailto:sharehealthdata@healthsites.io">Fund a Campaign →</a>
+<a class="pathway-cta pathway-cta--primary" href="https://healthsites.io/contact">Fund a Campaign →</a>
 <a class="pathway-cta pathway-cta--ghost" href="/campaigns/">See Active Campaigns</a>
 </p>
 </details>
@@ -243,7 +244,7 @@ Support Emergency Health Mapping Campaigns in priority regions. Each campaign va
 <summary><h3>Pathway 2: Subscribe to the API</h3></summary>
 <div class="pathway-body" markdown="1">
 
-Access 1.18M+ validated health facility records via the healthsites.io REST API. Community tier is free. Professional and Enterprise tiers unlock high-volume requests, commercial use, and priority support.
+Access 1.18M+ validated health facility records via the healthsites.io REST API. Community tier is free. Professional and Enterprise tiers unlock high-volume requests and priority support.
 
 </div>
 <p class="pathway-tiers">
@@ -253,7 +254,7 @@ Access 1.18M+ validated health facility records via the healthsites.io REST API.
 </p>
 <p class="pathway-actions">
 <a class="pathway-cta pathway-cta--primary" href="https://github.com/healthsites/healthsites/wiki/API">Get API Access →</a>
-<a class="pathway-cta pathway-cta--ghost" href="mailto:sharehealthdata@healthsites.io">Talk to Us</a>
+<a class="pathway-cta pathway-cta--ghost" href="https://healthsites.io/contact">Talk to Us</a>
 </p>
 </details>
 
@@ -261,13 +262,13 @@ Access 1.18M+ validated health facility records via the healthsites.io REST API.
 <summary><h3>Pathway 3: Institutional Integration</h3></summary>
 <div class="pathway-body" markdown="1">
 
-Adopt the healthsites.io data model to validate and publish your national Master Facility List, aligned with SDG 3.8.1. Integration runs through a validation campaign and API partnership — no separate product or licensing required.
+Adopt the healthsites.io data model to validate and publish your national Master Facility List, aligned with SDG 3.8.1. Integration runs through a validation campaign and API partnership.
 
 **Suited for:** Ministries of Health · National Statistics Offices · development finance institutions · UN system agencies
 
 </div>
 <p class="pathway-actions">
-<a class="pathway-cta pathway-cta--primary" href="mailto:sharehealthdata@healthsites.io">Start a Conversation →</a>
+<a class="pathway-cta pathway-cta--primary" href="https://healthsites.io/contact">Start a Conversation →</a>
 <a class="pathway-cta pathway-cta--ghost" href="/campaigns/">How Campaigns Work</a>
 </p>
 </details>
@@ -294,7 +295,7 @@ View the [Twitter Timeline]({filename}/pages/twitter-timeline.md) — 1,067 twee
 
 Questions about partnerships, funding, API integration, campaigns, or mapping?
 
-**Email:** sharehealthdata@healthsites.io
+**[Contact us →](https://healthsites.io/contact)**
 
 **Follow our progress:**  
 - Twitter: [@healthsitesio](https://twitter.com/healthsitesio)
