@@ -10,11 +10,7 @@ healthsites.io is a Digital Public Good that builds and maintains an open, commu
 ## Our Vision
 
 <details markdown="1">
-<summary markdown="1">
-
-### Health facility data as critical infrastructure
-
-</summary>
+<summary><h3>Health facility data as critical infrastructure</h3></summary>
 
 Accurate, current, and openly licensed data about where health services exist is the foundation of emergency response, capacity planning, and equitable access.
 
@@ -27,11 +23,7 @@ We build that foundation. healthsites.io is a data collaborative that combines O
 ## The Problem We Solve
 
 <details markdown="1">
-<summary markdown="1">
-
-### Incomplete or outdated facility lists cost lives
-
-</summary>
+<summary><h3>Incomplete or outdated facility lists cost lives</h3></summary>
 
 Incomplete or outdated health facility lists cost lives. When emergency services cannot locate the nearest functioning facility, or when maternal health emergencies go unrouted to emergency obstetric care, the result is preventable mortality.
 
@@ -46,11 +38,7 @@ In Saint-Louis, Senegal, our first campaign identified **398 validated health fa
 ## Why Women's Health
 
 <details markdown="1">
-<summary markdown="1">
-
-### The structural barriers that affect women
-
-</summary>
+<summary><h3>The structural barriers that affect women</h3></summary>
 
 Our campaigns are guided by a question from [The 100 Questions Initiative](https://womenshealth.the100questions.org/):
 
@@ -65,11 +53,7 @@ Accurate, findable health facility data is one concrete answer. When the nearest
 ## How We Work
 
 <details markdown="1">
-<summary markdown="1">
-
-### The Emergency Health Mapping Campaign
-
-</summary>
+<summary><h3>The Emergency Health Mapping Campaign</h3></summary>
 
 **The Emergency Health Mapping Campaign** is our cornerstone activity. Working with local OpenStreetMap chapters, Missing Maps partners, and Ministry of Health teams, we:
 
@@ -88,11 +72,7 @@ All data is contributed to OpenStreetMap under the Open Database Licence (ODbL),
 ## Data Governance & Trust
 
 <details markdown="1">
-<summary markdown="1">
-
-### Why institutions say yes to open data
-
-</summary>
+<summary><h3>Why institutions say yes to open data</h3></summary>
 
 Our collaboration is built on a framework of trust, transparency, and responsibility:
 
@@ -108,22 +88,92 @@ Our collaboration is built on a framework of trust, transparency, and responsibi
 
 ---
 
-## Data Stewardship
+## Team & Leadership
 
-healthsites.io is led by **Mark Herringer**, Data Steward of the healthsites.io data commons. Mark is a [bilingual practitioner](https://the100questions.org/bilinguals.html) in The 100 Questions Initiative — combining domain knowledge with data-science expertise — and a member of the [NGI Commons Digital Commons Task Force](https://commons.ngi.eu/dctf/), an EU Horizon Europe expert body advising on digital commons.
+<details markdown="1">
+<summary><h3>The people behind healthsites.io</h3></summary>
 
-healthsites.io is operated by **Open Healthsite Consulting** (registered in the Netherlands, No. 90806891) and is a **Digital Public Good** recognized by the Digital Public Goods Alliance.
+<div class="team-grid">
+  <div class="team-member">
+    <span class="team-avatar">MH</span>
+    <div>
+      <p class="team-name">Mark Herringer</p>
+      <p class="team-role">Project Lead &amp; Data Steward</p>
+      <p class="team-expertise">Open data governance · digital public goods · NGI Commons Task Force</p>
+    </div>
+  </div>
+  <div class="team-member">
+    <span class="team-avatar">LN</span>
+    <div>
+      <p class="team-name">Lamine Ndiaye</p>
+      <p class="team-role">Field Operations Lead, Senegal</p>
+      <p class="team-expertise">OpenStreetMap Senegal · community mapping</p>
+    </div>
+  </div>
+  <div class="team-member">
+    <span class="team-avatar">AT</span>
+    <div>
+      <p class="team-name">Awa Thiam</p>
+      <p class="team-role">Human-Centred Design</p>
+      <p class="team-expertise">Community engagement · health worker research</p>
+    </div>
+  </div>
+  <div class="team-member">
+    <span class="team-avatar">IF</span>
+    <div>
+      <p class="team-name">Irwan Fathurrahman</p>
+      <p class="team-role">Software Engineer</p>
+      <p class="team-expertise">API infrastructure · data pipelines</p>
+    </div>
+  </div>
+  <div class="team-member">
+    <span class="team-avatar">JS</span>
+    <div>
+      <p class="team-name">Janusz Slota</p>
+      <p class="team-role">System Administration</p>
+      <p class="team-expertise">Infrastructure · DevOps · data hosting</p>
+    </div>
+  </div>
+  <div class="team-member">
+    <span class="team-avatar">TS</span>
+    <div>
+      <p class="team-name">Tim Sutton</p>
+      <p class="team-role">Advisor — GIS &amp; Open Source</p>
+      <p class="team-expertise">QGIS · open geospatial software</p>
+    </div>
+  </div>
+  <div class="team-member">
+    <span class="team-avatar">XB</span>
+    <div>
+      <p class="team-name">Xavier Bosch-Capblanch</p>
+      <p class="team-role">Advisor — Public Health</p>
+      <p class="team-expertise">Health systems · evidence synthesis</p>
+    </div>
+  </div>
+  <div class="team-member">
+    <span class="team-avatar">ER</span>
+    <div>
+      <p class="team-name">Eric de Roodenbeke</p>
+      <p class="team-role">Advisor — International Health</p>
+      <p class="team-expertise">Health facility planning · IFC</p>
+    </div>
+  </div>
+</div>
+
+healthsites.io is operated by **Open Healthsite Consulting** (registered in the Netherlands, No. 90806891) and is a **Digital Public Good** recognized by the Digital Public Goods Alliance. Mark Herringer is a [bilingual practitioner](https://the100questions.org/bilinguals.html) in The 100 Questions Initiative and a member of the [NGI Commons Digital Commons Task Force](https://commons.ngi.eu/dctf/).
+
+<ul class="pub-list">
+<li><a href="https://orcid.org/0000-0002-0605-8348">Academic publications — ORCID 0000-0002-0605-8348 →</a></li>
+</ul>
+
+</details>
 
 ---
 
 ## Our Campaigns
 
 <details markdown="1">
-<summary markdown="1">
-
-### Emergency Health Mapping Campaigns across Africa
-
-</summary>
+<summary><h3>Emergency Health Mapping Campaigns across Africa</h3></summary>
 
 We run time-bound campaigns in priority regions, validating health facility data and building institutional capacity.
 
@@ -145,11 +195,7 @@ Each campaign follows the same rigorous methodology: community-led validation, M
 ## Partners & Collaborators
 
 <details markdown="1">
-<summary markdown="1">
-
-### Institutions across government, civil society, the UN system, and geospatial innovation
-
-</summary>
+<summary><h3>Institutions across government, civil society, the UN system, and geospatial innovation</h3></summary>
 
 We partner with institutions across government, civil society, the UN system, and geospatial innovation:
 
@@ -169,42 +215,71 @@ WHO; UNICEF; UNDP Singapore Global Centre; International Committee of the Red Cr
 
 ---
 
-## How to Engage
+## How to Participate
 
-<details markdown="1">
-<summary markdown="1">
+<div class="pathways" markdown="1">
 
-### Ways to participate and support
+<details class="pathway pathway--fund" markdown="1">
+<summary><h3>Pathway 1: Fund a Campaign</h3></summary>
+<div class="pathway-body" markdown="1">
 
-</summary>
+Support Emergency Health Mapping Campaigns in priority regions. Each campaign validates health facilities on the ground, trains district health teams in spatial data tools, and feeds permanent open data back to the Ministry of Health.
 
-**Fund a campaign**  
-Support Emergency Health Mapping Campaigns in priority regions. [Get in touch](/contact)
+**What your funding enables:**
 
-**Subscribe to the API**  
-Become an API partner to access and contribute validated health facility data. [Register your interest](/contact)
+- Field validation of 300–500+ health facilities
+- QGIS training for local health office staff
+- Permanent OpenStreetMap contribution under ODbL
 
-**Integrate the standard**  
-Adopt the healthsites.io data model to maintain and publish your national Master Facility List. [Learn more](/contact)
-
-**Map with us**  
-Join the OpenStreetMap and Missing Maps communities to ground-truth facility data in your country. [Join the OpenStreetMap community](https://www.openstreetmap.org/)
-
-**Advocate for change**  
-Build the cross-ministry business case for open health facility data as national infrastructure. [Request our business case guide](/contact)
-
+</div>
+<p class="pathway-trust"><strong>Trust signals:</strong> ODbL-licensed · no personal data collected · Ministry of Health as validator of record.</p>
+<p class="pathway-actions">
+<a class="pathway-cta pathway-cta--primary" href="mailto:sharehealthdata@healthsites.io">Fund a Campaign →</a>
+<a class="pathway-cta pathway-cta--ghost" href="/campaigns/">See Active Campaigns</a>
+</p>
 </details>
+
+<details class="pathway pathway--api" markdown="1">
+<summary><h3>Pathway 2: Subscribe to the API</h3></summary>
+<div class="pathway-body" markdown="1">
+
+Access 1.18M+ validated health facility records via the healthsites.io REST API. Community tier is free. Professional and Enterprise tiers unlock high-volume requests, commercial use, and priority support.
+
+</div>
+<p class="pathway-tiers">
+<span class="pathway-tier">Community · free</span>
+<span class="pathway-tier">Professional · high volume</span>
+<span class="pathway-tier">Enterprise · SLA + support</span>
+</p>
+<p class="pathway-actions">
+<a class="pathway-cta pathway-cta--primary" href="https://github.com/healthsites/healthsites/wiki/API">Get API Access →</a>
+<a class="pathway-cta pathway-cta--ghost" href="mailto:sharehealthdata@healthsites.io">Talk to Us</a>
+</p>
+</details>
+
+<details class="pathway pathway--institutional" markdown="1">
+<summary><h3>Pathway 3: Institutional Integration</h3></summary>
+<div class="pathway-body" markdown="1">
+
+Adopt the healthsites.io data model to validate and publish your national Master Facility List, aligned with SDG 3.8.1. Integration runs through a validation campaign and API partnership — no separate product or licensing required.
+
+**Suited for:** Ministries of Health · National Statistics Offices · development finance institutions · UN system agencies
+
+</div>
+<p class="pathway-actions">
+<a class="pathway-cta pathway-cta--primary" href="mailto:sharehealthdata@healthsites.io">Start a Conversation →</a>
+<a class="pathway-cta pathway-cta--ghost" href="/campaigns/">How Campaigns Work</a>
+</p>
+</details>
+
+</div>
 
 ---
 
 ## Twitter Timeline
 
 <details markdown="1">
-<summary markdown="1">
-
-### Our Journey: Foundation to Impact to Sustainability
-
-</summary>
+<summary><h3>Our Journey: Foundation to Impact to Sustainability</h3></summary>
 
 View the [Twitter Timeline]({filename}/pages/twitter-timeline.md) — 1,067 tweets documenting our evolution from **2015 (Foundation) → 2024 (Institutional Impact)**
 
@@ -215,11 +290,7 @@ View the [Twitter Timeline]({filename}/pages/twitter-timeline.md) — 1,067 twee
 ## Contact & Learn More
 
 <details markdown="1">
-<summary markdown="1">
-
-### Get in touch
-
-</summary>
+<summary><h3>Get in touch</h3></summary>
 
 Questions about partnerships, funding, API integration, campaigns, or mapping?
 
