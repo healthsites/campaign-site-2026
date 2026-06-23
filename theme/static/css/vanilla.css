@@ -3459,3 +3459,15 @@ a.sreg-card:hover {
 @media (max-width: 640px) {
   .citation { padding: 14px 16px; }
 }
+
+/* --- footer citation row --- */
+.footer-citation {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    margin: 2rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    max-width: 760px;
+    line-height: 1.6;
+}
+.footer-citation a { color: #fff; text-decoration: underline; }
