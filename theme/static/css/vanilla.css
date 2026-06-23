@@ -1601,6 +1601,8 @@ section {
 }
 .trust-strip li { display: flex; align-items: center; gap: 0.4rem; }
 .trust-strip i { color: var(--primary-color); }
+.trust-strip a { color: var(--medium-gray); text-decoration: underline; }
+.trust-strip a:hover { color: var(--primary-color); }
 
 /* Stage badge on country pages */
 .stage-badge {
@@ -1705,6 +1707,8 @@ section {
 }
 .trust-strip li { display: flex; align-items: center; gap: 0.4rem; }
 .trust-strip i { color: var(--primary-color); }
+.trust-strip a { color: var(--medium-gray); text-decoration: underline; }
+.trust-strip a:hover { color: var(--primary-color); }
 
 /* Stage badge on country pages */
 .stage-badge {
@@ -3026,6 +3030,16 @@ nav summary {
 }
 .process-steps li::marker { color: var(--primary-color); }
 .process-steps strong { color: var(--dark-gray); }
+.process-footnote {
+    max-width: 820px;
+    margin: 1.75rem auto 0;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--medium-gray);
+}
+.process-footnote i { color: var(--primary-color); margin-right: 0.3rem; }
+.process-footnote a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
+.process-footnote a:hover { text-decoration: underline; }
 
 /* Three ways to engage */
 .engagement { padding: 4rem 0; background: var(--bg-light); }
@@ -3098,6 +3112,8 @@ nav summary {
 }
 .institutional-list li i { color: var(--primary-color); margin-top: 0.2rem; flex-shrink: 0; }
 .institutional-list strong { color: #fff; }
+.institutional-list a { color: rgba(255,255,255,0.85); text-decoration: underline; }
+.institutional-list a:hover { color: #fff; }
 .institutional-cta { text-align: center; }
 
 @media (max-width: 640px) {

@@ -38,12 +38,16 @@
                    class="btn btn-primary">
                     {% if is_french %}Financer la collaboration{% else %}Fund the data collaborative{% endif %}
                 </a>
+                <a href="#engagement" class="btn btn-secondary">
+                    {% if is_french %}Rejoindre un groupe de travail{% else %}Request to join a working group{% endif %}
+                </a>
             </div>
 
             <ul class="trust-strip">
                 <li><i class="fa fa-unlock-alt"></i> {% if is_french %}Données ouvertes (ODbL){% else %}Open data (ODbL){% endif %}</li>
                 <li><i class="fa fa-user-secret"></i> {% if is_french %}Aucune donnée personnelle collectée{% else %}No personal data collected{% endif %}</li>
                 <li><i class="fa fa-check-circle"></i> {% if is_french %}Validé par le Ministère de la Santé{% else %}MoH-validated{% endif %}</li>
+                <li><i class="fa fa-file-text-o"></i> <a href="https://doi.org/10.5281/zenodo.10443334" target="_blank" rel="noopener">{% if is_french %}Méthodologie évaluée par les pairs (OSM Science, 2023){% else %}Peer-reviewed methodology (OSM Science, 2023){% endif %}</a></li>
             </ul>
 
             <div class="hero-signpost">
@@ -81,6 +85,7 @@
             <li><strong>{% if is_french %}Restituer au gouvernement{% else %}Feed back to government{% endif %}</strong>
                 {% if is_french %} — toutes les données validées reviennent au Ministère de la Santé en tant que validateur de référence{% else %} — all validated data flows back to the Ministry of Health as the validator of record{% endif %}</li>
         </ul>
+        <p class="process-footnote"><i class="fa fa-file-text-o"></i> {% if is_french %}Notre approche est documentée dans un article en libre accès évalué par les pairs. <a href="https://doi.org/10.5281/zenodo.10443334" target="_blank" rel="noopener">Lire la méthodologie (Zenodo, 2023) →</a>{% else %}Our approach is documented in a peer-reviewed open-access paper. <a href="https://doi.org/10.5281/zenodo.10443334" target="_blank" rel="noopener">Read the methodology (Zenodo, 2023) →</a>{% endif %}</p>
     </div>
 </section>
 
@@ -108,21 +113,6 @@
                 <div class="stat-number">Open</div>
                 <div class="stat-label">{% if is_french %}API ouverte, source ouverte{% else %}Open API, open source{% endif %}</div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Single secondary action: explore the campaign -->
-<section class="participation">
-    <div class="container">
-        <h2 class="section-title">{% if is_french %}La campagne de Saint-Louis{% else %}The Saint-Louis campaign{% endif %}</h2>
-        <p class="section-subtitle">
-            {% if is_french %}Voyez les établissements validés et les 35 points d'orientation d'urgence sur la carte.{% else %}See the validated facilities and the 35 emergency referral points on the map.{% endif %}
-        </p>
-        <div style="text-align:center;">
-            <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/campaigns/senegal/saint-louis/" class="btn btn-secondary">
-                {% if is_french %}Voir la campagne →{% else %}View the campaign →{% endif %}
-            </a>
         </div>
     </div>
 </section>
@@ -183,6 +173,7 @@
                 <li><i class="fa fa-check"></i> <strong>{% if is_french %}Licence Open Database{% else %}Open Database Licence{% endif %}</strong> — {% if is_french %}données publiées sous ODbL, bien commun permanent{% else %}data published under ODbL as a permanent public good{% endif %}</li>
                 <li><i class="fa fa-check"></i> <strong>{% if is_french %}Interopérabilité{% else %}Interoperability{% endif %}</strong> — {% if is_french %}modèle de données aligné sur les SIS nationaux et SDG 3.8.1{% else %}data model aligned with national HIS and SDG 3.8.1{% endif %}</li>
                 <li><i class="fa fa-check"></i> <strong>{% if is_french %}Gouvernance en commun{% else %}Commons governance{% endif %}</strong> — {% if is_french %}structure anti-capture : aucun acteur commercial ne contrôle la ressource partagée{% else %}anti-capture structure: no single commercial actor controls the shared resource{% endif %}</li>
+                <li><i class="fa fa-check"></i> <strong>{% if is_french %}Méthodologie évaluée par les pairs (OSM Science, 2023){% else %}Peer-reviewed methodology (OSM Science, 2023){% endif %}</strong> — {% if is_french %}notre méthode de validation est publiée en libre accès. <a href="https://doi.org/10.5281/zenodo.10443334" target="_blank" rel="noopener">Lire l'article →</a>{% else %}our validation method is published open-access. <a href="https://doi.org/10.5281/zenodo.10443334" target="_blank" rel="noopener">Read the paper →</a>{% endif %}</li>
             </ul>
         </div>
         <div class="institutional-cta">
