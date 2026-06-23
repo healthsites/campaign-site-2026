@@ -1,4 +1,5 @@
 Title: About
+Template: about
 Slug: about
 Lang: en
 Status: published
@@ -20,8 +21,6 @@ healthsites.io is a Digital Public Good that builds and maintains an open, commu
     <a class="section-nav__link" href="#contact">Contact</a>
   </div>
 </nav>
-
-<div class="about-content" markdown="1">
 
 ---
 
@@ -321,8 +320,6 @@ Questions about partnerships, funding, API integration, campaigns, or mapping?
 - Academic: [ORCID 0000-0002-0605-8348](https://orcid.org/0000-0002-0605-8348)
 
 </details>
-
-</div>
 
 ---
 
