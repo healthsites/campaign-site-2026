@@ -179,6 +179,22 @@ Our collaboration is built on a framework of trust, transparency, and responsibi
 
 healthsites.io is operated by **Open Healthsite Consulting** (registered in the Netherlands, No. 90806891) and is a **Digital Public Good** recognized by the Digital Public Goods Alliance. Mark Herringer is a [bilingual practitioner in The Women's Health Innovation domain of the 100 Questions Initiative](https://womenshealth.the100questions.org/) and a member of the [NGI Commons Digital Commons Task Force](https://commons.ngi.eu/dctf/).
 
+<div class="citations">
+<p class="citations-label">Peer-Reviewed Research</p>
+<div class="citation">
+<p class="citation-cite">South A, Dicko A, <strong>Herringer M</strong>, Macharia PM, Maina J, Okiro EA, Snow RW, van der Walt A. A reproducible picture of open access health facility data in Africa and R tools to support improvement. <em>Wellcome Open Research</em> 2021, 5:157.</p>
+<a class="citation-doi" href="https://doi.org/10.12688/wellcomeopenres.16075.2">doi.org/10.12688/wellcomeopenres.16075.2 →</a>
+</div>
+<div class="citation">
+<p class="citation-cite"><strong>Herringer M</strong>, Ndiaye L, South A. Developing a data validation method with OpenStreetMap Senegal and the Ministry of Health in support of accurate health facility data. <em>Proceedings of the OSM Science at State of the Map Europe 2023</em>, Antwerp, Belgium, 10–12 November 2023. Zenodo.</p>
+<a class="citation-doi" href="https://doi.org/10.5281/zenodo.10443334">doi.org/10.5281/zenodo.10443334 →</a>
+</div>
+<div class="citation">
+<p class="citation-cite">Macharia PM, Beňová L, Ray N, Semaan A, Musau MM, Kipterer JK, <strong>Herringer M</strong>, Snow RW, Okiro EA. Putting health facilities on the map: a renewed call to create geolocated, comprehensive, updated, openly licensed dataset of health facilities in sub-Saharan African countries. <em>BMC Medicine</em> 2025, 23:211.</p>
+<a class="citation-doi" href="https://doi.org/10.1186/s12916-025-04023-z">doi.org/10.1186/s12916-025-04023-z →</a>
+</div>
+</div>
+
 <ul class="pub-list">
 <li><a href="https://orcid.org/0000-0002-0605-8348">Academic publications — ORCID 0000-0002-0605-8348 →</a></li>
 </ul>
