@@ -1,0 +1,144 @@
+/* ============================================================================
+   About page — Sticky in-page Section Nav + mobile polish
+   campaigns.healthsites.io  ·  styling only · pure CSS (+ optional JS for
+   scrollspy / open-on-jump, see about-section-nav.js)
+   Add to theme/css/style.css after the base styles (or @import at the end).
+
+   WHAT THIS DOES
+   --------------
+   A horizontally-scrollable chip bar that sticks just under the masthead and
+   lets readers scan / jump between the 11 About sections. On mobile it scrolls
+   sideways with scroll-snap; on desktop it wraps and centres. The active chip
+   highlights as you scroll (needs the JS; degrades to a plain jump-nav without).
+
+   REQUIRES
+   --------
+   • Each section <h2> has a stable id (use Markdown attr_list: `## Our Vision {: #vision }`).
+   • --masthead-h set to the real sticky-masthead height so the nav and the
+     scroll-offset sit correctly. Campaigns masthead ≈ 72px.
+   ============================================================================ */
+
+:root {
+  --masthead-h: 72px;          /* height of the existing sticky masthead — TUNE to prod */
+  --hs-red: #f44a52;
+  --hs-slate: #3c4c57;
+  --hs-soft: #f9f9f9;
+  --hs-hairline: #f1f0f0;
+  --hs-border: #e0e0e0;
+}
+
+/* ---- the sticky nav ---------------------------------------------------- */
+.section-nav {
+  position: sticky;
+  top: var(--masthead-h);      /* sits directly beneath the masthead */
+  z-index: 900;                /* below masthead (1000), above content */
+  background: #fff;
+  border-bottom: 1px solid var(--hs-border);
+  margin: 0 0 24px;
+}
+/* subtle shadow once it's doing its sticky job */
+.section-nav::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: -6px; height: 6px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0));
+  pointer-events: none;
+}
+
+.section-nav__track {
+  display: flex;
+  gap: 8px;
+  max-width: var(--container-width, 1200px);
+  margin: 0 auto;
+  padding: 12px 20px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;                 /* Firefox */
+}
+.section-nav__track::-webkit-scrollbar { display: none; }  /* WebKit */
+
+.section-nav__link {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;                       /* tap target */
+  padding: 8px 16px;
+  border-radius: 20px;                    /* brand status-badge radius */
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--hs-slate);
+  background: var(--hs-soft);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+.section-nav__link:hover { background: var(--hs-hairline); opacity: 1; }
+.section-nav__link:focus-visible { outline: 2px solid var(--hs-red); outline-offset: 2px; }
+
+/* active = healthsites red (the brand signal). Set by about-section-nav.js;
+   also works as the :target fallback for no-JS jump nav. */
+.section-nav__link.is-active,
+.section-nav__link[aria-current="true"] {
+  background: var(--hs-red);
+  color: #fff;
+}
+
+/* desktop: no sideways scroll — wrap and centre */
+@media (min-width: 860px) {
+  .section-nav__track { flex-wrap: wrap; justify-content: center; overflow-x: visible; }
+}
+
+/* ---- anchor offset: keep the jumped-to heading clear of sticky chrome --- */
+.about-content h2[id] {
+  scroll-margin-top: calc(var(--masthead-h) + 72px);
+}
+
+/* ============================================================================
+   MOBILE POLISH for the About accordions (≤640px)
+   The page is a stack of <details>/<summary> sections; tighten them for phones.
+   ============================================================================ */
+.about-content details > summary {
+  cursor: pointer;
+  min-height: 56px;                       /* comfortable tap target */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.about-content details > summary::-webkit-details-marker { display: none; }
+/* generated chevron so summaries read as openable on touch */
+.about-content details > summary::after {
+  content: "";
+  flex: none;
+  margin-left: auto;
+  width: 9px; height: 9px;
+  border-right: 2px solid var(--hs-red);
+  border-bottom: 2px solid var(--hs-red);
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+.about-content details[open] > summary::after { transform: rotate(-135deg); }
+.about-content details > summary h3 { margin: 0; }
+
+@media (max-width: 640px) {
+  .section-nav { margin-bottom: 16px; }
+  .section-nav__track { padding: 10px 16px; gap: 6px; }
+  .section-nav__link { font-size: 13px; padding: 8px 14px; }
+  .about-content h2 { font-size: 22px; }
+  .about-content details > summary h3 { font-size: 17px; }
+  .about-content details > summary { padding: 14px 0; }
+}
+
+/* respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .section-nav__link,
+  .about-content details > summary::after { transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* smooth native anchor scrolling (no JS, no scrollIntoView) */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}

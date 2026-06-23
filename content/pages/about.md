@@ -5,9 +5,27 @@ Status: published
 
 healthsites.io is a Digital Public Good that builds and maintains an open, community-validated baseline of health facility data in OpenStreetMap. We drive this through Emergency Health Mapping Campaigns, with a focus on maternal and women's health services.
 
+<nav class="section-nav" aria-label="On this page">
+  <div class="section-nav__track">
+    <a class="section-nav__link" href="#vision">Vision</a>
+    <a class="section-nav__link" href="#problem">Problem</a>
+    <a class="section-nav__link" href="#womens-health">Women's Health</a>
+    <a class="section-nav__link" href="#how-we-work">How We Work</a>
+    <a class="section-nav__link" href="#governance">Governance</a>
+    <a class="section-nav__link" href="#team">Team</a>
+    <a class="section-nav__link" href="#campaigns">Campaigns</a>
+    <a class="section-nav__link" href="#partners">Partners</a>
+    <a class="section-nav__link" href="#participate">Participate</a>
+    <a class="section-nav__link" href="#timeline">Timeline</a>
+    <a class="section-nav__link" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="about-content" markdown="1">
+
 ---
 
-## Our Vision
+## Our Vision {: #vision }
 
 <details markdown="1">
 <summary><h3>Health facility data as critical infrastructure</h3></summary>
@@ -20,7 +38,7 @@ We build that foundation. healthsites.io is a data collaborative that combines O
 
 ---
 
-## The Problem We Solve
+## The Problem We Solve {: #problem }
 
 <details markdown="1">
 <summary><h3>Incomplete or outdated facility lists cost lives</h3></summary>
@@ -35,7 +53,7 @@ In Saint-Louis, Senegal, our first campaign identified **398 validated health fa
 
 ---
 
-## Why Women's Health
+## Why Women's Health {: #womens-health }
 
 <details markdown="1">
 <summary><h3>The structural barriers that affect women</h3></summary>
@@ -50,7 +68,7 @@ Accurate, findable health facility data is one concrete answer. When the nearest
 
 ---
 
-## How We Work
+## How We Work {: #how-we-work }
 
 <details markdown="1">
 <summary><h3>The Emergency Health Mapping Campaign</h3></summary>
@@ -69,7 +87,7 @@ All data is contributed to OpenStreetMap under the Open Database Licence (ODbL),
 
 ---
 
-## Data Governance & Trust
+## Data Governance & Trust {: #governance }
 
 <details markdown="1">
 <summary><h3>Why institutions say yes to open data</h3></summary>
@@ -88,7 +106,7 @@ Our collaboration is built on a framework of trust, transparency, and responsibi
 
 ---
 
-## Team & Leadership
+## Team & Leadership {: #team }
 
 <details markdown="1">
 <summary><h3>The people behind healthsites.io</h3></summary>
@@ -170,7 +188,7 @@ healthsites.io is operated by **Open Healthsite Consulting** (registered in the 
 
 ---
 
-## Our Campaigns
+## Our Campaigns {: #campaigns }
 
 <details markdown="1">
 <summary><h3>Emergency Health Mapping Campaigns across Africa</h3></summary>
@@ -193,7 +211,7 @@ Each campaign follows the same rigorous methodology: community-led validation, M
 
 ---
 
-## Partners & Collaborators
+## Partners & Collaborators {: #partners }
 
 <details markdown="1">
 <summary><h3>Institutions across government, civil society, the UN system, and geospatial innovation</h3></summary>
@@ -216,7 +234,7 @@ WHO; UNICEF; UNDP Singapore Global Centre; International Committee of the Red Cr
 
 ---
 
-## How to Participate
+## How to Participate {: #participate }
 
 <div class="pathways" markdown="1">
 
@@ -244,13 +262,13 @@ Support Emergency Health Mapping Campaigns in priority regions. Each campaign va
 <summary><h3>Pathway 2: Subscribe to the API</h3></summary>
 <div class="pathway-body" markdown="1">
 
-Access 1.18M+ validated health facility records via the healthsites.io REST API. Community tier is free. Professional and Enterprise tiers unlock high-volume requests and priority support.
+Access validated health facility data via the healthsites.io REST API. There is no waitlist — the Community tier gives free, basic API service. Professional and Enterprise tiers unlock a high volume of API requests per day.
 
 </div>
 <p class="pathway-tiers">
-<span class="pathway-tier">Community · free</span>
+<span class="pathway-tier">Community · basic API (free)</span>
 <span class="pathway-tier">Professional · high volume</span>
-<span class="pathway-tier">Enterprise · SLA + support</span>
+<span class="pathway-tier">Enterprise · high volume</span>
 </p>
 <p class="pathway-actions">
 <a class="pathway-cta pathway-cta--primary" href="https://github.com/healthsites/healthsites/wiki/API">Get API Access →</a>
@@ -262,13 +280,13 @@ Access 1.18M+ validated health facility records via the healthsites.io REST API.
 <summary><h3>Pathway 3: Institutional Integration</h3></summary>
 <div class="pathway-body" markdown="1">
 
-Adopt the healthsites.io data model to validate and publish your national Master Facility List, aligned with SDG 3.8.1. Integration runs through a validation campaign and API partnership.
+Adopt the healthsites.io data model to validate and publish your national Master Facility List, aligned with SDG 3.8.1. There is no separate guide or product to buy — institutional integration happens by running a validation campaign and using the API, giving Ministries of Health and statistics offices NSO–MoH–OpenStreetMap interoperability while retaining data sovereignty.
 
 **Suited for:** Ministries of Health · National Statistics Offices · development finance institutions · UN system agencies
 
 </div>
 <p class="pathway-actions">
-<a class="pathway-cta pathway-cta--primary" href="https://healthsites.io/contact">Start a Conversation →</a>
+<a class="pathway-cta pathway-cta--primary" href="https://healthsites.io/contact">Talk to Us →</a>
 <a class="pathway-cta pathway-cta--ghost" href="/campaigns/">How Campaigns Work</a>
 </p>
 </details>
@@ -277,7 +295,7 @@ Adopt the healthsites.io data model to validate and publish your national Master
 
 ---
 
-## Twitter Timeline
+## Twitter Timeline {: #timeline }
 
 <details markdown="1">
 <summary><h3>Our Journey: Foundation to Impact to Sustainability</h3></summary>
@@ -288,7 +306,7 @@ View the [Twitter Timeline]({filename}/pages/twitter-timeline.md) — 1,067 twee
 
 ---
 
-## Contact & Learn More
+## Contact & Learn More {: #contact }
 
 <details markdown="1">
 <summary><h3>Get in touch</h3></summary>
@@ -303,6 +321,8 @@ Questions about partnerships, funding, API integration, campaigns, or mapping?
 - Academic: [ORCID 0000-0002-0605-8348](https://orcid.org/0000-0002-0605-8348)
 
 </details>
+
+</div>
 
 ---
 
