@@ -105,6 +105,6 @@ Help build out features, fix bugs, or add translations!
 
 - Issues: GitHub Issues
 - Website: healthsites.io
-- Twitter: @healthsitesio
+- Bluesky: @sharehealthdata.bsky.social
 
 Built with care by the Healthsites community. Let's map health together!
