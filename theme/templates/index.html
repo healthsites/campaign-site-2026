@@ -12,9 +12,9 @@
             </p>
 
             {% if is_french %}
-            <h1 class="hero-title">Quand une mère fait face à des complications, le service d'urgence le plus proche doit être localisable.</h1>
+            <h1 class="hero-title">Quand une mère fait face à des complications, le service d'urgence le plus proche doit être accessible et cartographié.</h1>
             {% else %}
-            <h1 class="hero-title">When a mother faces complications in childbirth, the nearest emergency facility has to be findable.</h1>
+            <h1 class="hero-title">When a mother faces complications in childbirth, the nearest emergency facility must be accessible and mapped.</h1>
             {% endif %}
 
             <blockquote class="user-story">
@@ -172,6 +172,16 @@
                 <li><i class="fa fa-check"></i> <strong>{% if is_french %}Gouvernance en commun{% else %}Commons governance{% endif %}</strong> — {% if is_french %}structure anti-capture : aucun acteur commercial ne contrôle la ressource partagée{% else %}anti-capture structure: no single commercial actor controls the shared resource{% endif %}</li>
             </ul>
         </div>
+        <div class="dpg-credential">
+            <a href="https://www.digitalpublicgoods.net/r/global-healthsites-mapping-project" target="_blank" rel="noopener" aria-label="healthsites.io in the Digital Public Goods registry">
+                <img src="{{ SITEURL }}/theme/images/dpg-logo-white.png" alt="Digital Public Goods Alliance" width="200">
+            </a>
+            <h3 class="dpg-title">A Digital Public Good for Health Data Infrastructure</h3>
+            <p>
+                Healthsites.io maintains an open, community-validated registry of 1.18 million health facilities across 204 countries. Our open data adheres to privacy and best practices, does no harm by design, and enables interoperability with national health information systems. Listed in the <a href="https://www.digitalpublicgoods.net/r/global-healthsites-mapping-project" target="_blank" rel="noopener">digital public goods registry</a>.
+            </p>
+        </div>
+
         <div class="institutional-cta">
             <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/campaigns/senegal/saint-louis/" class="btn btn-primary">
                 {% if is_french %}Voir comment Saint-Louis a validé ~400 établissements + 35 orientations d'urgence →{% else %}See how Saint-Louis validated ~400 facilities + 35 emergency referral services →{% endif %}
@@ -187,6 +197,10 @@
         <div class="strategy-diagram">
             <img src="{{ SITEURL }}/theme/images/250511-healthsites-strategy.png"
                  alt="{% if is_french %}Schéma de la stratégie du projet{% else %}Healthsites project strategy diagram{% endif %}">
+            <p class="strategy-wiki">
+                <i class="fa fa-book"></i>
+                <a href="https://wiki.openstreetmap.org/wiki/Global_Healthsites_Mapping_Project" target="_blank" rel="noopener">{% if is_french %}Wiki du projet →{% else %}Project wiki →{% endif %}</a>
+            </p>
         </div>
     </div>
 </section>

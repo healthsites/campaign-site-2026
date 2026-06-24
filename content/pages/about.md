@@ -115,7 +115,7 @@ Our collaboration is built on a framework of trust, transparency, and responsibi
     <span class="team-avatar">MH</span>
     <div>
       <p class="team-name">Mark Herringer</p>
-      <p class="team-role">Project Lead &amp; Data Steward</p>
+      <p class="team-role">Founder, Project Lead &amp; Data Steward</p>
       <p class="team-expertise">Open data governance · digital public goods · NGI Commons Task Force</p>
     </div>
   </div>
@@ -155,7 +155,7 @@ Our collaboration is built on a framework of trust, transparency, and responsibi
     <span class="team-avatar">TS</span>
     <div>
       <p class="team-name">Tim Sutton</p>
-      <p class="team-role">Advisor — GIS &amp; Open Source</p>
+      <p class="team-role">Co-founder, Advisor — GIS &amp; Open Source</p>
       <p class="team-expertise">QGIS · open geospatial software</p>
     </div>
   </div>

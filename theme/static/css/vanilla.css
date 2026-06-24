@@ -3114,7 +3114,7 @@ nav summary {
 .institutional-list strong { color: #fff; }
 .institutional-list a { color: rgba(255,255,255,0.85); text-decoration: underline; }
 .institutional-list a:hover { color: #fff; }
-.institutional-cta { text-align: center; }
+.institutional-cta { text-align: center; margin-top: 4.5rem; }
 
 @media (max-width: 640px) {
     .institutional-list { grid-template-columns: 1fr; }
@@ -3471,3 +3471,22 @@ a.sreg-card:hover {
     line-height: 1.6;
 }
 .footer-citation a { color: #fff; text-decoration: underline; }
+
+/* --- strategy wiki link --- */
+.strategy-wiki { margin: 1.25rem 0 0; text-align: center; font-size: 0.95rem; color: var(--medium-gray); }
+.strategy-wiki i { color: var(--primary-color); margin-right: 0.3rem; }
+.strategy-wiki a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
+.strategy-wiki a:hover { text-decoration: underline; }
+
+/* --- DPG credential block (institutional section) --- */
+.dpg-credential {
+    margin-top: 3rem; padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center;
+}
+.dpg-title { margin: 0; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: #fff; }
+.dpg-credential p { margin: 0; font-size: 1.05rem; line-height: 1.7; max-width: 680px; color: rgba(255,255,255,0.85); }
+.dpg-credential p a { color: #fff; text-decoration: underline; }
+
+/* --- DPG badge in footer --- */
+.footer-dpg { display: inline-block; margin-top: 1rem; line-height: 0; }
