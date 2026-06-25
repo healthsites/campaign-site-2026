@@ -70,8 +70,8 @@ SITEMAP = {
     'changefreqs': {'pages': 'monthly', 'indexes': 'weekly', 'articles': 'monthly'},
 }
 
-STATIC_PATHS = ['extra/robots.txt', 'extra/google993ae26acd637a81.html']
-EXTRA_PATH_METADATA = {'extra/robots.txt': {'path': 'robots.txt'}, 'extra/google993ae26acd637a81.html': {'path': 'google993ae26acd637a81.html'}}
+STATIC_PATHS = ['extra/robots.txt']
+EXTRA_PATH_METADATA = {'extra/robots.txt': {'path': 'robots.txt'}}
 
 SITEDESCRIPTION = 'Open, community-validated health facility data in OpenStreetMap, built through emergency health mapping campaigns.'
 
