@@ -153,6 +153,24 @@
         </div>
 
         <div class="footer-bottom">
+            <ul class="footer-licences" aria-label="{% if page and page.lang == 'fr' %}Licences et attribution{% else %}Licensing and attribution{% endif %}">
+                <li>
+                    <span class="lic-label">{% if page and page.lang == 'fr' %}Code&nbsp;:{% else %}Code:{% endif %}</span>
+                    <a href="https://opensource.org/license/bsd-3-clause" target="_blank" rel="noopener">BSD-3-Clause License</a>
+                    &copy; Open Healthsite Consulting
+                </li>
+                <li>
+                    <span class="lic-label">{% if page and page.lang == 'fr' %}Contenu&nbsp;:{% else %}Content:{% endif %}</span>
+                    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>
+                    &copy; Open Healthsite Consulting
+                </li>
+                <li>
+                    <span class="lic-label">{% if page and page.lang == 'fr' %}Données&nbsp;:{% else %}Data:{% endif %}</span>
+                    {% if page and page.lang == 'fr' %}Données des établissements de santé issues de healthsites.io et d'OpenStreetMap, sous licence{% else %}Health facility data sourced from healthsites.io and OpenStreetMap, licensed under{% endif %}
+                    <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener">ODbL 1.0</a>.
+                    &copy; OpenStreetMap contributors
+                </li>
+            </ul>
             <p>&copy; 2026 healthsites.io. {% if page and page.lang == 'fr' %}Données ouvertes sous licence ODbL.{% else %}Open data under the ODbL licence.{% endif %}</p>
         </div>
     </div>

@@ -3490,3 +3490,27 @@ a.sreg-card:hover {
 
 /* --- DPG badge in footer --- */
 .footer-dpg { display: inline-block; margin-top: 1rem; line-height: 0; }
+
+/* --- footer licensing & attribution block --- */
+.footer-licences {
+    list-style: none;
+    max-width: 680px;
+    margin: 0 auto 1.1rem;
+    padding: 0;
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.5);
+}
+.footer-licences li { margin: 0.15rem 0; }
+.footer-licences .lic-label { color: rgba(255, 255, 255, 0.75); font-weight: 500; }
+.footer-licences a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    border-bottom: 1px solid var(--primary-color);
+    padding-bottom: 1px;
+    transition: var(--transition);
+}
+.footer-licences a:hover { color: var(--white); border-bottom-color: var(--white); }
+@media (max-width: 768px) {
+    .footer-licences { font-size: 0.78rem; padding: 0 0.5rem; }
+}
