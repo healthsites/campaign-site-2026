@@ -62,7 +62,18 @@ WORKING_GROUP_FORM_URL = 'https://healthsites.io/contact'
 GITHUB_DISCUSSION_URL = 'https://github.com/healthsites/healthsites/discussions'
 
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['twitter_timeline_loader']
+PLUGINS = ['pelican.plugins.sitemap', 'twitter_timeline_loader']
+
+SITEMAP = {
+    'format': 'xml',
+    'priorities':  {'pages': 0.8, 'indexes': 1.0, 'articles': 0.5},
+    'changefreqs': {'pages': 'monthly', 'indexes': 'weekly', 'articles': 'monthly'},
+}
+
+STATIC_PATHS = ['extra/robots.txt']
+EXTRA_PATH_METADATA = {'extra/robots.txt': {'path': 'robots.txt'}}
+
+SITEDESCRIPTION = 'Open, community-validated health facility data in OpenStreetMap, built through emergency health mapping campaigns.'
 
 _tl_path = pathlib.Path('theme/static/twitter_timeline_data.json')
 if _tl_path.exists():

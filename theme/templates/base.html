@@ -3,9 +3,60 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ SITEDESCRIPTION|default('Building reliable health facility data') }}">
+
+    {# Per-page description, with fallback #}
+    {% if page and page.description %}{% set meta_description = page.description %}
+    {% elif page and page.summary %}{% set meta_description = page.summary|striptags|truncate(160) %}
+    {% else %}{% set meta_description = SITEDESCRIPTION %}{% endif %}
+    <meta name="description" content="{{ meta_description|e }}">
 
     <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+
+    {# Canonical #}
+    <link rel="canonical" href="{{ SITEURL }}/{{ page.url if page else '' }}">
+
+    {# Open Graph — LinkedIn / Bluesky / Slack previews #}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="healthsites.io">
+    <meta property="og:title" content="{{ self.title() }}">
+    <meta property="og:description" content="{{ meta_description|e }}">
+    <meta property="og:url" content="{{ SITEURL }}/{{ page.url if page else '' }}">
+    <meta property="og:image" content="{{ SITEURL }}/theme/images/og-default.png">
+    {% set og_locales = {'en':'en_US','fr':'fr_FR','pt':'pt_PT','ar':'ar_AR'} %}
+    <meta property="og:locale" content="{{ og_locales[page.lang] if page else 'en_US' }}">
+
+    {# Twitter card #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ self.title() }}">
+    <meta name="twitter:description" content="{{ meta_description|e }}">
+    <meta name="twitter:image" content="{{ SITEURL }}/theme/images/og-default.png">
+
+    {# hreflang — expose FR/PT/AR translations to search #}
+    {% if page %}
+    <link rel="alternate" hreflang="{{ page.lang }}" href="{{ SITEURL }}/{{ page.url }}">
+    {% for t in page.translations %}
+    <link rel="alternate" hreflang="{{ t.lang }}" href="{{ main_siteurl }}/{{ t.url }}">
+    {% endfor %}
+    {% endif %}
+
+    {# Organization schema #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "healthsites.io",
+      "alternateName": "Global Healthsites Mapping Project",
+      "url": "https://campaigns.healthsites.io/",
+      "logo": "https://campaigns.healthsites.io/theme/images/og-default.png",
+      "description": "A Digital Public Good maintaining an open, community-validated registry of health facilities in OpenStreetMap.",
+      "sameAs": [
+        "https://www.linkedin.com/company/healthsites-io/",
+        "https://github.com/healthsites",
+        "https://bsky.app/profile/sharehealthdata.bsky.social",
+        "https://www.digitalpublicgoods.net/r/global-healthsites-mapping-project"
+      ]
+    }
+    </script>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -19,10 +70,11 @@
     <link href="{{ SITEURL }}/theme/css/about-section-nav.css" rel="stylesheet">
 
     <!-- Favicon -->
-<link rel="icon" href="{{ SITEURL }}/theme/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="{{ SITEURL }}/theme/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ SITEURL }}/theme/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ SITEURL }}/theme/favicon-16x16.png">
+    <link rel="icon" href="{{ SITEURL }}/theme/favicon.ico" sizes="any">
+    <link rel="icon" href="{{ SITEURL }}/theme/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{{ SITEURL }}/theme/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ SITEURL }}/theme/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ SITEURL }}/theme/favicon-16x16.png">
 
     {% block extra_head %}{% endblock %}
 </head>

@@ -3,6 +3,7 @@ Template: about
 Slug: about
 Lang: en
 Status: published
+Description: How healthsites.io builds open health facility data as critical infrastructure — methodology, governance, and impact.
 
 healthsites.io is a Digital Public Good that builds and maintains an open, community-validated baseline of health facility data in OpenStreetMap. We drive this through Emergency Health Mapping Campaigns, with a focus on maternal and women's health services.
 

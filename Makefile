@@ -16,19 +16,21 @@ clean:
 	rm -rf output/
 	@echo "✅ Clean complete"
 
+PELICAN = venv/bin/python3 -m pelican
+
 build: clean
 	@echo "🔨 Building site..."
-	pelican content
+	$(PELICAN) content
 	@echo "✅ Build complete"
 
 serve: build
 	@echo "🌐 Starting development server..."
 	@echo "📍 Site available at: http://localhost:8000"
-	pelican --listen
+	$(PELICAN) --listen
 
 publish: clean
 	@echo "📦 Building for production..."
-	pelican content -s publishconf.py
+	$(PELICAN) content -s publishconf.py
 	@echo "✅ Production build complete"
 	@echo "📁 Output in: output/"
 
