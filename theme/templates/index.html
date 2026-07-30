@@ -48,11 +48,6 @@
                 <li><i class="fa fa-check-circle"></i> {% if is_french %}Validé par le Ministère de la Santé{% else %}MoH-validated{% endif %}</li>
                 <li><i class="fa fa-file-text-o"></i> <a href="https://doi.org/10.5281/zenodo.10443334" target="_blank" rel="noopener">{% if is_french %}Méthodologie évaluée par les pairs (OSM Science, 2023){% else %}Peer-reviewed methodology (OSM Science, 2023){% endif %}</a></li>
             </ul>
-
-            <div class="hero-signpost">
-                <span>{% if is_french %}Vous êtes un Ministère de la Santé, une agence statistique ou un partenaire de données ?{% else %}Are you a Ministry of Health, NSO, or data partner?{% endif %}</span>
-                <a href="#engagement">{% if is_french %}Explorer les partenariats →{% else %}Explore partnership opportunities →{% endif %}</a>
-            </div>
         </div>
 
         <div class="hero-image">
@@ -61,6 +56,17 @@
                 <a href="https://www.openstreetmap.org/user/Lamine%20Ndiaye" target="_blank" rel="noopener">Lamine Ndiaye</a> — OpenStreetMap Senegal
             </p>
         </div>
+    </div>
+</section>
+
+<!-- Institutional CTA band -->
+<section class="institutional-cta">
+    <div class="container institutional-cta-inner">
+        <div class="institutional-cta-copy">
+            <span class="badge-institutional">{% if is_french %}Un modèle de partenariat pour chaque pays{% else %}A partnership model for every country{% endif %}</span>
+            <p>{% if is_french %}Nous travaillons directement avec les Ministères de la Santé et les Offices Nationaux de la Statistique pour aligner les données validées sur la Liste Maîtresse des Établissements officielle. Le financement continu provient de l'écosystème des parties prenantes de chaque pays — secteur privé, agences de l'ONU et partenaires bailleurs — au service de cette même base de référence alignée sur le Ministère.{% else %}We work directly with Ministries of Health and National Statistics Offices to align validated data with the official Master Facility List. Ongoing funding comes from the wider stakeholder ecosystem in each country — private sector, UN agencies, and donor partners — supporting the same MoH-aligned baseline.{% endif %}</p>
+        </div>
+        <a href="#engagement" class="btn-outline-blue" data-event="Institutional Click">{% if is_french %}Explorer les partenariats →{% else %}Explore partnership opportunities →{% endif %}</a>
     </div>
 </section>
 
@@ -122,39 +128,42 @@
         <h2 class="section-title">{% if is_french %}Trois façons de s'engager{% else %}Three ways to engage{% endif %}</h2>
         <div class="engagement-grid">
 
-            <div class="engage-card">
+            <div class="engage-card engage-card--fund">
                 <div class="engage-card-header">
                     <span class="engage-badge">{% if is_french %}DON{% else %}FUND{% endif %}</span>
                     <i class="fa fa-heart engage-icon"></i>
                 </div>
                 <div class="engage-card-body">
                     <h3>{% if is_french %}Financer une campagne{% else %}Fund a Campaign{% endif %}</h3>
-                    <p>{% if is_french %}Soutenez la validation des établissements de santé sur le terrain et la constitution de données publiques permanentes.{% else %}Support health facility validation on the ground and the creation of permanent open data.{% endif %}</p>
-                    <a href="https://www.gofundme.com/f/senegal-health-facility-data-collaborative" target="_blank" rel="noopener" class="engage-link">{% if is_french %}Soutenir la collaboration →{% else %}Support the data collaborative →{% endif %}</a>
+                    <p>{% if is_french %}Soutenez la cartographie sanitaire d'urgence dans les régions prioritaires.{% else %}Support Emergency Health Mapping in priority regions.{% endif %}</p>
+                    <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/campaigns/senegal/saint-louis/" class="engage-proof" data-event="Saint-Louis Proof Click">{% if is_french %}Voir les résultats de la campagne de Saint-Louis →{% else %}See the Saint Louis campaign results →{% endif %}</a>
+                    <a href="{{ GOFUNDME_URL }}" target="_blank" rel="noopener" class="engage-btn engage-btn--fund" data-event="Fund Click">{% if is_french %}Soutenir la collaboration →{% else %}Support the data collaborative →{% endif %}</a>
                 </div>
             </div>
 
-            <div class="engage-card">
+            <div class="engage-card engage-card--secondary">
                 <div class="engage-card-header">
-                    <span class="engage-badge">API</span>
+                    <span class="engage-badge engage-badge--slate">API</span>
                     <i class="fa fa-code engage-icon"></i>
                 </div>
                 <div class="engage-card-body">
                     <h3>{% if is_french %}S'abonner à l'API{% else %}Subscribe to the API{% endif %}</h3>
                     <p>{% if is_french %}Accédez à 1,18 million d'établissements validés via notre API REST ouverte.{% else %}Access 1.18M+ validated health facility records via our open REST API.{% endif %}</p>
-                    <a href="https://github.com/healthsites/healthsites/wiki/API" target="_blank" rel="noopener" class="engage-link">{% if is_french %}Demander un jeton →{% else %}Request a token →{% endif %}</a>
+                    <a href="https://github.com/healthsites/healthsites/wiki/API" target="_blank" rel="noopener" class="engage-btn engage-btn--slate" data-event="Subscribe Free Click">{% if is_french %}Obtenir un accès API gratuit →{% else %}Get free API access →{% endif %}</a>
+                    <a href="#waitlist" class="engage-waitlist" data-event="Subscribe Waitlist Click">{% if is_french %}Rejoindre la liste d'attente de l'offre premium →{% else %}Join the premium tier waitlist →{% endif %}</a>
+                    <p class="engage-usecase">{% if is_french %}Utilisé pour la logistique de distribution, la vérification des réseaux de prestataires et la coordination inter-agences.{% else %}Used for distribution logistics, provider-network verification, and cross-agency coordination.{% endif %}</p>
                 </div>
             </div>
 
-            <div class="engage-card">
+            <div class="engage-card engage-card--secondary">
                 <div class="engage-card-header">
-                    <span class="engage-badge">{% if is_french %}DONNÉES{% else %}DATA{% endif %}</span>
+                    <span class="engage-badge engage-badge--slate">{% if is_french %}PARTENARIAT{% else %}PARTNERSHIP{% endif %}</span>
                     <i class="fa fa-handshake-o engage-icon"></i>
                 </div>
                 <div class="engage-card-body">
                     <h3>{% if is_french %}Démarrer un partenariat{% else %}Start a Partnership{% endif %}</h3>
                     <p>{% if is_french %}Intégrez le modèle de données healthsites.io pour valider et publier votre liste nationale d'établissements.{% else %}Integrate the healthsites.io data model to validate and publish your national facility list.{% endif %}</p>
-                    <a href="https://healthsites.io/contact" class="engage-link">{% if is_french %}Prendre contact →{% else %}Get in touch →{% endif %}</a>
+                    <a href="https://healthsites.io/contact" class="engage-btn engage-btn--slate" data-event="Integrate Contact Click">{% if is_french %}Entamer la conversation{% else %}Start a conversation{% endif %}</a>
                 </div>
             </div>
 
@@ -184,7 +193,7 @@
             </p>
         </div>
 
-        <div class="institutional-cta">
+        <div class="institutional-results-cta">
             <a href="{{ SITEURL }}{% if is_french %}/fr{% endif %}/campaigns/senegal/saint-louis/" class="btn btn-primary">
                 {% if is_french %}Voir comment Saint-Louis a validé ~400 établissements + 35 orientations d'urgence →{% else %}See how Saint-Louis validated ~400 facilities + 35 emergency referral services →{% endif %}
             </a>

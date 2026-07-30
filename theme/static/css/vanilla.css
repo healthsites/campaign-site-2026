@@ -16,7 +16,10 @@
     --light-gray: #666666;
     --bg-light: #f9f9f9;
     --white: #ffffff;
-    
+    /* Institutional accent — reused from the QGIS campaign map "Planned" style */
+    --institutional-blue: #0c5460;
+    --institutional-tint: rgba(209,236,241,0.35);
+
     /* Typography */
     --font-heading: 'Raleway', sans-serif;
     --font-body: 'Ubuntu', sans-serif;
@@ -2994,22 +2997,6 @@ nav summary {
 }
 .hero-image-caption a { color: var(--primary-color); font-weight: 600; }
 
-/* Hero institutional signpost */
-.hero-signpost {
-    margin-top: 1.75rem;
-    padding: 1rem 1.25rem;
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-left: 4px solid var(--dark-gray);
-    border-radius: 6px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem 1rem;
-}
-.hero-signpost span { font-size: 0.95rem; color: var(--dark-gray); }
-.hero-signpost a { font-weight: 600; color: var(--dark-gray); }
-
 /* Process flow image */
 .process-flow {
     max-width: 960px;
@@ -3085,6 +3072,71 @@ nav summary {
     .engagement-grid { grid-template-columns: 1fr; }
 }
 
+/* ---- CTA architecture rework (Change 8) ---- */
+
+/* Reusable institutional accent treatments */
+.badge-institutional {
+    display: inline-flex; padding: 0.3rem 0.85rem; border: 1.5px solid var(--institutional-blue);
+    border-radius: 999px; color: var(--institutional-blue); font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase;
+}
+.btn-outline-blue {
+    display: inline-flex; align-items: center; justify-content: center; padding: 12px 28px;
+    font-weight: 600; font-size: 0.95rem; border-radius: 6px; min-height: 44px;
+    background: transparent; color: var(--institutional-blue); border: 2px solid var(--institutional-blue);
+    text-decoration: none; transition: var(--transition);
+}
+.btn-outline-blue:hover { background: var(--institutional-blue); color: #fff; }
+
+/* Nav pill variant — clickable badge against the white nav */
+.nav-institutional { background: var(--institutional-tint); text-decoration: none; }
+.nav-institutional:hover { background: var(--institutional-blue); color: #fff; }
+
+/* Institutional CTA band (directly below hero) */
+.institutional-cta { padding: 40px 0 0; }
+.institutional-cta-inner {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem;
+    padding: 1.5rem 2rem; background: var(--institutional-tint);
+    border: 1px solid var(--institutional-blue); border-radius: 8px;
+}
+.institutional-cta-copy { display: flex; flex-direction: column; gap: 0.6rem; max-width: 640px; }
+.institutional-cta-copy p { margin: 0; font-size: 1rem; color: var(--dark-gray); line-height: 1.6; }
+
+/* Fund card — dominant */
+.engage-card--fund { box-shadow: 0 4px 16px rgba(244,74,82,0.15); border: 1px solid #f9dbdc; }
+
+/* Secondary cards — neutral header + outlined slate badge */
+.engage-card--secondary .engage-card-header { background: #f4f4f4; }
+.engage-card--secondary .engage-icon { color: var(--dark-gray); }
+.engage-badge--slate { background: transparent; color: var(--dark-gray); border: 2px solid var(--dark-gray); }
+
+/* Card CTA buttons */
+.engage-btn {
+    display: inline-flex; align-items: center; justify-content: center; width: 100%;
+    box-sizing: border-box; padding: 11px 22px; font-weight: 600; font-size: 0.95rem;
+    border-radius: 6px; min-height: 44px; text-decoration: none; transition: var(--transition);
+}
+.engage-btn--fund { background: var(--primary-color); color: #fff; border: 2px solid var(--primary-color); }
+.engage-btn--fund:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+.engage-btn--slate { background: transparent; color: var(--dark-gray); border: 2px solid var(--dark-gray); }
+.engage-btn--slate:hover { background: var(--dark-gray); color: #fff; }
+
+/* Quiet in-card links + use-case line */
+.engage-proof {
+    display: block; margin: 0 0 1rem; font-size: 0.9rem; font-weight: 600;
+    color: var(--medium-gray); text-decoration: none;
+}
+.engage-proof:hover { color: var(--primary-color); text-decoration: underline; }
+.engage-waitlist {
+    display: inline-block; margin-top: 0.75rem; font-size: 0.9rem;
+    color: var(--dark-gray); text-decoration: underline;
+}
+.engage-usecase { margin: 0.75rem 0 0; font-size: 0.82rem; color: var(--medium-gray); line-height: 1.5; }
+
+@media (max-width: 640px) {
+    .institutional-cta-inner { flex-direction: column; align-items: flex-start; }
+}
+
 /* Why institutions choose */
 .institutional {
     padding: 4rem 0;
@@ -3114,7 +3166,7 @@ nav summary {
 .institutional-list strong { color: #fff; }
 .institutional-list a { color: rgba(255,255,255,0.85); text-decoration: underline; }
 .institutional-list a:hover { color: #fff; }
-.institutional-cta { text-align: center; margin-top: 4.5rem; }
+.institutional-results-cta { text-align: center; margin-top: 4.5rem; }
 
 @media (max-width: 640px) {
     .institutional-list { grid-template-columns: 1fr; }

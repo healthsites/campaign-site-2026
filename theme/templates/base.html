@@ -102,6 +102,7 @@
                     {% for title, link in MENUITEMS %}
                     <li><a href="{{ SITEURL }}{{ link }}">{{ title }}</a></li>
                     {% endfor %}
+                    <li><a href="{{ SITEURL }}/{% if page and page.lang == 'fr' %}fr/{% endif %}#engagement" class="badge-institutional nav-institutional" data-event="Institutional Nav Click">{% if page and page.lang == 'fr' %}Devenir partenaire{% else %}Partner With Us{% endif %}</a></li>
                 </ul>
             </nav>
         </div>
