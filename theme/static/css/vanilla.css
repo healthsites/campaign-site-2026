@@ -975,8 +975,10 @@ section {
         margin-top: 24px;
         padding-top: 24px;
     }
-    .main-nav .nav-institutional {
-        display: block;
+    .main-nav a.nav-institutional {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
         box-sizing: border-box;
         padding: 14px 32px;
@@ -990,8 +992,9 @@ section {
         letter-spacing: normal;
         text-align: center;
         min-height: 44px;
+        overflow: visible;
     }
-    .main-nav .nav-institutional:hover {
+    .main-nav a.nav-institutional:hover {
         background: var(--primary-hover);
         color: #fff;
         padding-left: 32px;
