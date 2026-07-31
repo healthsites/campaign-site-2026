@@ -100,6 +100,7 @@
         const navLinks = document.querySelectorAll('.main-nav a');
 
         navLinks.forEach(function(link) {
+            if (link.classList.contains('nav-institutional')) return;
             const linkPath = new URL(link.href).pathname;
 
             if (linkPath === currentPath ||
