@@ -967,6 +967,35 @@ section {
         color: var(--primary-color);
         padding-left: 0.5rem;
     }
+
+    /* "Partner With Us" — solid red CTA button in mobile menu */
+    .main-nav li:has(.nav-institutional) {
+        border-bottom: none;
+        border-top: 1px solid #e0e0e0;
+        margin-top: 24px;
+        padding-top: 24px;
+    }
+    .main-nav .nav-institutional {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px 32px;
+        background: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: none;
+        letter-spacing: normal;
+        text-align: center;
+        min-height: 44px;
+    }
+    .main-nav .nav-institutional:hover {
+        background: var(--primary-hover);
+        color: #fff;
+        padding-left: 32px;
+    }
 }
 
 @media (max-width: 640px) {
