@@ -3801,3 +3801,6 @@ a.sreg-card:hover {
 @media (max-width: 768px) {
     .footer-licences { font-size: 0.78rem; padding: 0 0.5rem; }
 }
+
+/* Breadcrumb inside the centred page header (About sub-pages) */
+.page-header .breadcrumb { justify-content: center; }

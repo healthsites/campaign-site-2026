@@ -6,12 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<section class="country-header">
-    <div class="container">
-        <h1>{{ page.title }}</h1>
-        {% if page.summary %}<p class="summary">{{ page.summary }}</p>{% endif %}
-    </div>
-</section>
+{% include "partials/country-header.html" %}
 
 {# ── LEAFLET MAP ─────────────────────────────────────── #}
 {% if page.geojson_file %}
