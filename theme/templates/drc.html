@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+{% endblock %}
+
+{% block content %}
+<section class="country-header">
+    <div class="container">
+        <h1>{{ page.title }}</h1>
+        <span class="stage-badge stage-in-use"><i class="fa fa-rss"></i>In Use</span>
+        {% if page.summary %}<p class="summary">{{ page.summary }}</p>{% endif %}
+    </div>
+</section>
+
+{# ── LEAFLET MAP ─────────────────────────────────────── #}
+{% if page.geojson_file %}
+<section class="page-map">
+    <div class="container">
+        <div id="map" class="campaign-map" role="region" aria-label="Map of {{ page.country }}"
+             data-geojson="{{ SITEURL }}/theme/geojson/{{ page.geojson_file }}"
+             data-lat="{{ page.map_center_lat|default(-2.9) }}"
+             data-lng="{{ page.map_center_lng|default(23.6) }}"
+             data-zoom="{{ page.map_zoom|default(5) }}"></div>
+        <p class="map-caption"><a href="https://inrb-umie.github.io/BDBV2026-Epidemic_Dashboard/" target="_blank" rel="noopener">Explore health zones in the INRB epidemic dashboard →</a></p>
+    </div>
+</section>
+{% endif %}
+
+{# ── COUNTRY CONTENT ─────────────────────────────────────── #}
+{% if page.content|striptags|trim %}
+<section class="country-content">
+    <div class="container">
+        {{ page.content }}
+    </div>
+</section>
+{% endif %}
+
+{# ── OUR ROLE IN THE DRC EBOLA RESPONSE ─────────────────────────────────────── #}
+<section class="drc-role">
+    <div class="container">
+        <h2>Our Role in the DRC Ebola Response</h2>
+        <p>On 15 May 2026, the DRC's Ministry of Public Health declared the country's 17th Ebola outbreak — the largest Bundibugyo virus (BDBV) outbreak ever recorded, spreading across Ituri, Nord Kivu, and Sud Kivu with confirmed cross-border transmission into Uganda. WHO declared a Public Health Emergency of International Concern two days later; Africa CDC followed with a continental-level emergency declaration the day after.</p>
+        <p>Within weeks, DRC's INRB and INOHA, working with INSP and a consortium including Africa CDC, WHO, Northeastern University, the University of Oxford, and Flowminder, had a live <a href="https://inrb-umie.github.io/BDBV2026-Epidemic_Dashboard/" target="_blank" rel="noopener">Epidemic Intelligence Dashboard</a> running to support the response. Alongside GRID3's official facility dataset, the dashboard carries healthsites.io's crowdsourced, OpenStreetMap-derived layer of health facility locations.</p>
+        <p>GRID3's facility data is authoritative but periodically refreshed; healthsites.io's OSM-based layer is continuously editable by the mapping community, so it can pick up a newly stood-up MSF Ebola Treatment Centre faster than a static survey can. That facility data feeds directly into core dashboard functions: which zones have testing and treatment capacity, travel time from suspected-case locations to the nearest functioning facility, and the dashboard's spatial risk model estimating each health zone's probability of outbreak invasion.</p>
+        <p>healthsites.io participates in Missing Maps as the Global Healthsites Mapping Project, alongside founding members the Humanitarian OpenStreetMap Team (HOT), Médecins Sans Frontières (MSF) UK, the British Red Cross Society, and the American Red Cross, and close to twenty other organizations — all mapping into the same shared OpenStreetMap base that MSF's Ebola Treatment Centres and isolation units get added to as they're stood up.</p>
+        <p>The consortium published the dashboard as a research letter in The Lancet Infectious Diseases — a case for real-time, locally led epidemic intelligence, run by the institutions closest to the outbreak.</p>
+        <p><a href="https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(26)00330-0/fulltext" target="_blank" rel="noopener">Read the study in The Lancet Infectious Diseases →</a></p>
+        <figure class="drc-role-photo">
+            <img src="{{ SITEURL }}/theme/images/Lamine-Ndiaye-OpenStreetMap-Senegal.jpg" alt="Lamine Ndiaye, OpenStreetMap Senegal">
+            <figcaption>Lamine Ndiaye, OpenStreetMap Senegal — stewardship, not just collection, is what makes this data usable in a live response.</figcaption>
+        </figure>
+        <p>Every data point carries a sourced, auditable trail. The Ministry of Health stays the validator of record for its own national data. No personal data is collected, only facility metadata. The data is licensed under ODbL, so it stays a public good rather than becoming anyone's proprietary asset. This baseline data wasn't collected for this outbreak — it's cumulative, community-maintained, and simply there, ready, the moment a response needs it.</p>
+        <p>Beyond this response, we are building a data collaborative in the DRC — a shared, permanent home for facility data across responders, ministries, and research partners. We are inviting support to implement the full data pipeline behind it.</p>
+        <p><a href="https://github.com/healthsites/drc-ebola-2026/wiki/DRC-Health-Facility-Data-Pipeline" target="_blank" rel="noopener">See the full pipeline documentation →</a> &nbsp;·&nbsp; <a href="https://substack.com/@sharehealthdata/p-210578468" target="_blank" rel="noopener">Read the full story →</a></p>
+    </div>
+</section>
+
+{# ── THREE THINGS NEED SUPPORT RIGHT NOW ─────────────────────────────────────── #}
+<section class="roadmap-section">
+    <div class="container">
+        <h2>Three things need support right now</h2>
+        <div class="roadmap-grid">
+
+            <div class="roadmap-card">
+                <div class="roadmap-card-head">
+                    <i class="fa fa-map-marker"></i>
+                    <span class="support-tag support-tag--live"><span class="support-tag-dot"></span>Live</span>
+                </div>
+                <h3>Campaign Support</h3>
+                <p>Structured, HCD-led Emergency Health Mapping campaigns — our validated model, turning community mapping goodwill into checked, field-validated facility data.</p>
+                <a href="https://healthsites.io/contact" class="roadmap-learn-more">Learn more →</a>
+            </div>
+
+            <a href="https://github.com/healthsites/drc-ebola-2026/wiki/DRC-Health-Facility-Data-Pipeline" class="roadmap-card">
+                <div class="roadmap-card-head">
+                    <i class="fa fa-exchange"></i>
+                    <span class="support-tag support-tag--live"><span class="support-tag-dot"></span>Live</span>
+                </div>
+                <h3>DRC Health Facility Data Pipeline</h3>
+                <p>The managed pipeline that publishes WHO, INSP, and Health Cluster facility data to OpenStreetMap and serves it live via API — feeding the BDBV2026 dashboard's SEIR model across 519 health zones.</p>
+                <span class="roadmap-learn-more">Learn more →</span>
+            </a>
+
+            <a href="https://github.com/healthsites/healthsites.io-CGR/wiki/healthsites.io-Common-Geo-Registry" class="roadmap-card">
+                <div class="roadmap-card-head">
+                    <i class="fa fa-key"></i>
+                    <span class="support-tag support-tag--dev"><span class="support-tag-dot"></span>In development</span>
+                </div>
+                <h3>Open Identifier Infrastructure</h3>
+                <p>A persistent, resolvable identifier linking each facility across OpenStreetMap, DHIS2, and the Ministry's own registry — replacing joins by geographic proximity with a shared key.</p>
+                <span class="roadmap-learn-more">Learn more →</span>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+{# ── WAYS TO ENGAGE ─────────────────────────────────────── #}
+<section class="engage-section">
+    <div class="container">
+        <h2>Ways to Engage</h2>
+        <p class="section-sub">Institutional partners can support this work in three ways.</p>
+        <div class="engage-grid">
+            <div class="engage-card">
+                <h3>Partner</h3>
+                <p>Collaborate on strategy, governance, and resource mobilization to scale the model across priority countries.</p>
+                <a href="https://healthsites.io/contact" class="btn btn-primary">Get in touch</a>
+            </div>
+            <div class="engage-card">
+                <h3>Invest</h3>
+                <p>Support innovation in data quality measurement (LVI), field validation campaigns, and country-level systems integration.</p>
+                <a href="https://healthsites.io/contact" class="btn btn-primary">Get in touch</a>
+            </div>
+            <div class="engage-card">
+                <h3>Support</h3>
+                <p>Engage in targeted emergency health mapping campaigns that deliver measurable results and lasting impact.</p>
+                <a href="https://healthsites.io/contact" class="btn btn-primary">Get in touch</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script src="{{ SITEURL }}/theme/js/campaign-map.js"></script>
+{% endblock %}

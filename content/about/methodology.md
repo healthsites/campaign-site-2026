@@ -77,7 +77,7 @@ Health facility data is currently funded as a project cost — a recurring expen
 
 Component C supports the Ministry of Health in translating this distinction into a concrete, evidence-based argument to the Ministry of Finance. Drawing on the methodology of the MoHSA Health Economics Unit — which is mandated to *build advocacy arguments to mobilise domestic resources* and *monitor progress towards universal health coverage* — this component develops the economic case for validated health facility data as public infrastructure rather than project expenditure.
 
-The argument is grounded in the PNDSS 2019–2028 financing axis and the Universal Health Coverage monitoring framework for SDG 3.8.1. It draws on the Saint-Louis dataset as a concrete proof of concept: data validated in 2021 remains freely available and actively used today, at zero ongoing cost to the Ministry of Health.
+The argument is grounded in the PNDSS 2019–2028 financing axis and the Universal Health Coverage monitoring framework for SDG 3.8.1. It draws on the Saint-Louis dataset as a concrete proof of concept: data validated in 2022 remains freely available and actively used today, at zero ongoing cost to the Ministry of Health.
 
 **Étape 2 outputs:**
 - A clinically confirmed dataset of facilities meeting priority user story criteria
@@ -94,7 +94,7 @@ Each medical region follows the same progression. Étape 1 must be completed bef
 
 | Region | Country | Étape 1 | Étape 2 |
 |--------|---------|---------|---------|
-| Saint-Louis | Senegal | Complete (2021) | Seeking support |
+| Saint-Louis | Senegal | Complete (2022) | Seeking support |
 | Tambacounda | Senegal | Seeking funding | Planned |
 | Matam | Senegal | Planned 2026 | Planned |
 | Maputo | Mozambique | Seeking funding | Planned |
