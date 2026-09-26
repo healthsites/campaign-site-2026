@@ -6,13 +6,8 @@
 {% endblock %}
 
 {% block content %}
-<section class="country-header">
-    <div class="container">
-        <h1>{{ page.title }}</h1>
-        <span class="stage-badge stage-in-use"><i class="fa fa-rss"></i>In Use</span>
-        {% if page.summary %}<p class="summary">{{ page.summary }}</p>{% endif %}
-    </div>
-</section>
+{% set header_badge %}<span class="stage-badge stage-in-use"><i class="fa fa-rss"></i>In Use</span>{% endset %}
+{% include "partials/country-header.html" %}
 
 {# ── LEAFLET MAP ─────────────────────────────────────── #}
 {% if page.geojson_file %}
