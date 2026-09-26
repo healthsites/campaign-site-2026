@@ -12,7 +12,7 @@ Facilities_validated: 398
 Beds_documented: 1,325
 Emergency_facilities: 35
 Validators_trained: 12
-Start_date: 2021
+Start_date: 15 Jan – 30 Mar 2022
 Lede: We ran the Emergency Health Mapping Campaign in Saint-Louis with the local OpenStreetMap community and Senegal's regional health office.
 Cta_primary_label: View Phase 1 Results
 Cta_primary_url: https://healthsites.akuko.io/post/d14d7cd6-0614-426d-b0af-7b8ba8f11c58
