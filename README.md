@@ -1,6 +1,6 @@
 # Healthsites Campaign Site 2026
 
-[MIT License](LICENSE) © 2026 healthsites.io
+Code: [BSD-3-Clause](LICENSE) · Campaign content: CC BY 4.0 · Health facility data: ODbL 1.0 (© OpenStreetMap contributors)
 
 The Healthsites.io 2026 campaign site. Built with [Pelican](https://getpelican.com)
 (a Python static-site generator) with multilingual support (EN / FR / PT / AR) via
