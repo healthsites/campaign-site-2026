@@ -6,10 +6,7 @@ Status: published
 Country: South Sudan
 Country_slug: south-sudan
 Region: Juba
-Campaign_status: Active - Seeking Funding
-Budget_needed: €90,000
-Facilities_target: 340
-Start_date: Q4 2026
+Campaign_status: Working group forming
 
 ## Juba
 
@@ -26,6 +23,6 @@ Juba is the capital and largest city of South Sudan, with a rapidly growing popu
 
 Juba serves as the primary entry point for humanitarian supply chains and medical referrals across South Sudan. Accurate facility data here has an outsized impact on national health system coordination.
 
-### Partners
+### Working group
 
-This campaign will be delivered in close partnership with the South Sudan Ministry of Health, WHO South Sudan, and local community health networks.
+We are forming a working group to scope this campaign. We aim to involve the South Sudan Ministry of Health, WHO South Sudan and local community health networks. No partner commitments are in place yet — [register your interest](https://healthsites.io/contact) and we will keep you informed.

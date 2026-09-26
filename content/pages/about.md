@@ -213,7 +213,7 @@ We run time-bound campaigns in priority regions, validating health facility data
 
 **Current and completed campaigns:**
 
-- **Saint-Louis, Senegal** (2021-present) — 398 facilities validated; 35 emergency maternal referral facilities identified
+- **Saint-Louis, Senegal** (2022–present) — 398 facilities validated; 35 emergency maternal referral facilities identified
 - **Matam, Senegal** (2023) — 212 health facilities validated; supporting geospatial data: 93,286 buildings, 1,803 km² of roads, place names, waterways, and infrastructure
 - **Mozambique** (2026-present) — Emergency capacity assessment
 - **South Africa** (2027-planning) — Emergency capacity assessment

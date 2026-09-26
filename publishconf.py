@@ -17,3 +17,7 @@ DELETE_OUTPUT_DIRECTORY = True
 
 # Disable drafts in production
 WITH_FUTURE_DATES = False
+
+# Keep drafts out of the published site
+DRAFT_SAVE_AS = ''
+DRAFT_PAGE_SAVE_AS = ''

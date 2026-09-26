@@ -10,7 +10,7 @@
     {% else %}{% set meta_description = SITEDESCRIPTION %}{% endif %}
     <meta name="description" content="{{ meta_description|e }}">
 
-    <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+    <title>{% block title %}{% if page and page.title %}{{ page.title }} — {{ SITENAME }}{% else %}{{ SITENAME }}{% endif %}{% endblock %}</title>
 
     {# Canonical #}
     <link rel="canonical" href="{{ SITEURL }}/{{ page.url if page else '' }}">

@@ -4,6 +4,7 @@ Slug: campaigns/south-sudan
 Lang: en
 Status: published
 country: South Sudan
+country_slug: south-sudan
 stage: forming
 campaign_country: true
 languages: EN / AR

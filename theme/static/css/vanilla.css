@@ -3502,9 +3502,212 @@ a.sreg-card:hover {
 .open-data-note .eyebrow { margin-bottom: 10px; }
 .open-data-note p { margin: 0; color: #585858; font-size: 14px; line-height: 1.6; }
 
+/* ── DRC COUNTRY PAGE ── */
+
+/* "Our Role in the DRC Ebola Response" */
+.drc-role {
+    padding: 24px 0 8px;
+}
+.drc-role .container {
+    max-width: 760px;
+}
+.drc-role h2 {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--dark-gray);
+    margin: 0 0 18px;
+    text-align: center;
+}
+.drc-role p {
+    color: #585858;
+    line-height: 1.8;
+    margin: 0 0 16px;
+}
+.drc-role p:last-child { margin-bottom: 0; }
+.drc-role a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+.drc-role a:hover { text-decoration: underline; }
+
+/* "Ways to Engage" */
+.engage-section {
+    padding: 48px 0 64px;
+    background: #fff;
+}
+.engage-section h2 {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--dark-gray);
+    margin: 0 0 8px;
+    text-align: center;
+}
+.engage-section .section-sub {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 32px;
+}
+.engage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+.engage-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.10);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+.engage-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.15);
+}
+.engage-card h3 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--dark-gray);
+    margin: 0 0 10px;
+}
+.engage-card p {
+    color: #585858;
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0 0 20px;
+    flex: 1;
+}
+
+/* Stage badge (DRC instance — "in use") */
+.stage-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 7px 16px 7px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+}
+.stage-badge i { font-size: 12px; }
+.stage-in-use {
+    background: #e2e8ea;
+    color: var(--dark-gray);
+}
+
+/* "Our Role" photo card */
+.drc-role-photo {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    background: var(--bg-light);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 0 0 22px;
+}
+.drc-role-photo img {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.drc-role-photo figcaption {
+    font-size: 13.5px;
+    color: #585858;
+    line-height: 1.5;
+}
+
+/* "Three things need support right now" */
+.roadmap-section { padding: 16px 0 56px; }
+.roadmap-section h2 {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--dark-gray);
+    margin: 0 0 28px;
+    text-align: center;
+}
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.roadmap-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+.roadmap-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.10);
+}
+.roadmap-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.roadmap-card-head .fa {
+    font-size: 22px;
+    color: var(--primary-color);
+}
+.roadmap-card h3 {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark-gray);
+    margin: 0 0 10px;
+}
+.roadmap-card p {
+    color: #585858;
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin: 0 0 16px;
+    flex: 1;
+}
+.roadmap-learn-more {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.support-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.support-tag-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.support-tag--live { color: #155724; }
+.support-tag--live .support-tag-dot { background: #28a745; }
+.support-tag--dev { color: #856404; }
+.support-tag--dev .support-tag-dot { border: 1.5px solid #856404; }
+
 /* Responsive */
 @media (max-width: 880px) {
     .country-intro-split { grid-template-columns: 1fr; gap: 32px; }
+    .engage-grid { grid-template-columns: 1fr; }
+    .roadmap-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
     .cstat-inner { grid-template-columns: repeat(2, 1fr); }
