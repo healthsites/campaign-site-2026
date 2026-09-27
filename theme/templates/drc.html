@@ -23,6 +23,13 @@
 </section>
 {% endif %}
 
+<div class="drc-prompt">
+  <div class="drc-prompt__inner">
+    <p><span class="drc-prompt__live">Live</span>The healthsites.io API serves OpenStreetMap health facility data to the INRB BDBV2026 dashboard. The next step, a managed data pipeline, to improve data quality is seeking funding.</p>
+    <a href="#support" data-event="DRC Early Prompt Click">See what needs funding ↓</a>
+  </div>
+</div>
+
 {# ── COUNTRY CONTENT ─────────────────────────────────────── #}
 {% if page.content|striptags|trim %}
 <section class="country-content">
@@ -52,69 +59,74 @@
     </div>
 </section>
 
-{# ── THREE THINGS NEED SUPPORT RIGHT NOW ─────────────────────────────────────── #}
-<section class="roadmap-section">
-    <div class="container">
-        <h2>Three things need support right now</h2>
-        <div class="roadmap-grid">
+{# ── HOW TO SUPPORT THIS WORK ─────────────────────────────────────── #}
+<section class="roadmap-section drc-cta" id="support">
+  <div class="drc-cta__inner">
 
-            <div class="roadmap-card">
-                <div class="roadmap-card-head">
-                    <i class="fa fa-map-marker"></i>
-                    <span class="support-tag support-tag--live"><span class="support-tag-dot"></span>Live</span>
-                </div>
-                <h3>Campaign Support</h3>
-                <p>Structured, HCD-led Emergency Health Mapping campaigns — our validated model, turning community mapping goodwill into checked, field-validated facility data.</p>
-                <a href="https://healthsites.io/contact" class="roadmap-learn-more">Learn more →</a>
-            </div>
+    <header>
+      <h2>How to Support This Work</h2>
+      <p class="section-sub">One funding priority, two ways to engage.</p>
+    </header>
 
-            <a href="https://github.com/healthsites/drc-ebola-2026/wiki/DRC-Health-Facility-Data-Pipeline" class="roadmap-card">
-                <div class="roadmap-card-head">
-                    <i class="fa fa-exchange"></i>
-                    <span class="support-tag support-tag--live"><span class="support-tag-dot"></span>Live</span>
-                </div>
-                <h3>DRC Health Facility Data Pipeline</h3>
-                <p>The managed pipeline that publishes WHO, INSP, and Health Cluster facility data to OpenStreetMap and serves it live via API — feeding the BDBV2026 dashboard's SEIR model across 519 health zones.</p>
-                <span class="roadmap-learn-more">Learn more →</span>
-            </a>
-
-            <a href="https://github.com/healthsites/healthsites.io-CGR/wiki/healthsites.io-Common-Geo-Registry" class="roadmap-card">
-                <div class="roadmap-card-head">
-                    <i class="fa fa-key"></i>
-                    <span class="support-tag support-tag--dev"><span class="support-tag-dot"></span>In development</span>
-                </div>
-                <h3>Open Identifier Infrastructure</h3>
-                <p>A persistent, resolvable identifier linking each facility across OpenStreetMap, DHIS2, and the Ministry's own registry — replacing joins by geographic proximity with a shared key.</p>
-                <span class="roadmap-learn-more">Learn more →</span>
-            </a>
-
+    <article class="roadmap-card roadmap-card--priority">
+      <div class="roadmap-card__main">
+        <span class="support-tag support-tag--funding">Planned — Seeking Funding</span>
+        <h3>Fund the DRC Health Facility Data Pipeline</h3>
+        <p class="roadmap-card__lede">A managed pipeline to improve OpenStreetMap health facility data quality, so the BDBV2026 dashboard's analysis across 519 health zones draws on one open, current layer. This is our funding priority for DRC.</p>
+        <p class="roadmap-card__trust">The Ministry of Health remains validator of record for its national data.</p>
+        <div class="funding-amount">Funding required: <strong>€80,000</strong></div>
+        <div class="roadmap-card__actions">
+          <a class="btn btn-primary" href="https://healthsites.io/contact" data-event="DRC Fund Pipeline Click">Fund the pipeline</a>
+          <a class="text-link" href="https://github.com/healthsites/drc-ebola-2026/wiki/DRC-Health-Facility-Data-Pipeline" data-event="DRC Pipeline Plan Click">Read the pipeline plan →</a>
         </div>
-    </div>
-</section>
-
-{# ── WAYS TO ENGAGE ─────────────────────────────────────── #}
-<section class="engage-section">
-    <div class="container">
-        <h2>Ways to Engage</h2>
-        <p class="section-sub">Institutional partners can support this work in three ways.</p>
-        <div class="engage-grid">
-            <div class="engage-card">
-                <h3>Partner</h3>
-                <p>Collaborate on strategy, governance, and resource mobilization to scale the model across priority countries.</p>
-                <a href="https://healthsites.io/contact" class="btn btn-primary">Get in touch</a>
-            </div>
-            <div class="engage-card">
-                <h3>Invest</h3>
-                <p>Support innovation in data quality measurement (LVI), field validation campaigns, and country-level systems integration.</p>
-                <a href="https://healthsites.io/contact" class="btn btn-primary">Get in touch</a>
-            </div>
-            <div class="engage-card">
-                <h3>Support</h3>
-                <p>Engage in targeted emergency health mapping campaigns that deliver measurable results and lasting impact.</p>
-                <a href="https://healthsites.io/contact" class="btn btn-primary">Get in touch</a>
-            </div>
+      </div>
+      <aside class="roadmap-proof">
+        <h4>Why it matters</h4>
+        <div class="roadmap-proof__item">
+          <p>The healthsites.io API is live and serves OpenStreetMap health facility data to the INRB BDBV2026 dashboard.</p>
+          <a class="text-link" href="https://inrb-umie.github.io/BDBV2026-Epidemic_Dashboard/" data-event="DRC Dashboard Click">View the INRB dashboard →</a>
         </div>
+        <div class="roadmap-proof__item">
+          <p>The approach is described in The Lancet Infectious Diseases.</p>
+          <a class="text-link" href="https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(26)00330-0/fulltext" data-event="DRC Lancet Click">Read the Lancet paper →</a>
+        </div>
+      </aside>
+    </article>
+
+    <div class="engage-grid">
+      <article class="engage-card">
+        <span class="engage-card__kicker"><i class="fa fa-exchange" aria-hidden="true"></i>Integrate</span>
+        <h3>Build on the Live API</h3>
+        <p>The same healthsites.io API that serves the INRB dashboard is open to response agencies, researchers and dashboard builders.</p>
+        <a class="btn btn-institutional" href="https://github.com/healthsites/healthsites/wiki/API" data-event="DRC Use API Click">Use the API</a>
+      </article>
+      <article class="engage-card">
+        <span class="engage-card__kicker"><i class="fa fa-users" aria-hidden="true"></i>Partner</span>
+        <h3>Join the DRC Data Collaborative</h3>
+        <p>For OpenStreetMap communities, Missing Maps members and ministries. Talk to us about where you fit.</p>
+        <a class="btn btn-institutional" href="https://healthsites.io/contact" data-event="DRC Partner Click">Partner with us</a>
+      </article>
     </div>
+
+    <div class="workstreams">
+      <h4>Also part of this work</h4>
+      <div class="workstream">
+        <div class="workstream__body">
+          <div class="workstream__title"><strong>Campaign Support</strong><span class="support-tag support-tag--live support-tag--sm">Live</span></div>
+          <p>Structured, HCD-led Emergency Health Mapping campaigns — our validated model, turning community mapping goodwill into checked, field-validated facility data.</p>
+        </div>
+        <a class="text-link" href="{{ SITEURL }}/about/#how-we-work" data-event="DRC Campaign Support Click">About Campaign Support →</a>
+      </div>
+      <div class="workstream">
+        <div class="workstream__body">
+          <div class="workstream__title"><strong>Open Identifier Infrastructure</strong><span class="support-tag support-tag--dev support-tag--sm">In development</span></div>
+          <p>A persistent, resolvable identifier linking each facility across OpenStreetMap, DHIS2, and the Ministry's own registry — replacing joins by geographic proximity with a shared key.</p>
+        </div>
+        <a class="text-link" href="https://github.com/healthsites/healthsites.io-CGR/wiki/healthsites.io-Common-Geo-Registry" data-event="DRC Open Identifier Click">Read the identifier plan →</a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 {% endblock %}

@@ -3804,3 +3804,114 @@ a.sreg-card:hover {
 
 /* Breadcrumb inside the centred page header (About sub-pages) */
 .page-header .breadcrumb { justify-content: center; }
+
+/* DRC campaign page — CTA block. Mobile first. Uses existing tokens above; fallbacks given in case a var is missing. */
+
+.drc-cta { --drc-link-underline: var(--primary-color, #f44a52); }
+
+/* ---------- Early prompt (after the map) ---------- */
+.drc-prompt {
+  background: var(--institutional-tint, rgba(209,236,241,0.35));
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.drc-prompt__inner {
+  max-width: 1200px; margin: 0 auto; padding: 20px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px;
+}
+.drc-prompt p { margin: 0; flex: 1 1 420px; color: var(--dark-gray, #3c4c57); font-size: 16px; line-height: 1.6; }
+.drc-prompt__live { display: inline-flex; align-items: center; gap: 6px; margin-right: 8px; font-weight: 700; color: #155724; }
+.drc-prompt__live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #28a745; }
+.drc-prompt a {
+  display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap;
+  font-weight: 700; color: var(--institutional-blue, #0c5460); text-decoration: underline; text-underline-offset: 3px;
+}
+
+/* ---------- Section ---------- */
+.drc-cta.roadmap-section { padding: 40px 20px; background: #fff; }
+.drc-cta__inner { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+.drc-cta h2 { margin: 0 0 8px; font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.3; color: var(--dark-gray, #3c4c57); }
+.drc-cta .section-sub { margin: 0; font-size: 18px; color: var(--medium-gray, #585858); }
+
+/* Text links: slate + red underline (red text fails AA at 16px) */
+.drc-cta .text-link {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-weight: 700; color: var(--dark-gray, #3c4c57);
+  text-decoration: underline; text-decoration-color: var(--drc-link-underline); text-underline-offset: 4px;
+}
+.drc-cta .text-link:hover { opacity: .8; }
+
+/* Buttons: 18px bold so white-on-red passes AA large text */
+.drc-cta .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; box-sizing: border-box;
+  font-family: 'Raleway', sans-serif; font-weight: 700; text-decoration: none; border-radius: 6px; transition: all .3s ease; }
+.drc-cta .btn-primary { padding: 14px 32px; font-size: 18px; background: var(--primary-color, #f44a52); color: #fff; border: 0; }
+.drc-cta .btn-primary:hover { background: var(--primary-hover, #e63946); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(244,74,82,0.30); }
+.drc-cta .btn-institutional { padding: 12px 28px; font-size: 17px; border: 2px solid var(--institutional-blue, #0c5460);
+  background: var(--institutional-tint, rgba(209,236,241,0.35)); color: var(--institutional-blue, #0c5460); }
+.drc-cta .btn-institutional:hover { background: var(--institutional-blue, #0c5460); color: #fff; }
+
+/* Status tags */
+.drc-cta .support-tag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
+  padding: 4px 12px; border-radius: 20px; font-size: 14px; font-weight: 700; line-height: 1.5; }
+.drc-cta .support-tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; }
+.drc-cta .support-tag--funding { background: #f9dbdc; color: var(--dark-gray, #3c4c57); }
+.drc-cta .support-tag--funding::before { background: var(--primary-color, #f44a52); }
+.drc-cta .support-tag--live { background: #d4edda; color: #155724; }
+.drc-cta .support-tag--live::before { background: #28a745; }
+.drc-cta .support-tag--dev { background: #fff3cd; color: #856404; }
+.drc-cta .support-tag--dev::before { background: #e0a800; }
+.drc-cta .support-tag--sm { padding: 2px 10px; font-size: 13px; gap: 6px; }
+
+/* ---------- Priority card (lead funding ask) ---------- */
+.drc-cta .roadmap-card--priority {
+  display: flex; flex-direction: column; overflow: hidden; background: #fff;
+  border-radius: 8px; border-top: 4px solid var(--primary-color, #f44a52); box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+.drc-cta .roadmap-card__main { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.drc-cta .roadmap-card__main h3 { margin: 0; font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.3; color: var(--dark-gray, #3c4c57); }
+.drc-cta .roadmap-card__lede { margin: 0; font-size: 17px; line-height: 1.7; color: var(--medium-gray, #585858); }
+.drc-cta .roadmap-card__trust { margin: 0; font-size: 15px; color: var(--dark-gray, #3c4c57); }
+.drc-cta .funding-amount { border: 1px dashed #b8bec3; border-radius: 5px; padding: 10px 14px; font-size: 14px; color: #6b7780; }
+.drc-cta .funding-amount strong { color: var(--dark-gray, #3c4c57); }
+.drc-cta .roadmap-card__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 8px; }
+
+.drc-cta .roadmap-proof { background: var(--bg-light, #f9f9f9); padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+.drc-cta .roadmap-proof h4,
+.drc-cta .workstreams h4 { margin: 0; font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--dark-gray, #3c4c57); }
+.drc-cta .roadmap-proof__item { display: flex; flex-direction: column; gap: 4px; }
+.drc-cta .roadmap-proof__item + .roadmap-proof__item { padding-top: 20px; border-top: 1px solid #e0e0e0; }
+.drc-cta .roadmap-proof__item p { margin: 0; color: var(--dark-gray, #3c4c57); }
+
+/* ---------- Engage cards (Integrate / Partner) ---------- */
+.drc-cta .engage-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+.drc-cta .engage-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+.drc-cta .engage-card__kicker { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--institutional-blue, #0c5460); }
+.drc-cta .engage-card h3 { margin: 0; font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.3; color: var(--dark-gray, #3c4c57); }
+.drc-cta .engage-card p { margin: 0; color: var(--medium-gray, #585858); }
+.drc-cta .engage-card .btn { align-self: flex-start; margin-top: auto; }
+
+/* ---------- Other workstreams ---------- */
+.drc-cta .workstreams { display: flex; flex-direction: column; }
+.drc-cta .workstreams h4 { margin-bottom: 8px; }
+.drc-cta .workstream { display: flex; flex-wrap: wrap; gap: 8px 32px; padding: 20px 0; border-top: 1px solid #e0e0e0; }
+.drc-cta .workstream:last-child { border-bottom: 1px solid #e0e0e0; }
+.drc-cta .workstream__body { flex: 1 1 440px; display: flex; flex-direction: column; gap: 6px; }
+.drc-cta .workstream__title { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.drc-cta .workstream__title strong { font-family: 'Raleway', sans-serif; font-size: 18px; color: var(--dark-gray, #3c4c57); }
+.drc-cta .workstream p { margin: 0; font-size: 15px; color: var(--medium-gray, #585858); }
+.drc-cta .workstream .text-link { align-self: center; }
+
+/* ---------- Breakpoints ---------- */
+@media (min-width: 640px) {
+  .drc-cta.roadmap-section { padding: 80px 20px; }
+  .drc-cta__inner { gap: 48px; }
+  .drc-cta h2 { font-size: 36px; }
+  .drc-cta .engage-grid { grid-template-columns: 1fr 1fr; }
+  .drc-cta .engage-card { padding: 32px; }
+}
+@media (min-width: 880px) {
+  .drc-cta .roadmap-card--priority { flex-direction: row; }
+  .drc-cta .roadmap-card__main { flex: 3 1 0; padding: 40px; }
+  .drc-cta .roadmap-card__main h3 { font-size: 30px; }
+  .drc-cta .roadmap-proof { flex: 2 1 0; padding: 40px; }
+}
