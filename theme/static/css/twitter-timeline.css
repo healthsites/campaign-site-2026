@@ -345,6 +345,17 @@
   line-height: 1.7;
   margin: 0 0 32px;
 }
+.tt-cta .tt-cta-note {
+  font-size: 15px;
+  margin: 24px 0 0;
+}
+.tt-cta .tt-cta-note a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.tt-cta .tt-cta-note a:hover,
+.tt-cta .tt-cta-note a:focus { opacity: .85; }
 .tt-cta-actions {
   display: flex;
   gap: 14px;
