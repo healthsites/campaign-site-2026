@@ -57,7 +57,7 @@ AUTHOR_FEED_RSS = None
 
 DEFAULT_PAGINATION = False
 
-GOFUNDME_URL = 'https://www.gofundme.com/f/senegal-health-facility-data-collaborative'
+GOFUNDME_URL = 'https://www.gofundme.com/f/help-responders-find-working-health-facilities'
 WORKING_GROUP_FORM_URL = 'https://healthsites.io/contact'
 GITHUB_DISCUSSION_URL = 'https://github.com/healthsites/healthsites/discussions'
 
