@@ -1,6 +1,7 @@
 # Pelican
 output/
 cache/
+.cache/
 *.pid
 
 # Python

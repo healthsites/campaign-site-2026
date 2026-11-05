@@ -62,7 +62,13 @@ WORKING_GROUP_FORM_URL = 'https://healthsites.io/contact'
 GITHUB_DISCUSSION_URL = 'https://github.com/healthsites/healthsites/discussions'
 
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['pelican.plugins.sitemap', 'twitter_timeline_loader']
+PLUGINS = ['pelican.plugins.sitemap', 'twitter_timeline_loader', 'tasking_manager']
+
+# HOT Tasking Manager campaigns shown on country pages (country_slug -> campaign tag).
+TASKING_MANAGER_CAMPAIGNS = {
+    'drc': 'DRC Ebola 2026',
+}
+TASKING_MANAGER_TTL_HOURS = 6
 
 SITEMAP = {
     'format': 'xml',

@@ -1,0 +1,21 @@
+{# HOT Tasking Manager summary strip for the country header.
+   Requires `tm` (a TASKING_MANAGER summary) set by the calling template. #}
+<div class="tm-strip">
+    <div class="tm-strip__inner">
+        <p class="tm-strip__stats">
+            {% if tm.open_count > 0 %}
+            <span class="tm-strip__status tm-strip__status--live">Mapping live</span>
+            {% else %}
+            <span class="tm-strip__status tm-strip__status--done">Mapping complete</span>
+            {% endif %}
+            <span><strong>{{ tm.total }}</strong> OpenStreetMap mapping projects for the response</span>
+            <span><strong>{{ tm.open_count }}</strong> open now</span>
+            {% if tm.last_edit %}<span>Last edit <strong>{{ tm.last_edit }}</strong></span>{% endif %}
+        </p>
+        {% if tm.open_count > 0 %}
+        <a href="#mapping" data-event="DRC Hero Join Mapping Click">Join the mapping ↓</a>
+        {% else %}
+        <a href="#mapping" data-event="DRC Hero See Mapping Click">See the mapping ↓</a>
+        {% endif %}
+    </div>
+</div>

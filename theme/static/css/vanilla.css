@@ -3915,3 +3915,131 @@ a.sreg-card:hover {
   .drc-cta .roadmap-card__main h3 { font-size: 30px; }
   .drc-cta .roadmap-proof { flex: 2 1 0; padding: 40px; }
 }
+
+/* ── DRC PAGE — HOT TASKING MANAGER (live mapping) ──
+   Mobile first. Text greys are #5a6872 (#6b7a84 is 4.4:1 on white, under AA for small text). */
+
+/* ---------- Header strip ---------- */
+.tm-strip { background: var(--bg-light, #f9f9f9); border-bottom: 1px solid #e0e0e0; }
+.tm-strip__inner {
+  max-width: 1200px; margin: 0 auto; padding: 12px 20px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 32px;
+}
+.tm-strip__stats {
+  margin: 0; flex: 1 1 420px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px;
+  color: var(--dark-gray, #3c4c57); font-size: 15px; line-height: 1.6;
+}
+.tm-strip__stats strong { color: var(--dark-gray, #3c4c57); }
+.tm-strip__status { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; }
+.tm-strip__status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; }
+.tm-strip__status--live { color: #155724; }
+.tm-strip__status--live::before { background: #28a745; }
+.tm-strip__status--done { color: #5a6872; }
+.tm-strip__status--done::before { background: #6b7a84; }
+.tm-strip a {
+  display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap;
+  font-weight: 700; color: var(--institutional-blue, #0c5460); text-decoration: underline; text-underline-offset: 3px;
+}
+
+/* ---------- Section ---------- */
+.tm-section { padding: 40px 0; background: #fff; }
+.tm-section__inner { max-width: 1120px; margin: 0 auto; padding: 0 20px; display: flex; flex-direction: column; gap: 28px; }
+.tm-header { max-width: 760px; }
+/* Darker red than --primary-color so 12px eyebrow text passes AA (6.5:1). */
+.tm-section .eyebrow { color: #b3262d; margin-bottom: 8px; }
+.tm-header h2 { margin: 0 0 12px; font-family: var(--font-heading); font-weight: 700; font-size: 26px; line-height: 1.3; color: var(--dark-gray, #3c4c57); }
+.tm-header p:last-child { margin: 0; font-size: 17px; line-height: 1.7; color: var(--medium-gray, #585858); }
+
+/* Stat tiles: 2 columns, 4 from 880px */
+.tm-stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tm-stat { background: var(--bg-light, #f9f9f9); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.tm-stat strong { font-family: var(--font-heading); font-size: 32px; line-height: 1.1; color: var(--dark-gray, #3c4c57); }
+.tm-stat--small strong { font-size: 18px; line-height: 1.3; }
+.tm-stats--3 .tm-stat:last-child { grid-column: 1 / -1; }
+.tm-stat span { font-size: 14px; color: #5a6872; }
+
+/* Map + open cards: stacked, side by side from 880px */
+.tm-columns { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.tm-map { height: 320px; border-radius: 8px; border: 1px solid #e0e0e0; z-index: 0; }
+.tm-map[hidden] { display: none; }
+.tm-legend { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; color: #5a6872; }
+.tm-legend li { display: inline-flex; align-items: center; gap: 8px; }
+.tm-legend__dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px #c4cbd0; }
+.tm-legend__dot--open { background: var(--primary-color, #f44a52); }
+.tm-legend__dot--done { background: #6b7a84; }
+/* Legend describes the map, so hide it when the map is hidden (no JS). */
+.tm-map[hidden] + .tm-legend { display: none; }
+
+.tm-open { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.tm-open__title { margin: 0; font-family: var(--font-heading); font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--dark-gray, #3c4c57); }
+.tm-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+.tm-card__meta { margin: 0; font-size: 14px; color: #5a6872; }
+.tm-card h3 { margin: 0; font-family: var(--font-heading); font-weight: 700; font-size: 20px; line-height: 1.3; color: var(--dark-gray, #3c4c57); }
+.tm-progress { display: flex; flex-direction: column; gap: 4px; }
+.tm-progress__label { display: flex; justify-content: space-between; font-size: 14px; color: var(--dark-gray, #3c4c57); }
+.tm-progress__label span:last-child { font-weight: 700; }
+.tm-bar { height: 8px; border-radius: 4px; background: #e6e9eb; overflow: hidden; margin-bottom: 6px; }
+.tm-bar span { display: block; height: 100%; background: var(--primary-color, #f44a52); }
+.tm-bar--validated span { background: var(--institutional-blue, #0c5460); }
+.tm-card__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.tm-card__actions .btn { min-height: 44px; padding: 10px 20px; font-family: var(--font-heading); font-weight: 700; font-size: 16px; }
+/* Red outline, darker red text for AA. Fund the pipeline stays the only solid red button. */
+.tm-section .tm-btn-map { color: #b3262d; border-color: var(--primary-color, #f44a52); background: #fff; }
+.tm-section .tm-btn-map:hover { background: #b3262d; border-color: #b3262d; color: #fff; }
+.tm-section .btn-institutional { border: 2px solid var(--institutional-blue, #0c5460);
+  background: var(--institutional-tint, rgba(209,236,241,0.35)); color: var(--institutional-blue, #0c5460); }
+.tm-section .btn-institutional:hover { background: var(--institutional-blue, #0c5460); color: #fff; }
+.tm-empty { margin: 0; padding: 16px; border: 1px dashed #b8bec3; border-radius: 8px; color: var(--dark-gray, #3c4c57); }
+.tm-help { margin: 0; font-size: 15px; color: var(--medium-gray, #585858); }
+.tm-help a, .tm-source a, .tm-table a {
+  color: var(--dark-gray, #3c4c57); font-weight: 700;
+  text-decoration: underline; text-decoration-color: var(--primary-color, #f44a52); text-underline-offset: 3px;
+}
+
+/* Completed projects: neutral box (overrides the site-wide coral details style);
+   table scrolls inside its own box */
+.tm-done, .tm-done[open] { margin: 0; padding: 0 16px; background: #fff; border: 1px solid #e3e3e3; border-radius: 8px; }
+.tm-done summary {
+  display: flex; align-items: center; min-height: 48px; padding: 0; cursor: pointer;
+  font-family: var(--font-heading); font-weight: 700; font-size: 18px; color: var(--dark-gray, #3c4c57);
+}
+.tm-done summary:hover { color: var(--dark-gray, #3c4c57); text-decoration: underline; }
+.tm-done summary::marker { color: var(--dark-gray, #3c4c57); }
+.tm-done > .tm-table-wrap { margin-top: 0; }
+.tm-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+.tm-table { width: 100%; min-width: 420px; border-collapse: collapse; font-size: 15px; }
+.tm-table th, .tm-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e6e9eb; vertical-align: top; }
+.tm-table th { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: #5a6872; }
+.tm-table td { color: var(--dark-gray, #3c4c57); }
+.tm-table td:nth-child(2) { text-align: right; }
+.tm-table th:nth-child(2) { text-align: right; }
+.tm-table td:last-child { white-space: nowrap; }
+.tm-table__id { color: #5a6872; font-size: 13px; }
+
+.tm-source { margin: 0; font-size: 13px; line-height: 1.6; color: #5a6872; }
+
+/* ---------- Bridge band (mapping -> pipeline ask) ---------- */
+.tm-bridge { background: var(--institutional-tint, rgba(209,236,241,0.35)); border-top: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; }
+.tm-bridge__inner {
+  max-width: 1200px; margin: 0 auto; padding: 20px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px;
+}
+.tm-bridge p { margin: 0; flex: 1 1 420px; color: var(--dark-gray, #3c4c57); font-size: 16px; line-height: 1.6; }
+.tm-bridge p strong { display: block; }
+.tm-bridge a {
+  display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap;
+  font-weight: 700; color: var(--institutional-blue, #0c5460); text-decoration: underline; text-underline-offset: 3px;
+}
+
+/* ---------- Breakpoints ---------- */
+@media (min-width: 640px) {
+  .tm-section { padding: 64px 0; }
+  .tm-header h2 { font-size: 32px; }
+}
+@media (min-width: 880px) {
+  .tm-stats { grid-template-columns: repeat(4, 1fr); }
+  .tm-stats--3 { grid-template-columns: repeat(3, 1fr); }
+  .tm-stats--3 .tm-stat:last-child { grid-column: auto; }
+  .tm-columns { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; }
+  .tm-map { height: 480px; }
+}
