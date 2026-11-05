@@ -1,0 +1,83 @@
+{# HOT Tasking Manager mapping section.
+   Requires `tm` (a TASKING_MANAGER summary), `tm_heading` and `tm_intro`,
+   set by the calling template. The map is drawn by theme/js/tm-map.js. #}
+<section id="mapping" class="tm-section">
+    <div class="tm-section__inner">
+
+        <header class="tm-header">
+            <p class="eyebrow">Mapping for the response</p>
+            <h2>{{ tm_heading }}</h2>
+            <p>{{ tm_intro }}</p>
+        </header>
+
+        <ul class="tm-stats{% if tm.open_count == 0 %} tm-stats--3{% endif %}">
+            <li class="tm-stat"><strong>{{ tm.total }}</strong><span>mapping projects</span></li>
+            <li class="tm-stat"><strong>{{ tm.done_count }}</strong><span>completed</span></li>
+            {% if tm.open_count > 0 %}
+            <li class="tm-stat"><strong>{{ tm.open_count }}</strong><span>open now, volunteers needed</span></li>
+            {% endif %}
+            <li class="tm-stat tm-stat--small"><strong>{{ tm.last_edit or '—' }}</strong><span>last edit</span></li>
+        </ul>
+
+        <div class="tm-columns">
+            <div class="tm-map-col">
+                <div id="tm-map" class="tm-map" hidden aria-label="Map of mapping project areas"></div>
+                <ul class="tm-legend">
+                    <li><span class="tm-legend__dot tm-legend__dot--open" aria-hidden="true"></span>Open, needs mappers</li>
+                    <li><span class="tm-legend__dot tm-legend__dot--done" aria-hidden="true"></span>Completed</li>
+                </ul>
+                <script type="application/json" id="tm-points">{{ tm.features | tojson }}</script>
+            </div>
+
+            <div class="tm-open">
+                <h3 class="tm-open__title">{% if tm.open_count > 0 %}Open now — pick one{% else %}Open now{% endif %}</h3>
+                {% for p in tm.open %}
+                <article class="tm-card">
+                    <p class="tm-card__meta">#{{ p.projectId }} · {{ p.difficulty|title }} · {{ p.totalContributors }} contributors</p>
+                    <h3>{{ p.short_name }}</h3>
+                    <div class="tm-progress">
+                        <div class="tm-progress__label"><span>Mapped</span><span>{{ p.percentMapped or 0 }}%</span></div>
+                        <div class="tm-bar" aria-hidden="true"><span style="width: {{ p.percentMapped or 0 }}%"></span></div>
+                        <div class="tm-progress__label"><span>Validated</span><span>{{ p.percentValidated or 0 }}%</span></div>
+                        <div class="tm-bar tm-bar--validated" aria-hidden="true"><span style="width: {{ p.percentValidated or 0 }}%"></span></div>
+                    </div>
+                    <div class="tm-card__actions">
+                        <a class="btn btn-secondary tm-btn-map" href="{{ p.url }}/map/" target="_blank" rel="noopener"
+                           aria-label="Map this area: {{ p.short_name }}" data-event="DRC TM Map Click">Map this area</a>
+                        <a class="btn btn-institutional tm-btn-validate" href="{{ p.url }}/validate/" target="_blank" rel="noopener"
+                           aria-label="Validate: {{ p.short_name }}" data-event="DRC TM Validate Click">Validate</a>
+                    </div>
+                </article>
+                {% else %}
+                <p class="tm-empty">No mapping projects are open right now. Completed work is listed below.</p>
+                {% endfor %}
+                <p class="tm-help">New to mapping? Start with <a href="https://learnosm.org/" target="_blank" rel="noopener" data-event="DRC Learn OSM Click">LearnOSM</a>. Validating needs an experienced OpenStreetMap account.</p>
+            </div>
+        </div>
+
+        {% if tm.done %}
+        <details class="tm-done">
+            <summary>Completed projects ({{ tm.done_count }})</summary>
+            <div class="tm-table-wrap">
+                <table class="tm-table">
+                    <thead>
+                        <tr><th scope="col">Project</th><th scope="col">Contributors</th><th scope="col">Last edit</th></tr>
+                    </thead>
+                    <tbody>
+                        {% for p in tm.done %}
+                        <tr>
+                            <td><a href="{{ p.url }}" target="_blank" rel="noopener" data-event="DRC TM Archived Click">{{ p.short_name }}</a> <span class="tm-table__id">#{{ p.projectId }}</span></td>
+                            <td>{{ p.totalContributors }}</td>
+                            <td>{{ p.last_day }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </details>
+        {% endif %}
+
+        <p class="tm-source">Contributor counts are per project; one person may appear in several. Source: <a href="https://tasks.hotosm.org/" target="_blank" rel="noopener" data-event="DRC TM Source Click">HOT Tasking Manager</a>, campaign "{{ tm.campaign }}", data as of {{ tm.fetched }}. Map data © OpenStreetMap contributors, ODbL.</p>
+
+    </div>
+</section>

@@ -9,6 +9,10 @@
 {% set header_badge %}<span class="stage-badge stage-in-use"><i class="fa fa-rss"></i>In Use</span>{% endset %}
 {% include "partials/country-header.html" %}
 
+{# ── TASKING MANAGER STRIP (live data from the build) ─────────────────────── #}
+{% set tm = TASKING_MANAGER.get('drc') if TASKING_MANAGER else None %}
+{% if tm and tm.total and page.lang == 'en' %}{% include "partials/tasking_manager_strip.html" %}{% endif %}
+
 {# ── LEAFLET MAP ─────────────────────────────────────── #}
 {% if page.geojson_file %}
 <section class="page-map">
@@ -58,6 +62,26 @@
         <p><a href="https://github.com/healthsites/drc-ebola-2026/wiki/DRC-Health-Facility-Data-Pipeline" target="_blank" rel="noopener">See the full pipeline documentation →</a> &nbsp;·&nbsp; <a href="https://substack.com/@sharehealthdata/p-210578468" target="_blank" rel="noopener">Read the full story →</a></p>
     </div>
 </section>
+
+{# ── MAPPING FOR THE RESPONSE (HOT Tasking Manager) ─────────────────────── #}
+{% if tm and tm.total and page.lang == 'en' %}
+  {% if tm.open_count > 0 %}
+    {% set tm_heading = "OpenStreetMap volunteers are mapping Ituri for the response" %}
+    {% set tm_intro = "Volunteers coordinated by the HOT Eastern and Southern Africa Open Mapping Hub are mapping buildings, roads and residential areas to support Médecins Sans Frontières. This is the base the health facility layer sits on." %}
+  {% else %}
+    {% set tm_heading = "OpenStreetMap volunteers mapped Ituri for the response" %}
+    {% set tm_intro = "Volunteers coordinated by the HOT Eastern and Southern Africa Open Mapping Hub mapped buildings, roads and residential areas to support Médecins Sans Frontières. This is the base the health facility layer sits on." %}
+  {% endif %}
+  {% include "partials/tasking_manager.html" %}
+
+<div class="tm-bridge">
+  <div class="tm-bridge__inner">
+    <p><strong>The base map is {% if tm.open_count > 0 %}filling in{% else %}in place{% endif %}. The facility layer needs the same care.</strong>
+    Volunteers have mapped the buildings and roads. Keeping the health facility layer current needs a managed pipeline, and that is what we are seeking funding for.</p>
+    <a href="#support" data-event="DRC Bridge See Pipeline Click">See the pipeline ask ↓</a>
+  </div>
+</div>
+{% endif %}
 
 {# ── HOW TO SUPPORT THIS WORK ─────────────────────────────────────── #}
 <section class="roadmap-section drc-cta" id="support">
@@ -137,4 +161,5 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 <script src="{{ SITEURL }}/theme/js/campaign-map.js"></script>
+<script src="{{ SITEURL }}/theme/js/tm-map.js"></script>
 {% endblock %}
