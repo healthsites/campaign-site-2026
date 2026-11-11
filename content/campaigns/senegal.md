@@ -12,7 +12,7 @@ stage: active
 campaign_country: true
 languages: EN / FR
 summary: 14 medical regions — Phase 1 complete, Phase 2 seeking support.
-order: 1
+order: 2
 active_region: Saint-Louis
 active_region_url: /campaigns/senegal/saint-louis/
 facilities_validated: ~400

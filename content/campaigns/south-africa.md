@@ -8,7 +8,7 @@ stage: forming
 campaign_country: true
 languages: EN / Xhosa / Zulu
 summary: Working group forming — no active campaign yet.
-order: 2
+order: 3
 geojson_file: zaf_admin1.geojson
 map_center_lat: -29.0
 map_center_lng: 24.0
