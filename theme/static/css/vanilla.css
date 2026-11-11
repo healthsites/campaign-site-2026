@@ -3809,24 +3809,6 @@ a.sreg-card:hover {
 
 .drc-cta { --drc-link-underline: var(--primary-color, #f44a52); }
 
-/* ---------- Early prompt (after the map) ---------- */
-.drc-prompt {
-  background: var(--institutional-tint, rgba(209,236,241,0.35));
-  border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
-}
-.drc-prompt__inner {
-  max-width: 1200px; margin: 0 auto; padding: 20px;
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px;
-}
-.drc-prompt p { margin: 0; flex: 1 1 420px; color: var(--dark-gray, #3c4c57); font-size: 16px; line-height: 1.6; }
-.drc-prompt__live { display: inline-flex; align-items: center; gap: 6px; margin-right: 8px; font-weight: 700; color: #155724; }
-.drc-prompt__live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #28a745; }
-.drc-prompt a {
-  display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap;
-  font-weight: 700; color: var(--institutional-blue, #0c5460); text-decoration: underline; text-underline-offset: 3px;
-}
-
 /* ---------- Section ---------- */
 .drc-cta.roadmap-section { padding: 40px 20px; background: #fff; }
 .drc-cta__inner { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
@@ -4018,18 +4000,9 @@ a.sreg-card:hover {
 
 .tm-source { margin: 0; font-size: 13px; line-height: 1.6; color: #5a6872; }
 
-/* ---------- Bridge band (mapping -> pipeline ask) ---------- */
-.tm-bridge { background: var(--institutional-tint, rgba(209,236,241,0.35)); border-top: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; }
-.tm-bridge__inner {
-  max-width: 1200px; margin: 0 auto; padding: 20px;
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px;
-}
-.tm-bridge p { margin: 0; flex: 1 1 420px; color: var(--dark-gray, #3c4c57); font-size: 16px; line-height: 1.6; }
-.tm-bridge p strong { display: block; }
-.tm-bridge a {
-  display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap;
-  font-weight: 700; color: var(--institutional-blue, #0c5460); text-decoration: underline; text-underline-offset: 3px;
-}
+/* ---------- Intro paragraphs (one or two) ---------- */
+.tm-header .tm-intro { margin: 0; font-size: 17px; line-height: 1.7; color: var(--medium-gray, #585858); }
+.tm-header .tm-intro + .tm-intro { margin-top: 12px; }
 
 /* ---------- Breakpoints ---------- */
 @media (min-width: 640px) {
@@ -4042,4 +4015,30 @@ a.sreg-card:hover {
   .tm-stats--3 .tm-stat:last-child { grid-column: auto; }
   .tm-columns { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; }
   .tm-map { height: 480px; }
+}
+
+/* ── DRC PAGE — header actions, "Also part of this work", closing ask ──
+   Buttons and text links use the .drc-cta rules above. Mobile first. */
+.drc-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 24px; }
+
+/* Funding ask: heading aligns with its subline; the priority card's own
+   panels carry the padding (the generic .roadmap-card padding doubled it). */
+.drc-cta.roadmap-section h2 { text-align: left; }
+.drc-cta .roadmap-card--priority { padding: 0; }
+
+.drc-also { padding: 8px 20px 40px; background: #fff; }
+
+.drc-closing {
+  padding: 40px 20px;
+  background: var(--institutional-tint, rgba(209,236,241,0.35));
+  border-top: 1px solid #e0e0e0;
+}
+.drc-closing__inner { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.drc-closing h2 { margin: 0; }
+.drc-closing p { margin: 0; max-width: 760px; font-size: 18px; line-height: 1.6; color: var(--dark-gray, #3c4c57); }
+.drc-closing__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 12px; }
+
+@media (min-width: 640px) {
+  .drc-also { padding: 16px 20px 64px; }
+  .drc-closing { padding: 64px 20px; }
 }
