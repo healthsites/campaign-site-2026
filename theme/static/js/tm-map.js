@@ -20,7 +20,8 @@
     });
   }
 
-  var map = L.map(el, { scrollWheelZoom: false });
+  // One-finger swipes scroll the page on phones; zoom with +/- or a pinch.
+  var map = L.map(el, { scrollWheelZoom: false, dragging: !L.Browser.mobile });
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19, attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
