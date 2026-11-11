@@ -1,12 +1,8 @@
 {% extends "base.html" %}
 
-{# Leaflet is only needed for the mapping-projects map, which shows while projects are open. #}
 {% block extra_head %}
-{% set tm = TASKING_MANAGER.get('drc') if TASKING_MANAGER else None %}
-{% if tm and tm.open_count and page.lang == 'en' %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -25,6 +21,20 @@
 
 {# ── TASKING MANAGER STRIP: only while mapping projects are open ─────────────── #}
 {% if tm and tm.total and tm_open > 0 and page.lang == 'en' %}{% include "partials/tasking_manager_strip.html" %}{% endif %}
+
+{# ── MAP (step 2 of the redesign replaces it with the facility layer) ─────────── #}
+{% if page.geojson_file %}
+<section class="page-map">
+    <div class="container">
+        <div id="map" class="campaign-map" role="region" aria-label="Map of {{ page.country }}"
+             data-geojson="{{ SITEURL }}/theme/geojson/{{ page.geojson_file }}"
+             data-lat="{{ page.map_center_lat|default(-2.9) }}"
+             data-lng="{{ page.map_center_lng|default(23.6) }}"
+             data-zoom="{{ page.map_zoom|default(5) }}"></div>
+        <p class="map-caption"><a href="https://inrb-umie.github.io/BDBV2026-Epidemic_Dashboard/" target="_blank" rel="noopener" data-event="DRC Map Dashboard Click">Explore health zones in the INRB epidemic dashboard →</a></p>
+    </div>
+</section>
+{% endif %}
 
 {# ── COUNTRY CONTENT ─────────────────────────────────────── #}
 {% if page.content|striptags|trim %}
@@ -157,10 +167,9 @@
 {% endblock %}
 
 {% block extra_js %}
-{% set tm = TASKING_MANAGER.get('drc') if TASKING_MANAGER else None %}
-{% if tm and tm.open_count and page.lang == 'en' %}
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script src="{{ SITEURL }}/theme/js/campaign-map.js"></script>
 <script src="{{ SITEURL }}/theme/js/tm-map.js"></script>
-{% endif %}
 {% endblock %}
