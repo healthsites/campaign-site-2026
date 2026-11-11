@@ -4,7 +4,7 @@ Slug: campaigns/drc
 Lang: en
 Status: published
 country: Democratic Republic of the Congo
-stage: active
+stage: in-use
 campaign_country: true
 languages: EN / FR
 summary: Open health facility data feeding the INRB epidemic dashboard for the 2026 Bundibugyo virus outbreak.
