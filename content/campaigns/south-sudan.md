@@ -9,7 +9,7 @@ stage: forming
 campaign_country: true
 languages: EN / AR
 summary: Working group forming — no active campaign yet.
-order: 4
+order: 5
 geojson_file: ssd_admin1.geojson
 map_center_lat: 7.5
 map_center_lng: 30.0

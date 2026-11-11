@@ -20,7 +20,7 @@
                 <h3><a href="{{ SITEURL }}/{{ c.url }}">{{ c.country|default(c.title) }}</a></h3>
                 {% if c.summary %}{{ c.summary }}{% endif %}
                 {% if c.languages %}<p class="country-langs">{{ c.languages }}</p>{% endif %}
-                {% if c.stage %}<span class="stage-badge stage-{{ c.stage|lower }}">{{ c.stage|capitalize }}</span>{% endif %}
+                {% if c.stage %}<span class="stage-badge stage-{{ c.stage|lower }}">{{ c.stage|replace('-', ' ')|title }}</span>{% endif %}
             </div>
             {% endfor %}
         </div>

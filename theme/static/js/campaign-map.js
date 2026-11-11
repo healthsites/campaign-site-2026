@@ -39,7 +39,12 @@
         var lat = parseFloat(el.dataset.lat);
         var lng = parseFloat(el.dataset.lng);
         var zoom = parseInt(el.dataset.zoom, 10);
-        var map = L.map(el).setView(
+        // The page keeps the mouse wheel and one-finger swipes, so the map
+        // never traps scrolling. Zoom with the +/- buttons or a pinch.
+        var map = L.map(el, {
+            scrollWheelZoom: false,
+            dragging: !L.Browser.mobile
+        }).setView(
             [isNaN(lat) ? 14.5 : lat, isNaN(lng) ? -14.5 : lng],
             isNaN(zoom) ? 6 : zoom
         );

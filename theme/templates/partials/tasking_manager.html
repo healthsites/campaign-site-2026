@@ -1,13 +1,15 @@
 {# HOT Tasking Manager mapping section.
    Requires `tm` (a TASKING_MANAGER summary), `tm_heading` and `tm_intro`,
-   set by the calling template. The map is drawn by theme/js/tm-map.js. #}
+   set by the calling template. Optional: `tm_extra`, a second intro paragraph.
+   The map is drawn by theme/js/tm-map.js. #}
 <section id="mapping" class="tm-section">
     <div class="tm-section__inner">
 
         <header class="tm-header">
             <p class="eyebrow">Mapping for the response</p>
             <h2>{{ tm_heading }}</h2>
-            <p>{{ tm_intro }}</p>
+            <p class="tm-intro">{{ tm_intro }}</p>
+            {% if tm_extra %}<p class="tm-intro">{{ tm_extra }}</p>{% endif %}
         </header>
 
         <ul class="tm-stats{% if tm.open_count == 0 %} tm-stats--3{% endif %}">

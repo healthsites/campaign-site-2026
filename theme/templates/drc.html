@@ -6,14 +6,23 @@
 {% endblock %}
 
 {% block content %}
+{% set tm = TASKING_MANAGER.get('drc') if TASKING_MANAGER else None %}
+{% set tm_open = (tm.open_count if tm else 0) or 0 %}
+
+{# ── HEADER: title, badge, summary, the two lead asks ─────────────────────── #}
 {% set header_badge %}<span class="stage-badge stage-in-use"><i class="fa fa-rss"></i>In Use</span>{% endset %}
+{% set header_actions %}
+<div class="drc-cta drc-hero-actions">
+  <a class="btn btn-primary" href="#support" data-event="DRC Hero Fund Click">Fund the pipeline ↓</a>
+  <a class="btn btn-institutional" href="https://github.com/healthsites/healthsites/wiki/API" data-event="DRC Hero API Click">Use the API</a>
+</div>
+{% endset %}
 {% include "partials/country-header.html" %}
 
-{# ── TASKING MANAGER STRIP (live data from the build) ─────────────────────── #}
-{% set tm = TASKING_MANAGER.get('drc') if TASKING_MANAGER else None %}
-{% if tm and tm.total and page.lang == 'en' %}{% include "partials/tasking_manager_strip.html" %}{% endif %}
+{# ── TASKING MANAGER STRIP: only while mapping projects are open ─────────────── #}
+{% if tm and tm.total and tm_open > 0 and page.lang == 'en' %}{% include "partials/tasking_manager_strip.html" %}{% endif %}
 
-{# ── LEAFLET MAP ─────────────────────────────────────── #}
+{# ── MAP (step 2 of the redesign replaces it with the facility layer) ─────────── #}
 {% if page.geojson_file %}
 <section class="page-map">
     <div class="container">
@@ -22,17 +31,10 @@
              data-lat="{{ page.map_center_lat|default(-2.9) }}"
              data-lng="{{ page.map_center_lng|default(23.6) }}"
              data-zoom="{{ page.map_zoom|default(5) }}"></div>
-        <p class="map-caption"><a href="https://inrb-umie.github.io/BDBV2026-Epidemic_Dashboard/" target="_blank" rel="noopener">Explore health zones in the INRB epidemic dashboard →</a></p>
+        <p class="map-caption"><a href="https://inrb-umie.github.io/BDBV2026-Epidemic_Dashboard/" target="_blank" rel="noopener" data-event="DRC Map Dashboard Click">Explore health zones in the INRB epidemic dashboard →</a></p>
     </div>
 </section>
 {% endif %}
-
-<div class="drc-prompt">
-  <div class="drc-prompt__inner">
-    <p><span class="drc-prompt__live">Live</span>The healthsites.io API serves OpenStreetMap health facility data to the INRB BDBV2026 dashboard. The next step, a managed data pipeline, to improve data quality is seeking funding.</p>
-    <a href="#support" data-event="DRC Early Prompt Click">See what needs funding ↓</a>
-  </div>
-</div>
 
 {# ── COUNTRY CONTENT ─────────────────────────────────────── #}
 {% if page.content|striptags|trim %}
@@ -43,53 +45,13 @@
 </section>
 {% endif %}
 
-{# ── OUR ROLE IN THE DRC EBOLA RESPONSE ─────────────────────────────────────── #}
-<section class="drc-role">
-    <div class="container">
-        <h2>Our Role in the DRC Ebola Response</h2>
-        <p>On 15 May 2026, the DRC's Ministry of Public Health declared the country's 17th Ebola outbreak — the largest Bundibugyo virus (BDBV) outbreak ever recorded, spreading across Ituri, Nord Kivu, and Sud Kivu with confirmed cross-border transmission into Uganda. WHO declared a Public Health Emergency of International Concern two days later; Africa CDC followed with a continental-level emergency declaration the day after.</p>
-        <p>Within weeks, DRC's INRB and INOHA, working with INSP and a consortium including Africa CDC, WHO, Northeastern University, the University of Oxford, and Flowminder, had a live <a href="https://inrb-umie.github.io/BDBV2026-Epidemic_Dashboard/" target="_blank" rel="noopener">Epidemic Intelligence Dashboard</a> running to support the response. Alongside GRID3's official facility dataset, the dashboard carries healthsites.io's crowdsourced, OpenStreetMap-derived layer of health facility locations.</p>
-        <p>GRID3's facility data is authoritative but periodically refreshed; healthsites.io's OSM-based layer is continuously editable by the mapping community, so it can pick up a newly stood-up MSF Ebola Treatment Centre faster than a static survey can. That facility data feeds directly into core dashboard functions: which zones have testing and treatment capacity, travel time from suspected-case locations to the nearest functioning facility, and the dashboard's spatial risk model estimating each health zone's probability of outbreak invasion.</p>
-        <p>healthsites.io participates in Missing Maps as the Global Healthsites Mapping Project, alongside founding members the Humanitarian OpenStreetMap Team (HOT), Médecins Sans Frontières (MSF) UK, the British Red Cross Society, and the American Red Cross, and close to twenty other organizations — all mapping into the same shared OpenStreetMap base that MSF's Ebola Treatment Centres and isolation units get added to as they're stood up.</p>
-        <p>The consortium published the dashboard as a research letter in The Lancet Infectious Diseases — a case for real-time, locally led epidemic intelligence, run by the institutions closest to the outbreak.</p>
-        <p><a href="https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(26)00330-0/fulltext" target="_blank" rel="noopener">Read the study in The Lancet Infectious Diseases →</a></p>
-        <figure class="drc-role-photo">
-            <img src="{{ SITEURL }}/theme/images/Lamine-Ndiaye-OpenStreetMap-Senegal.jpg" alt="Lamine Ndiaye, OpenStreetMap Senegal">
-            <figcaption>Lamine Ndiaye, OpenStreetMap Senegal — stewardship, not just collection, is what makes this data usable in a live response.</figcaption>
-        </figure>
-        <p>Every data point carries a sourced, auditable trail. The Ministry of Health stays the validator of record for its own national data. No personal data is collected, only facility metadata. The data is licensed under ODbL, so it stays a public good rather than becoming anyone's proprietary asset. This baseline data wasn't collected for this outbreak — it's cumulative, community-maintained, and simply there, ready, the moment a response needs it.</p>
-        <p>Beyond this response, we are building a data collaborative in the DRC — a shared, permanent home for facility data across responders, ministries, and research partners. We are inviting support to implement the full data pipeline behind it.</p>
-        <p><a href="https://github.com/healthsites/drc-ebola-2026/wiki/DRC-Health-Facility-Data-Pipeline" target="_blank" rel="noopener">See the full pipeline documentation →</a> &nbsp;·&nbsp; <a href="https://substack.com/@sharehealthdata/p-210578468" target="_blank" rel="noopener">Read the full story →</a></p>
-    </div>
-</section>
-
-{# ── MAPPING FOR THE RESPONSE (HOT Tasking Manager) ─────────────────────── #}
-{% if tm and tm.total and page.lang == 'en' %}
-  {% if tm.open_count > 0 %}
-    {% set tm_heading = "OpenStreetMap volunteers are mapping Ituri for the response" %}
-    {% set tm_intro = "Volunteers coordinated by the HOT Eastern and Southern Africa Open Mapping Hub are mapping buildings, roads and residential areas to support Médecins Sans Frontières. This is the base the health facility layer sits on." %}
-  {% else %}
-    {% set tm_heading = "OpenStreetMap volunteers mapped Ituri for the response" %}
-    {% set tm_intro = "Volunteers coordinated by the HOT Eastern and Southern Africa Open Mapping Hub mapped buildings, roads and residential areas to support Médecins Sans Frontières. This is the base the health facility layer sits on." %}
-  {% endif %}
-  {% include "partials/tasking_manager.html" %}
-
-<div class="tm-bridge">
-  <div class="tm-bridge__inner">
-    <p><strong>The base map is {% if tm.open_count > 0 %}filling in{% else %}in place{% endif %}. The facility layer needs the same care.</strong>
-    Volunteers have mapped the buildings and roads. Keeping the health facility layer current needs a managed pipeline, and that is what we are seeking funding for.</p>
-    <a href="#support" data-event="DRC Bridge See Pipeline Click">See the pipeline ask ↓</a>
-  </div>
-</div>
-{% endif %}
-
-{# ── HOW TO SUPPORT THIS WORK ─────────────────────────────────────── #}
+{# ── THE FUNDING ASK ─────────────────────────────────────── #}
 <section class="roadmap-section drc-cta" id="support">
   <div class="drc-cta__inner">
 
     <header>
-      <h2>How to Support This Work</h2>
-      <p class="section-sub">One funding priority, two ways to engage.</p>
+      <h2>The base map is {% if tm_open > 0 %}filling in{% else %}in place{% endif %}. The facility layer needs the same care.</h2>
+      <p class="section-sub">Volunteers have mapped the buildings and roads. Keeping the health facility layer current needs a managed pipeline, and that is what we are seeking funding for.</p>
     </header>
 
     <article class="roadmap-card roadmap-card--priority">
@@ -133,6 +95,43 @@
       </article>
     </div>
 
+  </div>
+</section>
+
+{# ── OUR ROLE IN THE DRC EBOLA RESPONSE ─────────────────────────────────────── #}
+<section class="drc-role">
+    <div class="container">
+        <h2>Our Role in the DRC Ebola Response</h2>
+        <p>On 15 May 2026, the DRC's Ministry of Public Health declared the country's 17th Ebola outbreak — the largest Bundibugyo virus (BDBV) outbreak ever recorded, spreading across Ituri, Nord Kivu, and Sud Kivu with confirmed cross-border transmission into Uganda. WHO declared a Public Health Emergency of International Concern two days later; Africa CDC followed with a continental-level emergency declaration the day after.</p>
+        <p>Within weeks, DRC's INRB and INOHA, working with INSP and a consortium including Africa CDC, WHO, Northeastern University, the University of Oxford, and Flowminder, had a live <a href="https://inrb-umie.github.io/BDBV2026-Epidemic_Dashboard/" target="_blank" rel="noopener" data-event="DRC Role Dashboard Click">Epidemic Intelligence Dashboard</a> running to support the response. Alongside GRID3's official facility dataset, the dashboard carries healthsites.io's crowdsourced, OpenStreetMap-derived layer of health facility locations. Facility data feeds directly into core dashboard functions: which zones have testing and treatment capacity, travel time from suspected-case locations to the nearest functioning facility, and the dashboard's spatial risk model estimating each health zone's probability of outbreak invasion.</p>
+        <p>The consortium published the dashboard as a research letter in The Lancet Infectious Diseases — a case for real-time, locally led epidemic intelligence, run by the institutions closest to the outbreak.</p>
+        <p><a href="https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(26)00330-0/fulltext" target="_blank" rel="noopener" data-event="DRC Role Lancet Click">Read the study in The Lancet Infectious Diseases →</a></p>
+        {# Placeholder: replace with the DRC user story (quote, photo, name and role). #}
+        <figure class="drc-role-photo">
+            <img src="{{ SITEURL }}/theme/images/Lamine-Ndiaye-OpenStreetMap-Senegal.jpg" alt="Lamine Ndiaye, OpenStreetMap Senegal">
+            <figcaption>Lamine Ndiaye, OpenStreetMap Senegal — stewardship, not just collection, is what makes this data usable in a live response.</figcaption>
+        </figure>
+        <p>Every data point carries a sourced, auditable trail. The Ministry of Health stays the validator of record for its own national data. No personal data is collected, only facility metadata. The data is licensed under ODbL, so it stays a public good rather than becoming anyone's proprietary asset. This baseline data wasn't collected for this outbreak — it's cumulative, community-maintained, and simply there, ready, the moment a response needs it.</p>
+        <p><a href="https://github.com/healthsites/drc-ebola-2026/wiki/DRC-Health-Facility-Data-Pipeline" target="_blank" rel="noopener" data-event="DRC Role Pipeline Docs Click">See the full pipeline documentation →</a> &nbsp;·&nbsp; <a href="https://substack.com/@sharehealthdata/p-210578468" target="_blank" rel="noopener" data-event="DRC Role Story Click">Read the full story →</a></p>
+    </div>
+</section>
+
+{# ── MAPPING FOR THE RESPONSE (HOT Tasking Manager) ─────────────────────── #}
+{% if tm and tm.total and page.lang == 'en' %}
+  {% if tm_open > 0 %}
+    {% set tm_heading = "OpenStreetMap volunteers are mapping Ituri for the response" %}
+    {% set tm_intro = "Volunteers coordinated by the HOT Eastern and Southern Africa Open Mapping Hub are mapping buildings, roads and residential areas to support Médecins Sans Frontières. This is the base the health facility layer sits on." %}
+  {% else %}
+    {% set tm_heading = "OpenStreetMap volunteers mapped Ituri for the response" %}
+    {% set tm_intro = "Volunteers coordinated by the HOT Eastern and Southern Africa Open Mapping Hub mapped buildings, roads and residential areas to support Médecins Sans Frontières. This is the base the health facility layer sits on." %}
+  {% endif %}
+  {% set tm_extra = "healthsites.io participates in Missing Maps as the Global Healthsites Mapping Project, alongside founding members the Humanitarian OpenStreetMap Team (HOT), Médecins Sans Frontières (MSF) UK, the British Red Cross Society, and the American Red Cross, and close to twenty other organizations — all mapping into the same shared OpenStreetMap base that MSF's Ebola Treatment Centres and isolation units get added to as they're stood up." %}
+  {% include "partials/tasking_manager.html" %}
+{% endif %}
+
+{# ── ALSO PART OF THIS WORK ─────────────────────────────────────── #}
+<section class="drc-cta drc-also">
+  <div class="drc-cta__inner">
     <div class="workstreams">
       <h4>Also part of this work</h4>
       <div class="workstream">
@@ -150,7 +149,18 @@
         <a class="text-link" href="https://github.com/healthsites/healthsites.io-CGR/wiki/healthsites.io-Common-Geo-Registry" data-event="DRC Open Identifier Click">Read the identifier plan →</a>
       </div>
     </div>
+  </div>
+</section>
 
+{# ── CLOSING ASK ─────────────────────────────────────── #}
+<section class="drc-cta drc-closing" aria-labelledby="drc-closing-title">
+  <div class="drc-closing__inner">
+    <h2 id="drc-closing-title">Fund the DRC Health Facility Data Pipeline</h2>
+    <p>A managed pipeline so the INRB dashboard draws on one open, current health facility layer. Funding required: <strong>€80,000</strong>.</p>
+    <div class="drc-closing__actions">
+      <a class="btn btn-primary" href="https://healthsites.io/contact" data-event="DRC Closing Fund Click">Fund the pipeline</a>
+      <a class="text-link" href="https://healthsites.io/contact" data-event="DRC Closing Partner Click">Partner with us →</a>
+    </div>
   </div>
 </section>
 

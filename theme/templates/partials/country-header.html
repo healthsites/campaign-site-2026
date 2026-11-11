@@ -1,5 +1,5 @@
 {# Shared header band for country pages: breadcrumb, title, optional badge, summary.
-   Optional: set `header_badge` (HTML) in the calling template before including. #}
+   Optional: set `header_badge` and `header_actions` (HTML) in the calling template before including. #}
 <section class="page-header-band">
     <div class="container">
         <nav class="breadcrumb" aria-label="breadcrumb">
@@ -10,5 +10,6 @@
         <h1>{{ page.title }}</h1>
         {% if header_badge %}{{ header_badge }}{% endif %}
         {% if page.summary %}<p class="page-lede">{{ page.summary|striptags }}</p>{% endif %}
+        {% if header_actions %}{{ header_actions }}{% endif %}
     </div>
 </section>
