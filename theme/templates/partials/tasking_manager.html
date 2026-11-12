@@ -45,15 +45,15 @@
                     </div>
                     <div class="tm-card__actions">
                         <a class="btn btn-secondary tm-btn-map" href="{{ p.url }}/map/" target="_blank" rel="noopener"
-                           aria-label="Map this area: {{ p.short_name }}" data-event="DRC TM Map Click">Map this area</a>
+                           aria-label="Map this area: {{ p.short_name }}" data-umami-event="DRC TM Map Click">Map this area</a>
                         <a class="btn btn-institutional tm-btn-validate" href="{{ p.url }}/validate/" target="_blank" rel="noopener"
-                           aria-label="Validate: {{ p.short_name }}" data-event="DRC TM Validate Click">Validate</a>
+                           aria-label="Validate: {{ p.short_name }}" data-umami-event="DRC TM Validate Click">Validate</a>
                     </div>
                 </article>
                 {% else %}
                 <p class="tm-empty">No mapping projects are open right now. Completed work is listed below.</p>
                 {% endfor %}
-                <p class="tm-help">New to mapping? Start with <a href="https://learnosm.org/" target="_blank" rel="noopener" data-event="DRC Learn OSM Click">LearnOSM</a>. Validating needs an experienced OpenStreetMap account.</p>
+                <p class="tm-help">New to mapping? Start with <a href="https://learnosm.org/" target="_blank" rel="noopener" data-umami-event="DRC Learn OSM Click">LearnOSM</a>. Validating needs an experienced OpenStreetMap account.</p>
             </div>
         </div>
 
@@ -68,7 +68,7 @@
                     <tbody>
                         {% for p in tm.done %}
                         <tr>
-                            <td><a href="{{ p.url }}" target="_blank" rel="noopener" data-event="DRC TM Archived Click">{{ p.short_name }}</a> <span class="tm-table__id">#{{ p.projectId }}</span></td>
+                            <td><a href="{{ p.url }}" target="_blank" rel="noopener" data-umami-event="DRC TM Archived Click">{{ p.short_name }}</a> <span class="tm-table__id">#{{ p.projectId }}</span></td>
                             <td>{{ p.totalContributors }}</td>
                             <td>{{ p.last_day }}</td>
                         </tr>
@@ -79,7 +79,7 @@
         </details>
         {% endif %}
 
-        <p class="tm-source">Contributor counts are per project; one person may appear in several. Source: <a href="https://tasks.hotosm.org/" target="_blank" rel="noopener" data-event="DRC TM Source Click">HOT Tasking Manager</a>, campaign "{{ tm.campaign }}", data as of {{ tm.fetched }}. Map data © OpenStreetMap contributors, ODbL.</p>
+        <p class="tm-source">Contributor counts are per project; one person may appear in several. Source: <a href="https://tasks.hotosm.org/" target="_blank" rel="noopener" data-umami-event="DRC TM Source Click">HOT Tasking Manager</a>, campaign "{{ tm.campaign }}", data as of {{ tm.fetched }}. Map data © OpenStreetMap contributors, ODbL.</p>
 
     </div>
 </section>
