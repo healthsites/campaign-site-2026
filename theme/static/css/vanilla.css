@@ -4042,3 +4042,9 @@ a.sreg-card:hover {
   .drc-also { padding: 16px 20px 64px; }
   .drc-closing { padding: 64px 20px; }
 }
+
+/* DRC page: API terms on the Integrate card; jump targets clear the sticky header */
+.drc-cta .api-terms { margin: 0; padding-left: 20px; list-style: disc; color: var(--medium-gray, #585858); line-height: 1.7; }
+.drc-cta .api-terms li { list-style: disc; }
+.drc-cta .api-terms strong { color: var(--dark-gray, #3c4c57); }
+.drc-cta[id], .drc-cta [id] { scroll-margin-top: 96px; }
