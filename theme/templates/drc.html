@@ -14,7 +14,7 @@
 {% set header_actions %}
 <div class="drc-cta drc-hero-actions">
   <a class="btn btn-primary" href="#support" data-umami-event="DRC Hero Fund Click">Fund the pipeline ↓</a>
-  <a class="btn btn-institutional" href="https://github.com/healthsites/healthsites/wiki/API" data-umami-event="DRC Hero API Click">Use the API</a>
+  <a class="btn btn-institutional" href="#integrate" data-umami-event="DRC Hero API Click">Use the API ↓</a>
 </div>
 {% endset %}
 {% include "partials/country-header.html" %}
@@ -80,11 +80,17 @@
     </article>
 
     <div class="engage-grid">
-      <article class="engage-card">
+      <article class="engage-card" id="integrate">
         <span class="engage-card__kicker"><i class="fa fa-exchange" aria-hidden="true"></i>Integrate</span>
         <h3>Build on the Live API</h3>
         <p>The same healthsites.io API that serves the INRB dashboard is open to response agencies, researchers and dashboard builders.</p>
-        <a class="btn btn-institutional" href="https://github.com/healthsites/healthsites/wiki/API" data-umami-event="DRC Use API Click">Use the API</a>
+        <ul class="api-terms">
+          <li><strong>Free</strong> up to 50 calls a day.</li>
+          <li><strong>Subscription</strong> for more calls and bulk downloads.</li>
+          <li>For DRC, use the country name <strong>Democratic Republic of the Congo</strong>.</li>
+        </ul>
+        <a class="btn btn-institutional" href="https://github.com/healthsites/healthsites/wiki/API" target="_blank" rel="noopener" data-umami-event="DRC Use API Click">Get an API key</a>
+        <a class="text-link" href="https://healthsites.io/contact" data-umami-event="DRC API Subscribe Click">Need more than 50 calls a day? Ask about a subscription →</a>
       </article>
       <article class="engage-card">
         <span class="engage-card__kicker"><i class="fa fa-users" aria-hidden="true"></i>Partner</span>
