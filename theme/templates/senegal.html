@@ -102,6 +102,18 @@
     </div>
 </section>
 
+<!-- Heat at health facilities -->
+<section class="senegal-data-link">
+    <div class="container">
+        <a href="{{ SITEURL }}/campaigns/senegal/heat/" class="sreg-card" data-umami-event="Senegal Heat Map Click">
+            <span class="status-chip status-chip--complete">{% if is_fr %}Carte{% else %}Map{% endif %}</span>
+            <h3>{% if is_fr %}La chaleur dans les établissements de santé{% else %}Heat at health facilities{% endif %}</h3>
+            <p>{% if is_fr %}La chaleur de la dernière semaine dans chaque établissement de santé du Sénégal, comparée au reste du pays.{% else %}How hot it has been at each health facility in Senegal over the last week, compared with the rest of the country.{% endif %}</p>
+            <span class="sreg-learn-more">{% if is_fr %}Voir la carte →{% else %}See the map →{% endif %}</span>
+        </a>
+    </div>
+</section>
+
 {% endblock %}
 
 {% block extra_js %}
