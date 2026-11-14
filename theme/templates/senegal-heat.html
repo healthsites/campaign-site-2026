@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+{% endblock %}
+
+{% block content %}
+{% set heat_url = SITEURL ~ '/theme/geojson/' ~ (page.heat_geojson|default('sen_facility_heat.geojson')) %}
+
+<!-- Header band -->
+<section class="page-header-band">
+    <div class="container">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+            <a href="{{ SITEURL }}/campaigns/">Campaigns</a>
+            <span class="breadcrumb-sep">→</span>
+            <a href="{{ SITEURL }}/campaigns/senegal/">Senegal</a>
+            <span class="breadcrumb-sep">→</span>
+            <span>Heat</span>
+        </nav>
+        <h1>{{ page.title }}</h1>
+        <p class="page-lede">How hot it has been at each health facility in Senegal over the last week, compared with every other facility in the country.</p>
+    </div>
+</section>
+
+<!-- Map -->
+<section class="heat-section">
+    <div class="container">
+        <p class="heat-meta" id="heat-meta" aria-live="polite">Loading heat data…</p>
+        <div id="heat-map" class="heat-map" role="region" aria-label="Map of health facilities in Senegal, coloured by temperature"
+             data-heat="{{ heat_url }}"
+             data-boundaries="{{ SITEURL }}/theme/geojson/{{ page.boundary_geojson|default('sen_admin1.geojson') }}"></div>
+        <div class="heat-legend" id="heat-legend" hidden>
+            <p class="heat-legend__title">Hottest temperature of the day, compared with other facilities in Senegal</p>
+            <ul class="heat-legend__items" id="heat-legend-items"></ul>
+        </div>
+    </div>
+</section>
+
+<!-- Hottest facilities: a text view of the map -->
+<section class="heat-section heat-section--table" id="heat-top-section" hidden>
+    <div class="container">
+        <h2>The 10 hottest facilities</h2>
+        <p class="heat-table-note">Hottest temperature of the day, averaged over the same days as the map.</p>
+        <div class="heat-table-wrap">
+            <table class="heat-table">
+                <thead>
+                    <tr><th scope="col">Facility</th><th scope="col">Type</th><th scope="col">Region</th><th scope="col">Temperature</th></tr>
+                </thead>
+                <tbody id="heat-top"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- How to read it -->
+<section class="heat-section heat-section--notes">
+    <div class="container">
+        <h2>How to read this map</h2>
+        <ul class="heat-notes">
+            <li><strong>Colours are relative.</strong> They compare each facility with the others in Senegal. A facility in the coolest group can still be dangerously hot.</li>
+            <li><strong>Nearby facilities share a value.</strong> Temperatures come from a weather grid of about 9 km, so facilities in the same grid square have the same temperature.</li>
+            <li><strong>Some facilities are missing.</strong> The map shows the facilities in OpenStreetMap. Tambacounda, Kolda and Kédougou have not yet had a validation campaign, so their coverage is likely to be less complete.</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Closing ask -->
+<section class="drc-cta drc-closing" aria-labelledby="heat-closing-title">
+    <div class="drc-closing__inner">
+        <h2 id="heat-closing-title">Validate the facilities that face the most heat</h2>
+        <p>Data stewards and community health workers check every facility in a region, paid for their work. In Tambacounda, Kolda and Kédougou they would start with the facilities facing the most heat.</p>
+        <div class="drc-closing__actions">
+            <a class="btn btn-primary" href="{{ SITEURL }}/campaigns/senegal/tambacounda/" data-umami-event="Senegal Heat Tambacounda Click">Support the Tambacounda campaign</a>
+            <a class="text-link" href="https://healthsites.io/contact" data-umami-event="Senegal Heat Partner Click">Partner with us →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Sources -->
+<section class="heat-section heat-section--sources">
+    <div class="container">
+        <h2>Sources</h2>
+        <ul class="heat-sources">
+            <li><strong>Health facilities:</strong> <a href="https://healthsites.io">healthsites.io</a> / © OpenStreetMap contributors, <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</a>.</li>
+            <li><strong>Heat:</strong> <a href="https://www.crisisready.io/heat-risk/">HeatReady</a>, CrisisReady. Daily maximum air temperature from ERA5-Land, with the most recent days filled from <a href="https://open-meteo.com/">Open-Meteo</a> (CC BY 4.0).</li>
+            <li>Generated using Copernicus Climate Change Service information <span id="heat-year">2026</span>. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains.</li>
+        </ul>
+        <p class="heat-download"><a href="{{ heat_url }}" download data-umami-event="Senegal Heat Data Download">Download the map data (GeoJSON, ODbL)</a></p>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="{{ SITEURL }}/theme/js/heat-map.js"></script>
+{% endblock %}
