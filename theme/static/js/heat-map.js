@@ -50,7 +50,7 @@
                 '<p class="heat-popup__rank">Hotter than ' + esc(p.p) + '% of facilities in Senegal</p>';
         }
         if (p.id && /^(node|way|relation)\/\d+$/.test(p.id)) {
-            html += '<a href="https://www.openstreetmap.org/' + esc(p.id) + '" target="_blank" rel="noopener">View in OpenStreetMap</a>';
+            html += '<a href="https://healthsites.io/map#!/locality/' + esc(p.id) + '" target="_blank" rel="noopener" data-umami-event="Senegal Heat Facility Click">View in healthsites.io</a>';
         }
         return html + '</div>';
     }
