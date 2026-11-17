@@ -95,7 +95,7 @@ Each medical region follows the same progression. Étape 1 must be completed bef
 | Region | Country | Étape 1 | Étape 2 |
 |--------|---------|---------|---------|
 | Saint-Louis | Senegal | Complete (2022) | Seeking support |
-| Tambacounda | Senegal | Seeking funding | Planned |
+| Tambacounda | Senegal | Planned 2027 | — |
 | Matam | Senegal | Complete (2023) | Not started |
 | Maputo | Mozambique | Proposal in development | — |
 | Juba | South Sudan | Working group forming | — |

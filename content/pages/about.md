@@ -216,7 +216,7 @@ We run time-bound campaigns in priority regions, validating health facility data
 - **Democratic Republic of the Congo** (2026–present) — the healthsites.io API serves OpenStreetMap health facility data to the INRB epidemic dashboard for the Bundibugyo virus outbreak
 - **Saint-Louis, Senegal** (2022–present) — 398 facilities validated; 35 emergency maternal referral facilities identified
 - **Matam, Senegal** (2023) — 212 health facilities validated; supporting geospatial data: 93,286 buildings, 1,803 km² of roads, place names, waterways, and infrastructure
-- **Tambacounda, Senegal** — seeking funding
+- **Tambacounda, Senegal** — planned 2027
 - **Mozambique** — working group forming; Maputo proposal in development
 - **South Africa** — working group forming
 - **South Sudan** — working group forming

@@ -74,7 +74,7 @@
 <section class="senegal-campaigns">
     <div class="container">
         <h2>{% if is_fr %}Campagnes régionales{% else %}Regional Campaigns{% endif %}</h2>
-        <p class="section-sub">{% if is_fr %}Deux régions validées, une en recherche de financement.{% else %}Two regions validated, one seeking funding.{% endif %}</p>
+        <p class="section-sub">{% if is_fr %}Deux régions validées, une prévue en 2027.{% else %}Two regions validated, one planned for 2027.{% endif %}</p>
         <div class="senegal-region-grid">
 
             <a href="{{ SITEURL }}/campaigns/senegal/saint-louis/" class="sreg-card">
@@ -85,7 +85,7 @@
             </a>
 
             <a href="{{ SITEURL }}/campaigns/senegal/tambacounda/" class="sreg-card">
-                <span class="status-chip status-chip--active">{% if is_fr %}Actif — Recherche de financement{% else %}Active — Seeking Funding{% endif %}</span>
+                <span class="status-chip status-chip--planned">{% if is_fr %}Prévue en 2027{% else %}Planned 2027{% endif %}</span>
                 <h3>Tambacounda</h3>
                 <p>{% if is_fr %}L'une des régions les plus vastes et les plus éloignées du Sénégal — une zone immense avec une population rurale dispersée et d'importantes lacunes en données. €60 000 nécessaires pour lancer l'Étape 1.{% else %}One of Senegal's largest and most remote regions — a vast area with a dispersed rural population and significant data gaps. €60,000 needed to launch Étape 1.{% endif %}</p>
                 <span class="sreg-learn-more">{% if is_fr %}En savoir plus →{% else %}Learn More →{% endif %}</span>
