@@ -14,13 +14,12 @@ Emergency_facilities: 35
 Validators_trained: 12
 Start_date: 15 Jan – 30 Mar 2022
 Lede: We ran the Emergency Health Mapping Campaign in Saint-Louis with the local OpenStreetMap community and Senegal's regional health office.
-Cta_primary_label: View Phase 1 Results
+Cta_primary_label: View Étape 1 results
 Cta_primary_url: https://healthsites.akuko.io/post/d14d7cd6-0614-426d-b0af-7b8ba8f11c58
 Cta_secondary_label: View on healthsites.io
 Cta_secondary_url: https://healthsites.io/map#!/locality/node/9658850194
 Phase2_status: Inviting Support
 Phase2_target: 35
-Phase2_budget: TBC
 Phase2_cta_label: Support Étape 2
 Phase2_cta_url: https://healthsites.io/contact
 ---
@@ -38,7 +37,7 @@ Phase2_cta_url: https://healthsites.io/contact
 
 <blockquote class="campaign-quote">As a pregnant mother I want to know where the nearest emergency health service is, so that I can plan for potential complications during childbirth.</blockquote>
 
-<p style="color:#585858;line-height:1.8;margin:0 0 36px">From 397 facilities visited, 35 were identified as likely to support emergency pregnancy referrals — based on facility type, bed availability, emergency health status, and contact information.</p>
+<p style="color:#585858;line-height:1.8;margin:0 0 36px">Of the 398 facilities validated, 35 were identified as likely to support emergency pregnancy referrals — based on facility type, bed availability, emergency health status, and contact information.</p>
 
 <h3>Étape 1 Results</h3>
 
@@ -62,4 +61,4 @@ Phase2_cta_url: https://healthsites.io/contact
     <figcaption class="fig-caption">Field validators confirmed every facility on the ground — including pharmacies, infirmaries and referral hospitals.</figcaption>
 </figure>
 
-<a href="/about/" style="color:#f44a52;font-weight:600">Read the full methodology →</a>
+<a href="/about/methodology/" style="color:#f44a52;font-weight:600">Read the full methodology →</a>

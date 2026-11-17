@@ -90,15 +90,15 @@ The argument is grounded in the PNDSS 2019–2028 financing axis and the Univers
 
 ### The Campaign Cycle
 
-Each medical region follows the same progression. Étape 1 must be completed before Étape 2 begins. Districts currently active:
+Each medical region follows the same progression. Étape 1 must be completed before Étape 2 begins. Where each region stands:
 
 | Region | Country | Étape 1 | Étape 2 |
 |--------|---------|---------|---------|
 | Saint-Louis | Senegal | Complete (2022) | Seeking support |
 | Tambacounda | Senegal | Seeking funding | Planned |
-| Matam | Senegal | Planned 2026 | Planned |
-| Maputo | Mozambique | Seeking funding | Planned |
-| Juba | South Sudan | Seeking funding | Planned |
+| Matam | Senegal | Complete (2023) | Not started |
+| Maputo | Mozambique | Proposal in development | — |
+| Juba | South Sudan | Working group forming | — |
 
 ---
 

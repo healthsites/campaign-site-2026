@@ -45,7 +45,7 @@
             <ul class="trust-strip">
                 <li><i class="fa fa-unlock-alt"></i> {% if is_french %}Données ouvertes (ODbL){% else %}Open data (ODbL){% endif %}</li>
                 <li><i class="fa fa-user-secret"></i> {% if is_french %}Aucune donnée personnelle collectée{% else %}No personal data collected{% endif %}</li>
-                <li><i class="fa fa-check-circle"></i> {% if is_french %}Validé par le Ministère de la Santé{% else %}MoH-validated{% endif %}</li>
+                <li><i class="fa fa-check-circle"></i> {% if is_french %}Noms des établissements validés par le Ministère de la Santé{% else %}Facility names validated by the Ministry of Health{% endif %}</li>
                 <li><i class="fa fa-file-text-o"></i> <a href="https://doi.org/10.5281/zenodo.10443334" target="_blank" rel="noopener">{% if is_french %}Méthodologie évaluée par les pairs (OSM Science, 2023){% else %}Peer-reviewed methodology (OSM Science, 2023){% endif %}</a></li>
             </ul>
         </div>
@@ -110,7 +110,7 @@
             </div>
             <div class="stat">
                 <i class="fa fa-globe stat-icon"></i>
-                <div class="stat-number">150+</div>
+                <div class="stat-number">204</div>
                 <div class="stat-label">{% if is_french %}Pays dans le jeu de données mondial{% else %}Countries in the global dataset{% endif %}</div>
             </div>
             <div class="stat">
@@ -148,9 +148,9 @@
                 </div>
                 <div class="engage-card-body">
                     <h3>{% if is_french %}S'abonner à l'API{% else %}Subscribe to the API{% endif %}</h3>
-                    <p>{% if is_french %}Accédez à 1,18 million d'établissements validés via notre API REST ouverte.{% else %}Access 1.18M+ validated health facility records via our open REST API.{% endif %}</p>
+                    <p>{% if is_french %}Accédez à plus de 1,18 million d'établissements de santé via notre API REST ouverte, gratuitement jusqu'à 50 appels par jour.{% else %}Access 1.18M+ health facility records via our open REST API, free for up to 50 calls a day.{% endif %}</p>
                     <a href="https://github.com/healthsites/healthsites/wiki/API" target="_blank" rel="noopener" class="engage-btn engage-btn--slate" data-umami-event="Subscribe Free Click">{% if is_french %}Obtenir un accès API gratuit →{% else %}Get free API access →{% endif %}</a>
-                    <a href="https://healthsites.io/contact" class="engage-waitlist" data-umami-event="Subscribe Waitlist Click">{% if is_french %}Rejoindre la liste d'attente de l'offre premium →{% else %}Join the premium tier waitlist →{% endif %}</a>
+                    <a href="https://healthsites.io/contact" class="engage-waitlist" data-umami-event="Subscribe Contact Click">{% if is_french %}Plus de 50 appels par jour ? Renseignez-vous sur l'abonnement →{% else %}Need more than 50 calls a day? Ask about a subscription →{% endif %}</a>
                     <p class="engage-usecase">{% if is_french %}Utilisé pour la logistique de distribution, la vérification des réseaux de prestataires et la coordination inter-agences.{% else %}Used for distribution logistics, provider-network verification, and cross-agency coordination.{% endif %}</p>
                 </div>
             </div>

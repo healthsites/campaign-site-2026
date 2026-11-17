@@ -116,7 +116,7 @@ Our collaboration is built on a framework of trust, transparency, and responsibi
     <span class="team-avatar">MH</span>
     <div>
       <p class="team-name">Mark Herringer</p>
-      <p class="team-role">Founder, Project Lead &amp; Data Steward</p>
+      <p class="team-role">Co-founder, Project Lead &amp; Data Steward</p>
       <p class="team-expertise">Open data governance · digital public goods · NGI Commons Task Force</p>
     </div>
   </div>
@@ -211,17 +211,19 @@ healthsites.io is operated by **Open Healthsite Consulting** (registered in the 
 
 We run time-bound campaigns in priority regions, validating health facility data and building institutional capacity.
 
-**Current and completed campaigns:**
+**Campaigns and where they stand:**
 
+- **Democratic Republic of the Congo** (2026–present) — the healthsites.io API serves OpenStreetMap health facility data to the INRB epidemic dashboard for the Bundibugyo virus outbreak
 - **Saint-Louis, Senegal** (2022–present) — 398 facilities validated; 35 emergency maternal referral facilities identified
 - **Matam, Senegal** (2023) — 212 health facilities validated; supporting geospatial data: 93,286 buildings, 1,803 km² of roads, place names, waterways, and infrastructure
-- **Mozambique** (2026-present) — Emergency capacity assessment
-- **South Africa** (2027-planning) — Emergency capacity assessment
-- **South Sudan** (2027-planning) — Emergency capacity assessment
-- **Tunisia** (2027-planning) — Health systems research partnership
-- **Ghana** (2027-planning) — Regional expansion
+- **Tambacounda, Senegal** — seeking funding
+- **Mozambique** — working group forming; Maputo proposal in development
+- **South Africa** — working group forming
+- **South Sudan** — working group forming
+- **Tunisia** — working group forming
+- **Ghana** — working group forming
 
-Each campaign follows the same rigorous methodology: community-led validation, Ministry of Health partnership, permanent publication to OpenStreetMap.
+Each campaign follows the same methodology: community-led validation, the Ministry of Health as validator of record, and permanent publication to OpenStreetMap.
 
 </details>
 
@@ -238,7 +240,7 @@ We partner with institutions across government, civil society, the UN system, an
 Ministries of Health; National Statistics Offices; eHealth and health information systems projects
 
 **Mapping & data communities**  
-OpenStreetMap; Missing Maps; Humanitarian OpenStreetMap Team (HOTOSM); CartONG; Heigit
+OpenStreetMap; Missing Maps; Humanitarian OpenStreetMap Team (HOTOSM); CartONG; HeiGIT
 
 **Geospatial & development**  
 Group on Earth Observations (GEO); Humanitarian Data Exchange (HDX); The Data Tank; European Citizen Science
@@ -278,17 +280,16 @@ Support Emergency Health Mapping Campaigns in priority regions. Each campaign va
 <summary><h3>Pathway 2: Subscribe to the API</h3></summary>
 <div class="pathway-body" markdown="1">
 
-Access validated health facility data via the healthsites.io REST API. There is no waitlist — the Community tier gives free, basic API service. Professional and Enterprise tiers unlock a high volume of API requests per day.
+Access health facility data through the healthsites.io REST API. It is free for up to 50 calls a day. For more than 50 calls a day, take out a subscription.
 
 </div>
 <p class="pathway-tiers">
-<span class="pathway-tier">Community · basic API (free)</span>
-<span class="pathway-tier">Professional · high volume</span>
-<span class="pathway-tier">Enterprise · high volume</span>
+<span class="pathway-tier">Free · up to 50 calls a day</span>
+<span class="pathway-tier">Subscription · more than 50 calls a day</span>
 </p>
 <p class="pathway-actions">
-<a class="pathway-cta pathway-cta--primary" href="https://github.com/healthsites/healthsites/wiki/API">Get API Access →</a>
-<a class="pathway-cta pathway-cta--ghost" href="https://healthsites.io/contact">Talk to Us</a>
+<a class="pathway-cta pathway-cta--primary" href="https://github.com/healthsites/healthsites/wiki/API" data-umami-event="About API Key Click">Get API Access →</a>
+<a class="pathway-cta pathway-cta--ghost" href="https://healthsites.io/contact" data-umami-event="About API Subscribe Click">Ask about a subscription</a>
 </p>
 </details>
 
@@ -340,4 +341,4 @@ Questions about partnerships, funding, API integration, campaigns, or mapping?
 
 ---
 
-*Last updated: June 2026*
+*Last updated: November 2026*

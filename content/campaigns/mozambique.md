@@ -14,6 +14,7 @@ map_center_lat: -18.5
 map_center_lng: 35.5
 map_zoom: 5
 
-We are forming a working group in Mozambique with local OpenStreetMap communities, the Ministry
-of Health, and the National Statistics Office, building on the model proven in Senegal. No
-campaign is running here yet — register your interest and we will let you know when one launches.
+We are forming a working group in Mozambique with local OpenStreetMap communities, building on the
+model proven in Senegal. We aim to involve the Ministry of Health and the National Statistics
+Office. No campaign is running here yet — register your interest and we will let you know when
+one launches.
