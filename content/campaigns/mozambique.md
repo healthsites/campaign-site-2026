@@ -10,6 +10,7 @@ languages: EN / PT
 summary: Working group forming — no active campaign yet.
 order: 4
 geojson_file: moz_admin1.geojson
+facilities_geojson: moz_facilities.geojson
 map_center_lat: -18.5
 map_center_lng: 35.5
 map_zoom: 5

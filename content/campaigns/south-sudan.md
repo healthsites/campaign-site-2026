@@ -11,6 +11,7 @@ languages: EN / AR
 summary: Working group forming — no active campaign yet.
 order: 5
 geojson_file: ssd_admin1.geojson
+facilities_geojson: ssd_facilities.geojson
 map_center_lat: 7.5
 map_center_lng: 30.0
 map_zoom: 6

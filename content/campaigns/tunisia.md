@@ -10,6 +10,7 @@ languages: EN / AR
 summary: Working group forming — no active campaign yet.
 order: 6
 geojson_file: tun_admin1.geojson
+facilities_geojson: tun_facilities.geojson
 map_center_lat: 34.0
 map_center_lng: 9.5
 map_zoom: 6

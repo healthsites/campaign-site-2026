@@ -10,6 +10,7 @@ languages: EN / Xhosa / Zulu
 summary: Working group forming — no active campaign yet.
 order: 3
 geojson_file: zaf_admin1.geojson
+facilities_geojson: zaf_facilities.geojson
 map_center_lat: -29.0
 map_center_lng: 24.0
 map_zoom: 5

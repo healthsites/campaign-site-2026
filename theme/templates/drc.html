@@ -22,15 +22,19 @@
 {# ── TASKING MANAGER STRIP: only while mapping projects are open ─────────────── #}
 {% if tm and tm.total and tm_open > 0 and page.lang == 'en' %}{% include "partials/tasking_manager_strip.html" %}{% endif %}
 
-{# ── MAP (step 2 of the redesign replaces it with the facility layer) ─────────── #}
+{# ── MAP: provinces plus every health facility from the healthsites.io API ────── #}
 {% if page.geojson_file %}
+{% set hs = HEALTHSITES.get(page.facilities_geojson) if (HEALTHSITES and page.facilities_geojson) else None %}
 <section class="page-map">
     <div class="container">
         <div id="map" class="campaign-map" role="region" aria-label="Map of {{ page.country }}"
              data-geojson="{{ SITEURL }}/theme/geojson/{{ page.geojson_file }}"
              data-lat="{{ page.map_center_lat|default(-2.9) }}"
              data-lng="{{ page.map_center_lng|default(23.6) }}"
-             data-zoom="{{ page.map_zoom|default(5) }}"></div>
+             data-zoom="{{ page.map_zoom|default(5) }}"{% if hs %}
+             data-facilities="{{ SITEURL }}/theme/geojson/{{ page.facilities_geojson }}"
+             data-country="{{ page.country }}"{% endif %}></div>
+        {% include "partials/facility_caption.html" %}
         <p class="map-caption"><a href="https://inrb-umie.github.io/BDBV2026-Epidemic_Dashboard/" target="_blank" rel="noopener" data-umami-event="DRC Map Dashboard Click">Explore health zones in the INRB epidemic dashboard →</a></p>
     </div>
 </section>
