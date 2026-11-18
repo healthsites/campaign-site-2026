@@ -8,7 +8,6 @@ Country_slug: mozambique
 Region: Maputo
 Campaign_status: Proposal in development
 Facilities_target: 520
-Start_date: 2026
 
 ## Maputo — Proposal in development
 

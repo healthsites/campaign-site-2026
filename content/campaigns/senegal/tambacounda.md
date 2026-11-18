@@ -6,16 +6,16 @@ Status: published
 Country: Senegal
 Country_slug: senegal
 Region: Tambacounda
-Campaign_status: Active - Inviting Support
+Campaign_status: Planned 2027
 Budget_needed: €60,000
 Facilities_target: 450
-Start_date: 2026
+Start_date: 2027
 Cta_primary_label: Support this Campaign
 Cta_primary_url: https://healthsites.io/contact
 Cta_secondary_label: Map Tambacounda
 Cta_secondary_url: https://healthsites.io/map?place=Tambacounda
 
-## Tambacounda — Inviting Support
+## Tambacounda — Planned 2027
 
 Building on the proven results of the Saint-Louis campaign, healthsites.io is preparing to bring the Emergency Health Mapping methodology to Tambacounda — one of Senegal's largest and most remote medical regions.
 
@@ -28,7 +28,6 @@ Get in contact if you're interested in supporting this campaign — as a funder,
 - Large, geographically dispersed medical region with limited data coverage
 - Significant rural population with acute healthcare access challenges
 - Active local OpenStreetMap community with geospatial capacity ready to mobilise
-- Senegalese Ministry of Health engagement confirmed
 - Directly aligned with SDG 3.8.1 — universal health coverage monitoring
 
 ### What the Campaign Will Deliver

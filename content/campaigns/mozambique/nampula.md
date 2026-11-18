@@ -6,7 +6,7 @@ Status: published
 Country: Mozambique
 Country_slug: mozambique
 Region: Nampula
-Campaign_status: Planned 2026
+Campaign_status: Working group forming
 Facilities_target: 380
 
 ## Nampula Province
@@ -19,6 +19,6 @@ Nampula is Mozambique's most populous province and a critical corridor for human
 - Map facilities in remote rural areas with no current data coverage
 - Integrate findings with national health information systems
 
-### Partners
+### Working group
 
-This campaign will be delivered in partnership with local health authorities and international NGOs operating in northern Mozambique.
+We are forming a working group to scope this campaign. We aim to involve local health authorities and organisations working in northern Mozambique. No partner commitments are in place yet — [register your interest](https://healthsites.io/contact) and we will keep you informed.

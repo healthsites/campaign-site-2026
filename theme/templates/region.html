@@ -142,13 +142,23 @@
                     </div>
                     <a href="{{ page.phase2_cta_url if page.phase2_cta_url else 'https://healthsites.io/contact' }}"
                        class="btn btn-primary btn-full"
-                       target="_blank" rel="noopener">
+                       target="_blank" rel="noopener"
+                       data-umami-event="{{ page.region }} Phase 2 Click">
                         {{ page.phase2_cta_label if page.phase2_cta_label else 'Support Phase 2' }}
                     </a>
+                    {% if page.cta_primary_url %}
+                    <a href="{{ page.cta_primary_url }}"
+                       class="btn btn-secondary btn-full funding-card-secondary"
+                       {% if page.cta_primary_url.startswith('http') %}target="_blank" rel="noopener"{% endif %}
+                       data-umami-event="{{ page.region }} Results Click">
+                        {{ page.cta_primary_label if page.cta_primary_label else 'View results' }}
+                    </a>
+                    {% endif %}
                     {% if page.cta_secondary_url %}
                     <a href="{{ page.cta_secondary_url }}"
                        class="btn btn-secondary btn-full funding-card-secondary"
-                       {% if page.cta_secondary_url.startswith('http') %}target="_blank" rel="noopener"{% endif %}>
+                       {% if page.cta_secondary_url.startswith('http') %}target="_blank" rel="noopener"{% endif %}
+                       data-umami-event="{{ page.region }} Map Click">
                         {{ page.cta_secondary_label if page.cta_secondary_label else 'View on healthsites.io' }}
                     </a>
                     {% endif %}
@@ -191,12 +201,14 @@
                 <div class="campaign-actions">
                     <a href="{{ page.cta_primary_url if page.cta_primary_url else 'https://healthsites.io/contact' }}"
                        class="btn btn-primary"
-                       {% if page.cta_primary_url and page.cta_primary_url.startswith('http') %}target="_blank" rel="noopener"{% endif %}>
+                       {% if page.cta_primary_url and page.cta_primary_url.startswith('http') %}target="_blank" rel="noopener"{% endif %}
+                       data-umami-event="{{ page.region }} Support Click">
                         {{ page.cta_primary_label if page.cta_primary_label else 'Support' }}
                     </a>
                     <a href="{{ page.cta_secondary_url if page.cta_secondary_url else 'https://healthsites.io/map' }}"
                        class="btn btn-secondary"
-                       {% if page.cta_secondary_url and page.cta_secondary_url.startswith('http') %}target="_blank" rel="noopener"{% endif %}>
+                       {% if page.cta_secondary_url and page.cta_secondary_url.startswith('http') %}target="_blank" rel="noopener"{% endif %}
+                       data-umami-event="{{ page.region }} Map Click">
                         {{ page.cta_secondary_label if page.cta_secondary_label else 'Map' }}
                     </a>
                 </div>

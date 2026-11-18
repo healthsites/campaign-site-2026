@@ -3493,6 +3493,9 @@ a.sreg-card:hover {
 
 .funding-card-secondary { margin-top: 12px; }
 
+/* Country page: register-interest button */
+.country-cta { margin: 24px 0 0; }
+
 /* Open data note (sidebar) */
 .open-data-note {
     background: var(--bg-light);
