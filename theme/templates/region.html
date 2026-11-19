@@ -190,6 +190,16 @@
                     </div>
                     {% endif %}
 
+                    {# Facilities on OpenStreetMap in this region, from the healthsites.io map file #}
+                    {% set hs = HEALTHSITES.get(page.facilities_geojson) if (HEALTHSITES and page.facilities_geojson) else None %}
+                    {% set hs_count = hs.by_region.get(page.adm1_name or page.region) if hs else None %}
+                    {% if hs_count is not none %}
+                    <div class="stat" title="Health facilities, including pharmacies, on OpenStreetMap on {{ hs.updated_day }}, from the healthsites.io API">
+                        <strong>{% if is_fr %}Sur OpenStreetMap{% elif is_pt %}No OpenStreetMap{% elif is_ar %}على OpenStreetMap{% else %}On OpenStreetMap{% endif %}</strong>
+                        <span>{{ "{:,}".format(hs_count) }}</span>
+                    </div>
+                    {% endif %}
+
                     {% if page.start_date %}
                     <div class="stat">
                         <strong>{% if is_fr %}Date de Début{% elif is_pt %}Data de Início{% elif is_ar %}تاريخ البدء{% else %}Start Date{% endif %}</strong>

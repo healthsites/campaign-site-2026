@@ -1776,6 +1776,10 @@ section {
     z-index: 0; /* keep below the fixed header */
 }
 .map-caption { font-size: 0.9rem; color: var(--medium-gray); margin-bottom: 0.5rem; }
+/* Health facilities from the healthsites.io API (campaign-map.js) */
+.map-caption--facilities { margin-top: 0.75rem; }
+.map-caption--facilities strong { color: var(--dark-gray); }
+.facility-popup__sub { color: var(--medium-gray); font-size: 0.85rem; margin: 2px 0 6px; }
 .facility-dot span {
     display: block;
     width: 14px; height: 14px;

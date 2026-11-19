@@ -3,6 +3,7 @@ Template: region
 Slug: campaigns/mozambique/nampula
 Lang: en
 Status: published
+facilities_geojson: moz_facilities.geojson
 Country: Mozambique
 Country_slug: mozambique
 Region: Nampula

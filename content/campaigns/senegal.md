@@ -4,6 +4,7 @@ Slug: campaigns/senegal
 Lang: en
 Status: published
 geojson_file: sen_admin1.geojson
+facilities_geojson: sen_facilities.geojson
 map_center_lat: 14.5
 map_center_lng: -14.5
 map_zoom: 6

@@ -10,6 +10,7 @@ languages: EN / Akan / Dagbani
 summary: Working group forming — no active campaign yet.
 order: 7
 geojson_file: gha_admin1.geojson
+facilities_geojson: gha_facilities.geojson
 map_center_lat: 7.9
 map_center_lng: -1.0
 map_zoom: 6

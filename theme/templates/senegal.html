@@ -37,13 +37,17 @@
 
 {# ── LEAFLET MAP ─────────────────────────────────────── #}
 {% if page.geojson_file %}
+{% set hs = HEALTHSITES.get(page.facilities_geojson) if (HEALTHSITES and page.facilities_geojson) else None %}
 <section class="page-map">
     <div class="container">
         <div id="map" class="campaign-map" role="region" aria-label="Map of {{ page.country }}"
              data-geojson="{{ SITEURL }}/theme/geojson/{{ page.geojson_file }}"
              data-lat="{{ page.map_center_lat|default(14.5) }}"
              data-lng="{{ page.map_center_lng|default(-14.5) }}"
-             data-zoom="{{ page.map_zoom|default(6) }}"></div>
+             data-zoom="{{ page.map_zoom|default(6) }}"{% if hs %}
+             data-facilities="{{ SITEURL }}/theme/geojson/{{ page.facilities_geojson }}"
+             data-country="{{ page.country }}"{% endif %}></div>
+        {% include "partials/facility_caption.html" %}
     </div>
 </section>
 {% endif %}
