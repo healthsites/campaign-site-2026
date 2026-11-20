@@ -4096,10 +4096,29 @@ a.sreg-card:hover {
 .heat-popup dd { margin: 0; font-weight: 600; text-align: right; color: var(--dark-gray); }
 .heat-popup p { margin: 6px 0; }
 .heat-popup__rank { font-weight: 600; color: var(--dark-gray); }
+.heat-popup .heat-popup__trust { margin: 4px 0 8px; font-size: 0.8rem; line-height: 1.4; color: var(--medium-gray); }
+.heat-provisional { margin: 8px 0 0; font-size: 0.95rem; color: var(--medium-gray); }
+.heat-views { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.heat-view {
+    font: inherit; font-size: 0.95rem; padding: 8px 14px; min-height: 40px;
+    border: 1px solid #c9ced2; border-radius: 999px; background: #fff; color: var(--dark-gray);
+    cursor: pointer;
+}
+.heat-view:hover { border-color: var(--dark-gray); }
+.heat-view:focus-visible { outline: 3px solid #6b2408; outline-offset: 2px; }
+.heat-view[aria-pressed="true"] { background: var(--dark-gray); border-color: var(--dark-gray); color: #fff; }
+.heat-table--regions { min-width: 600px; }
+.heat-table--regions th[scope="row"] { font-weight: 600; color: var(--dark-gray); }
+.heat-table--regions td { text-align: right; white-space: nowrap; }
+.heat-table--regions thead th:not(:first-child) { text-align: right; }
+.heat-table-foot { margin: 10px 0 0; color: var(--medium-gray); font-size: 0.9rem; }
+.heat-download-note { margin: 4px 0 0; font-size: 0.9rem; color: var(--medium-gray); max-width: 820px; }
+.drc-closing p.drc-closing__figures { font-weight: 600; }
 .senegal-data-link { padding: 0 0 64px; }
 .senegal-data-link .sreg-card { max-width: 760px; }
 @media (max-width: 640px) {
     .heat-map { height: 380px; min-height: 0; }
     .heat-section h2 { font-size: 22px; }
-    .heat-table th:nth-child(2), .heat-table td:nth-child(2) { display: none; }
+    .heat-table--top th:nth-child(2), .heat-table--top td:nth-child(2) { display: none; }
+    .heat-view { flex: 1 1 calc(50% - 8px); padding: 8px 10px; }
 }

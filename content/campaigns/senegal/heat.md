@@ -3,7 +3,7 @@ Template: senegal-heat
 Slug: campaigns/senegal/heat
 Lang: en
 Status: published
-Description: How hot each health facility in Senegal was over one recent week, from the healthsites.io API and the HeatReady API.
+Description: How hot it was at each health facility in Senegal over one week, day and night, from the healthsites.io API and the HeatReady API.
 heat_geojson: sen_facility_heat.geojson
 boundary_geojson: sen_admin1.geojson
 

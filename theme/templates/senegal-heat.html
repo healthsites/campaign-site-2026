@@ -19,19 +19,26 @@
             <span>Heat</span>
         </nav>
         <h1>{{ page.title }}</h1>
-        <p class="page-lede">How hot each health facility in Senegal was over one recent week, compared with every other facility in the country.</p>
+        <p class="page-lede" id="heat-lede">How hot it was at each health facility in Senegal <span id="heat-lede-dates">over one recent week</span>, day and night, compared with every other facility in the country.</p>
+        <p class="heat-provisional" id="heat-provisional" hidden></p>
     </div>
 </section>
 
 <!-- Map -->
 <section class="heat-section">
     <div class="container">
+        <div class="heat-views" id="heat-views" role="group" aria-label="What the map shows" hidden>
+            <button type="button" class="heat-view" data-view="day" aria-pressed="true" data-umami-event="Senegal Heat View Day">Daytime high</button>
+            <button type="button" class="heat-view" data-view="night" aria-pressed="false" data-umami-event="Senegal Heat View Night">Night-time low</button>
+            <button type="button" class="heat-view" data-view="wbgt" aria-pressed="false" data-umami-event="Senegal Heat View WBGT">Heat stress (WBGT)</button>
+            <button type="button" class="heat-view" data-view="anom" aria-pressed="false" data-umami-event="Senegal Heat View Above normal">Above normal</button>
+        </div>
         <p class="heat-meta" id="heat-meta" aria-live="polite">Loading heat data…</p>
-        <div id="heat-map" class="heat-map" role="region" aria-label="Map of health facilities in Senegal, coloured by temperature"
+        <div id="heat-map" class="heat-map" role="region" aria-label="Map of health facilities in Senegal, coloured by heat"
              data-heat="{{ heat_url }}"
              data-boundaries="{{ SITEURL }}/theme/geojson/{{ page.boundary_geojson|default('sen_admin1.geojson') }}"></div>
         <div class="heat-legend" id="heat-legend" hidden>
-            <p class="heat-legend__title">Hottest temperature of the day, compared with other facilities in Senegal</p>
+            <p class="heat-legend__title" id="heat-legend-title">Daytime high, compared with other facilities in Senegal</p>
             <ul class="heat-legend__items" id="heat-legend-items"></ul>
         </div>
     </div>
@@ -40,16 +47,33 @@
 <!-- Hottest facilities: a text view of the map -->
 <section class="heat-section heat-section--table" id="heat-top-section" hidden>
     <div class="container">
-        <h2>The 10 hottest facilities</h2>
-        <p class="heat-table-note">Hottest temperature of the day, averaged over the same days as the map.</p>
+        <h2 id="heat-top-title">The 10 hottest facilities</h2>
+        <p class="heat-table-note" id="heat-top-note">Daytime high, averaged over the same days as the map.</p>
         <div class="heat-table-wrap">
-            <table class="heat-table">
+            <table class="heat-table heat-table--top" aria-labelledby="heat-top-title">
                 <thead>
-                    <tr><th scope="col">Facility</th><th scope="col">Type</th><th scope="col">Region</th><th scope="col">Temperature</th></tr>
+                    <tr><th scope="col">Facility</th><th scope="col">Type</th><th scope="col">Region</th><th scope="col" id="heat-top-measure">Daytime high</th></tr>
                 </thead>
                 <tbody id="heat-top"></tbody>
             </table>
         </div>
+    </div>
+</section>
+
+<!-- Heat by region: compare regions, not single facilities -->
+<section class="heat-section heat-section--table" id="heat-region-section" hidden>
+    <div class="container">
+        <h2 id="heat-region-title">Heat by region</h2>
+        <p class="heat-table-note" id="heat-region-lead"></p>
+        <div class="heat-table-wrap">
+            <table class="heat-table heat-table--regions" aria-labelledby="heat-region-title">
+                <thead>
+                    <tr><th scope="col">Region</th><th scope="col">Facilities</th><th scope="col">Daytime high</th><th scope="col">Night-time low</th><th scope="col">WBGT</th><th scope="col">Above normal (9 km grid)</th></tr>
+                </thead>
+                <tbody id="heat-regions"></tbody>
+            </table>
+        </div>
+        <p class="heat-table-foot">Averages are over mapped facilities. Regions with few mapped facilities give a less complete picture.</p>
     </div>
 </section>
 
@@ -59,8 +83,9 @@
         <h2>How to read this map</h2>
         <ul class="heat-notes">
             <li><strong>Colours are relative.</strong> They compare each facility with the others in Senegal. A facility in the coolest group can still be dangerously hot.</li>
-            <li><strong>Nearby facilities share a value.</strong> Temperatures come from a weather grid of about 9 km, so facilities in the same grid square have the same temperature.</li>
-            <li><strong>Saint-Louis stands out.</strong> In the week shown, many of the facilities with the hottest temperatures are in the Saint-Louis region. Its facilities were checked in the field in 2022, so the map there is more complete than in regions that have not had a validation campaign.</li>
+            <li><strong>Values are corrected for local conditions.</strong> HeatReady downscales the 9&nbsp;km ERA5-Land grid, which reads below the daytime highs measured at Senegal's weather stations, most of all inland. Where the correction has not been tested, the map uses the grid value and the popup says so. Facilities in the same 9&nbsp;km square share one value.</li>
+            <li><strong>Nights and heat stress matter as much as the daytime high.</strong> Warm nights give no relief, and WBGT takes humidity, sun and wind into account. In dry months like November, the heat index reads below the air temperature, so it is in the download but not on the map.</li>
+            <li><strong>The top 10 depends on where facilities are mapped.</strong> Saint-Louis has more mapped facilities than any region outside Dakar, because they were checked in the field in 2022, so it has more chances to appear in the top 10. Use the region table to compare regions. Where facilities are missing from OpenStreetMap, the heat picture is missing too.</li>
         </ul>
     </div>
 </section>
@@ -70,6 +95,7 @@
     <div class="drc-closing__inner">
         <h2 id="heat-closing-title">Saint-Louis Étape&nbsp;2: evidence and policy engagement</h2>
         <p>In 2022, 35 facilities in Saint-Louis were identified as likely to support emergency pregnancy referrals, and many of them face some of the highest heat in Senegal. Étape&nbsp;2 confirms with the health system which of them can, and gives the Ministry of Health the evidence to make its case to the Ministry of Finance, with support from the National Statistics Office.</p>
+        <p class="drc-closing__figures" id="heat-closing-figures" hidden></p>
         <div class="drc-closing__actions">
             <a class="btn btn-primary" href="{{ SITEURL }}/campaigns/senegal/saint-louis/" data-umami-event="Senegal Heat Saint-Louis Click">Support Saint-Louis Étape&nbsp;2</a>
             <a class="text-link" href="https://healthsites.io/contact" data-umami-event="Senegal Heat Partner Click">Partner with us →</a>
@@ -83,10 +109,11 @@
         <h2>Sources</h2>
         <ul class="heat-sources">
             <li><strong>Health facilities:</strong> <a href="https://healthsites.io">healthsites.io</a> / © OpenStreetMap contributors, <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</a>.</li>
-            <li><strong>Heat:</strong> <a href="https://www.crisisready.io/heat-risk/">HeatReady</a>, CrisisReady. Daily maximum air temperature from ERA5-Land, with the most recent days filled from <a href="https://open-meteo.com/">Open-Meteo</a> (CC BY 4.0).</li>
-            <li>Generated using Copernicus Climate Change Service information <span id="heat-year">2026</span>. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains.</li>
+            <li><strong>Heat:</strong> <a href="https://www.crisisready.io/heat-risk/">HeatReady</a>, CrisisReady, licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Daily values from ERA5-Land, downscaled by HeatReady, with the most recent days filled from <a href="https://open-meteo.com/">Open-Meteo</a> (CC BY 4.0) until ERA5-Land replaces them. Baseline: 2016–2025, same calendar days.</li>
+            <li id="heat-copernicus">Generated using Copernicus Climate Change Service (C3S) information via the ERA5 reanalysis (2026). Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains.</li>
         </ul>
-        <p class="heat-download"><a href="{{ heat_url }}" download data-umami-event="Senegal Heat Data Download">Download the map data (GeoJSON, ODbL)</a></p>
+        <p class="heat-download"><a href="{{ heat_url }}" download data-umami-event="Senegal Heat Data Download">Download the map data (GeoJSON)</a></p>
+        <p class="heat-download-note">Facility names, types and locations: ODbL 1.0. Heat values: CC BY 4.0. Credit HeatReady (CrisisReady) and include the Copernicus statement above.</p>
     </div>
 </section>
 
