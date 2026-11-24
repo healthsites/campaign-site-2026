@@ -1,0 +1,11 @@
+Title: Kaolack
+Template: region
+Slug: campaigns/senegal/kaolack
+Lang: en
+Status: published
+Country: Senegal
+Country_slug: senegal
+Region: Kaolack
+Region_tier: open-data
+geojson_file: sen_admin1.geojson
+facilities_geojson: sen_facilities.geojson

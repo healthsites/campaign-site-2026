@@ -7,6 +7,10 @@ Status: published
 Country: Senegal
 Country_slug: senegal
 Region: Saint-Louis
+Region_tier: campaign
+Order: 01
+Card_status: Étape 1 Complete
+Card_text: 398 facilities validated and 1,325 beds documented — one of the most complete open health datasets in West Africa.
 geojson_file: sen_admin1.geojson
 facilities_geojson: sen_facilities.geojson
 highlight_geojson: sen_saint_louis_emergency.geojson

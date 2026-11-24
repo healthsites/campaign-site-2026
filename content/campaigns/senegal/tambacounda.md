@@ -8,6 +8,9 @@ facilities_geojson: sen_facilities.geojson
 Country: Senegal
 Country_slug: senegal
 Region: Tambacounda
+Region_tier: campaign
+Order: 03
+Card_text: One of Senegal's largest and most remote regions — a vast area with a dispersed rural population and significant data gaps. €60,000 needed to launch Étape 1.
 Campaign_status: Planned 2027
 Budget_needed: €60,000
 Facilities_target: 450

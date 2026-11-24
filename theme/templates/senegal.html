@@ -41,6 +41,18 @@
 {% include "partials/campaign_map.html" %}
 {% endif %}
 
+{# Region pages of Senegal (not sub-pages such as Étape 2). Cards: every campaign region,
+   plus any region page with Card_text (e.g. Matam). Order: the pages' Order (two digits). #}
+{% set region_pages = pages | selectattr('region') | selectattr('country_slug', 'equalto', 'senegal') | rejectattr('parent_url') | list %}
+{% set campaign_pages = [] %}{% set card_pages = [] %}{% set validated = [] %}
+{% for p in region_pages %}
+    {% set p_tier = p.region_tier or ('campaign' if p.campaign_status else 'open-data') %}
+    {% if p_tier == 'campaign' %}{% set _ = campaign_pages.append(p) %}{% endif %}
+    {% if p_tier == 'campaign' or p.card_text %}{% set _ = card_pages.append(p) %}{% endif %}
+    {% if p.campaign_status and 'complete' in p.campaign_status|lower %}{% set _ = validated.append(p.region) %}{% endif %}
+{% endfor %}
+{% set hs_sen = HEALTHSITES.get(page.facilities_geojson) if (HEALTHSITES and page.facilities_geojson) else None %}
+
 <!-- Country stat band (light) -->
 <section class="country-stat-band">
     <div class="cstat-inner">
@@ -53,12 +65,12 @@
             <div class="cstat-label">{% if is_fr %}Régions médicales{% else %}Medical regions{% endif %}</div>
         </div>
         <div class="cstat-cell cstat-cell--divider">
-            <div class="cstat-number">2</div>
+            <div class="cstat-number">{{ validated|length }}</div>
             <div class="cstat-label">{% if is_fr %}Régions complètes{% else %}Regions complete{% endif %}</div>
         </div>
         <div class="cstat-cell cstat-cell--divider">
-            <div class="cstat-number">2</div>
-            <div class="cstat-label">{% if is_fr %}Campagnes invitant au soutien{% else %}Campaigns inviting support{% endif %}</div>
+            <div class="cstat-number">{{ campaign_pages|length }}</div>
+            <div class="cstat-label">{% if is_fr %}Régions invitant au soutien{% else %}Regions inviting support{% endif %}</div>
         </div>
     </div>
 </section>
@@ -67,30 +79,40 @@
 <section class="senegal-campaigns">
     <div class="container">
         <h2>{% if is_fr %}Campagnes régionales{% else %}Regional Campaigns{% endif %}</h2>
-        <p class="section-sub">{% if is_fr %}Deux régions validées, une prévue en 2027.{% else %}Two regions validated, one planned for 2027.{% endif %}</p>
+        <p class="section-sub">{% if is_fr %}{{ campaign_pages|length }} régions invitent au soutien. {{ validated|join(' et ') }} {{ 'est validée' if validated|length == 1 else 'sont validées' }}. Chaque région a sa page, avec sa carte.{% else %}{{ campaign_pages|length }} regions invite support. {{ validated|join(' and ') }} {{ 'is' if validated|length == 1 else 'are' }} validated. Every region has its own page and map.{% endif %}</p>
         <div class="senegal-region-grid">
-
-            <a href="{{ SITEURL }}/campaigns/senegal/saint-louis/" class="sreg-card">
-                <span class="status-chip status-chip--complete">{% if is_fr %}Étape 1 Complète{% else %}Étape 1 Complete{% endif %}</span>
-                <h3>Saint-Louis</h3>
-                <p>{% if is_fr %}398 établissements validés et 1 325 lits documentés — l'un des jeux de données de santé ouverts les plus complets d'Afrique de l'Ouest.{% else %}398 facilities validated and 1,325 beds documented — one of the most complete open health datasets in West Africa.{% endif %}</p>
+            {# Pages with an Order first, in that order, then any without one #}
+            {% for p in (card_pages|selectattr('order')|sort(attribute='order')|list) + (card_pages|rejectattr('order')|list) %}
+            {% set chip = p.card_status or p.campaign_status or ('Données ouvertes' if is_fr else 'Open data') %}
+            {% set n = hs_sen.by_region.get(p.adm1_name or p.region) if hs_sen else None %}
+            <a href="{{ SITEURL }}/{{ p.url }}" class="sreg-card" data-umami-event="Senegal Region Card Click">
+                <span class="status-chip {% if 'complete' in chip|lower %}status-chip--complete{% elif 'inviting' in chip|lower or 'active' in chip|lower %}status-chip--active{% else %}status-chip--planned{% endif %}">{{ chip }}</span>
+                <h3>{{ p.region }}</h3>
+                <p>{% if p.card_text %}{{ p.card_text }}{% elif n is not none %}{% if is_fr %}{{ n }} établissements de santé sur OpenStreetMap aujourd'hui. Nous cherchons des partenaires pour une campagne.{% else %}{{ n }} health facilities on OpenStreetMap today. We are looking for partners for a campaign.{% endif %}{% else %}{% if is_fr %}Nous cherchons des partenaires pour une campagne.{% else %}We are looking for partners for a campaign.{% endif %}{% endif %}</p>
                 <span class="sreg-learn-more">{% if is_fr %}En savoir plus →{% else %}Learn More →{% endif %}</span>
             </a>
-
-            <a href="{{ SITEURL }}/campaigns/senegal/tambacounda/" class="sreg-card">
-                <span class="status-chip status-chip--planned">{% if is_fr %}Prévue en 2027{% else %}Planned 2027{% endif %}</span>
-                <h3>Tambacounda</h3>
-                <p>{% if is_fr %}L'une des régions les plus vastes et les plus éloignées du Sénégal — une zone immense avec une population rurale dispersée et d'importantes lacunes en données. €60 000 nécessaires pour lancer l'Étape 1.{% else %}One of Senegal's largest and most remote regions — a vast area with a dispersed rural population and significant data gaps. €60,000 needed to launch Étape 1.{% endif %}</p>
-                <span class="sreg-learn-more">{% if is_fr %}En savoir plus →{% else %}Learn More →{% endif %}</span>
-            </a>
-
-            <div class="sreg-card sreg-card--no-link">
-                <span class="status-chip status-chip--complete">{% if is_fr %}Terminée (2023){% else %}Complete (2023){% endif %}</span>
-                <h3>Matam</h3>
-                <p>{% if is_fr %}212 établissements de santé validés en 2023, avec des données cartographiques associées, dont 93 286 bâtiments.{% else %}212 health facilities validated in 2023, with supporting map data including 93,286 buildings.{% endif %}</p>
-            </div>
+            {% endfor %}
 
         </div>
+
+        {# Every other medical region: open data, a map and the facility count #}
+        {% set open_pages = [] %}
+        {% for p in region_pages if p not in card_pages %}{% set _ = open_pages.append(p) %}{% endfor %}
+        {% if open_pages %}
+        <h2 class="senegal-subhead">{% if is_fr %}Les autres régions médicales{% else %}Other medical regions{% endif %}</h2>
+        <p class="section-sub">{% if is_fr %}Données ouvertes : une carte et les établissements de santé sur OpenStreetMap. Une campagne dans l'une d'elles aiderait-elle votre travail ? <a href="https://healthsites.io/contact" data-umami-event="Senegal Open Data Regions Interest Click">Dites-le-nous</a>.{% else %}Open data: a map and the health facilities on OpenStreetMap. Would a campaign in one of them help your work? <a href="https://healthsites.io/contact" data-umami-event="Senegal Open Data Regions Interest Click">Tell us</a>.{% endif %}</p>
+        <div class="senegal-region-grid senegal-region-grid--open">
+            {% for p in open_pages|sort(attribute='region') %}
+            {% set n = hs_sen.by_region.get(p.adm1_name or p.region) if hs_sen else None %}
+            <a href="{{ SITEURL }}/{{ p.url }}" class="sreg-card sreg-card--open" data-umami-event="Senegal Open Data Region Card Click">
+                <span class="status-chip status-chip--open">{% if is_fr %}Données ouvertes{% else %}Open data{% endif %}</span>
+                <h3>{{ p.region }}</h3>
+                {% if n is not none %}<p>{% if is_fr %}{{ "{:,}".format(n)|replace(',', ' ') }} établissements de santé sur OpenStreetMap.{% else %}{{ "{:,}".format(n) }} health facilities on OpenStreetMap.{% endif %}</p>{% endif %}
+                <span class="sreg-learn-more">{% if is_fr %}Voir la carte →{% else %}See the map →{% endif %}</span>
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
 </section>
 

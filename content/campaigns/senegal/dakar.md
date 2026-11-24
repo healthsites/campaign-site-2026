@@ -1,0 +1,11 @@
+Title: Dakar
+Template: region
+Slug: campaigns/senegal/dakar
+Lang: en
+Status: published
+Country: Senegal
+Country_slug: senegal
+Region: Dakar
+Region_tier: open-data
+geojson_file: sen_admin1.geojson
+facilities_geojson: sen_facilities.geojson

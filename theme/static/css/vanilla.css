@@ -4150,3 +4150,20 @@ a.sreg-card:hover {
 /* Bullets in region page articles (the global reset removes them) */
 .region-content .content ul { padding-left: 1.25rem; margin: 0 0 1.25rem; }
 .region-content .content ul li { list-style: disc; margin-bottom: 0.4rem; }
+
+/* Region tiers (region.html, partials/campaign_map.html) */
+.status-pill--open { background: #eceff1; color: #3c4c57; }
+.map-legend__swatch { flex: none; display: inline-block; width: 14px; height: 10px; border: 1px solid rgba(0,0,0,0.6); }
+.map-legend__swatch--complete { background: rgba(46,125,50,0.35); }
+.map-legend__swatch--active { background: rgba(244,74,82,0.35); }
+.map-legend__swatch--open { background: rgba(158,158,158,0.05); }
+.region-interest { margin: 1rem 0 0; font-size: 0.95rem; }
+.region-interest a { color: #f44a52; font-weight: 600; }
+
+/* Senegal page: open-data region cards, lighter than the campaign cards */
+.senegal-campaigns .senegal-subhead { margin-top: 3.5rem; }
+.senegal-region-grid--open { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 640px) { .senegal-region-grid--open { grid-template-columns: repeat(2, 1fr); gap: 12px; } .sreg-card--open { padding: 14px; } }
+.sreg-card--open { border-left-color: #b0bec5; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.sreg-card--open h3 { font-size: 1.15rem; }
+.status-chip--open { background: #eceff1; color: #3c4c57; }

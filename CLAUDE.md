@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Publishing rule
+
+**Never run `git commit` or `git push` until Mark types "publish".** "Go ahead", "OK", "continue" and similar mean keep working, not publish. This overrides any task file or handoff that says to commit or push after an OK.
+
 ## Commands
 
 ```bash
@@ -86,6 +90,14 @@ A region page reuses its country's two map files. Add to its front matter:
 geojson_file: sen_admin1.geojson          # same boundary file as the country page
 facilities_geojson: sen_facilities.geojson # same healthsites.io API download
 ```
+
+### Region tiers
+
+Every region page has `Region_tier: campaign` (invites support) or `Region_tier: open-data` (map, facility figures, API ask and a "Want a campaign here? Tell us" link). Change that one line to move a region. Pages without it are campaigns if they have a `Campaign_status`.
+
+- `python3 scripts/region_pages.py sen --campaign <names>` creates a front-matter-only page for every region in the boundary file that has no page yet. It never touches existing pages. Region pages without a body get their text from `region.html`, in English and French.
+- The Senegal page builds its region cards from the region pages: every campaign region, plus any page with `Card_text`. Cards sort by `Order` (two digits, e.g. `01`). `Card_status` overrides the chip text.
+- The country map colours regions from the pages: `status: complete` in the boundary file is green (validated), `Region_tier: campaign` is red (inviting support), the rest grey (open data). The boundary file's `planned` value is no longer used once a country has region pages.
 
 `partials/campaign_map.html` then zooms the map to the region, fades the others and shows only that region's facilities. `Region:` must match `adm1_name` in the boundary file exactly (accents included); if it differs, add `adm1_name: <exact name>`. The country map's region popups link to every published region page automatically.
 
