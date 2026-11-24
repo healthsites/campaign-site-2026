@@ -183,6 +183,22 @@ class KeyTest(Sandbox):
         self.assertIn("refused the key", report)
         self.assertNotIn(KEY, out + report)
 
+    def test_rejected_request_shows_the_api_reason_without_the_key(self):
+        def urlopen(req, timeout=None):
+            body = json.dumps({"detail": f"Country 'Testland' not found (api-key={KEY})"}).encode()
+            raise urllib.error.HTTPError(req.full_url, 400, "Bad Request", {}, io.BytesIO(body))
+        code, out, report = self.run_refresh(urlopen)
+        self.assertEqual(code, 1)
+        self.assertIn("HTTP 400 (Country 'Testland' not found", report)
+        self.assertNotIn(KEY, out + report)
+
+    def test_html_error_page_is_left_out(self):
+        def urlopen(req, timeout=None):
+            raise urllib.error.HTTPError(req.full_url, 400, "Bad Request", {},
+                                         io.BytesIO(b"<html><body>Bad Request</body></html>"))
+        code, out, report = self.run_refresh(urlopen)
+        self.assertIn("returned HTTP 400.", report)
+
     def test_success(self):
         pages = {1: [item(1, 0.5, 0.5)], 2: []}
 
