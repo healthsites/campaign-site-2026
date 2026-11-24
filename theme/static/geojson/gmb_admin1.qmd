@@ -1,0 +1,48 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis version="3.34.4-Prizren">
+  <identifier></identifier>
+  <parentidentifier></parentidentifier>
+  <language></language>
+  <type></type>
+  <title>The Gambia regions and municipalities (ADM1), for campaigns.healthsites.io</title>
+  <abstract>Source: Gambia – Subnational Administrative Boundaries (COD-AB), Gambia National Disaster Management Agency (NDMA), published by OCHA on HDX. File gmb_admin1.geojson from gmb_admin_boundaries.geojson.zip, version v01, valid from 2022-09-01, files dated 26 January 2026, downloaded 24 November 2026. 8 admin 1 units. Fields reduced to adm1_name and adm1_pcode in QGIS 3.34 on 24 November 2026. Not simplified.</abstract>
+  <contact>
+    <name></name>
+    <organization></organization>
+    <position></position>
+    <voice></voice>
+    <fax></fax>
+    <email></email>
+    <role></role>
+  </contact>
+  <links>
+    <link type="WWW:LINK" mimeType="" name="HDX cod-ab-gmb" format="" url="https://data.humdata.org/dataset/cod-ab-gmb" size="" description=""/>
+  </links>
+  <dates/>
+  <fees></fees>
+  <constraints type="use">Not compatible with the OpenStreetMap licence (ODbL). Do not import into OpenStreetMap.</constraints>
+  <license>Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO)</license>
+  <encoding></encoding>
+  <crs>
+    <spatialrefsys nativeFormat="Wkt">
+      <wkt></wkt>
+      <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+      <srsid>0</srsid>
+      <srid>0</srid>
+      <authid></authid>
+      <description></description>
+      <projectionacronym></projectionacronym>
+      <ellipsoidacronym></ellipsoidacronym>
+      <geographicflag>false</geographicflag>
+    </spatialrefsys>
+  </crs>
+  <extent>
+    <spatial minx="179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368" miny="179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368" minz="0" dimensions="2" maxz="0" crs="" maxy="-179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368" maxx="-179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368"/>
+    <temporal>
+      <period>
+        <start></start>
+        <end></end>
+      </period>
+    </temporal>
+  </extent>
+</qgis>

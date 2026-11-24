@@ -51,6 +51,7 @@ COUNTRIES = {
     "zaf": {"name": "South Africa", "boundaries": "zaf_admin1.geojson"},
     "ssd": {"name": "South Sudan", "boundaries": "ssd_admin1.geojson"},
     "moz": {"name": "Mozambique", "boundaries": "moz_admin1.geojson"},
+    "gmb": {"name": "The Gambia", "boundaries": "gmb_admin1.geojson"},
 }
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -140,6 +141,26 @@ def cmd_save_key(_args):
     print(f"Saved to {HS_KEY_FILE} (readable only by you).")
 
 
+def api_reason(err, key):
+    """The API's own short explanation of an HTTP error, with the key removed."""
+    try:
+        text = err.read().decode("utf-8", "replace").strip()
+    except Exception:
+        return ""
+    if not text or text.startswith("<"):
+        return ""  # empty, or an HTML error page
+    try:
+        data = json.loads(text)
+        if isinstance(data, dict):
+            data = data.get("detail") or data.get("message") or data.get("error") or data
+        text = data if isinstance(data, str) else json.dumps(data, ensure_ascii=False)
+    except ValueError:
+        pass
+    for secret in {key, urllib.parse.quote(key)} - {""}:
+        text = text.replace(secret, "***")
+    return " ".join(text.split())[:200]
+
+
 def hs_get(params):
     """One API call. Returns the parsed JSON, or None for a page past the end."""
     url = HS_API + "?" + urllib.parse.urlencode(params)
@@ -158,7 +179,9 @@ def hs_get(params):
             if e.code == 429:
                 raise ApiError("healthsites.io daily limit reached") from None
             if e.code < 500 or attempt == RETRIES:
-                raise ApiError(f"healthsites.io returned HTTP {e.code}") from None
+                reason = api_reason(e, params.get("api-key", ""))
+                raise ApiError(f"healthsites.io returned HTTP {e.code}"
+                               + (f" ({reason})" if reason else "")) from None
         except (urllib.error.URLError, TimeoutError, ValueError) as e:
             if attempt == RETRIES:
                 reason = getattr(e, "reason", None) or type(e).__name__

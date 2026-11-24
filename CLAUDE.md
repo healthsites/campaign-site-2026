@@ -101,6 +101,21 @@ Every region page has `Region_tier: campaign` (invites support) or `Region_tier:
 
 `partials/campaign_map.html` then zooms the map to the region, fades the others and shows only that region's facilities. `Region:` must match `adm1_name` in the boundary file exactly (accents included); if it differs, add `adm1_name: <exact name>`. The country map's region popups link to every published region page automatically.
 
+### Adding a campaign country
+
+Every campaign country has four files (The Gambia, `gmb`, is the worked example):
+
+1. `theme/static/geojson/<iso3>_admin1.geojson`: exported from QGIS (EPSG:4326, 6 decimals,
+   field `adm1_name`, optionally `adm1_pcode`), with its filled-in `<iso3>_admin1.qmd`.
+   QGIS is the source of truth: never hand-edit the GeoJSON.
+2. A line in `COUNTRIES` in `scripts/healthsites_facilities.py`:
+   `"<iso3>": {"name": "<country name the API accepts>", "boundaries": "<iso3>_admin1.geojson"}`.
+   Then `python3 scripts/healthsites_facilities.py refresh <iso3>` writes
+   `<iso3>_facilities.geojson`, and the Monday refresh includes the country.
+3. `content/campaigns/<slug>.md` with `Template: country`, `campaign_country: true`, `stage`,
+   `order`, `geojson_file`, `facilities_geojson`, `map_center_lat`, `map_center_lng` and
+   `map_zoom`. Copy `ghana.md`.
+
 ### Templates
 
 Located in `theme/templates/` (Jinja2):
