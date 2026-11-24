@@ -1,0 +1,11 @@
+Title: Fatick
+Template: region
+Slug: campaigns/senegal/fatick
+Lang: en
+Status: published
+Country: Senegal
+Country_slug: senegal
+Region: Fatick
+Region_tier: open-data
+geojson_file: sen_admin1.geojson
+facilities_geojson: sen_facilities.geojson

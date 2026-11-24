@@ -42,13 +42,24 @@
         });
     }
 
-    function styleFor(feature, focus) {
+    // Colour of a region. With region pages (links), the pages decide: "complete" in the
+    // boundary file is validated (green), Region_tier campaign invites support (brand),
+    // anything else is open data (grey). Without links, the boundary file's status, as before.
+    function statusOf(p, links) {
+        var s = (p.status || '').toLowerCase();
+        if (!links || !Object.keys(links).length) return s;
+        if (s === 'complete') return 'complete';
+        var link = links[regionName(p)];
+        return link && link.tier === 'campaign' ? 'active' : '';
+    }
+
+    function styleFor(feature, focus, links) {
         var name = regionName(feature.properties);
         if (focus && name !== focus) {
             // Other regions on a region page: a light veil, so the focus region stands out.
             return { color: '#9e9e9e', weight: 0.5, opacity: 0.8, fillColor: '#ffffff', fillOpacity: 0.55 };
         }
-        var status = (feature.properties.status || '').toLowerCase();
+        var status = statusOf(feature.properties, links);
         var fill = status === 'complete' ? '#2e7d32'   // green - validated
                  : status === 'active'   ? '#f44a52'   // brand - in progress
                  : '#9e9e9e';                          // grey  - planned
@@ -79,11 +90,13 @@
             html += '<br>' + escapeHtml(link.status);
         } else if ((p.status || '').toLowerCase() === 'complete') {
             html += '<br>Campaign complete';
+        } else if (link && link.tier === 'open-data') {
+            html += '<br>Open data';
         }
         if (link && link.url && name !== focus) {
             html += '<br><a href="' + escapeHtml(link.url) + '" data-umami-event="' +
                 escapeHtml((country ? country + ' ' : '') + 'Map Region Click') + '">Open the ' +
-                escapeHtml(name) + ' campaign →</a>';
+                escapeHtml(name) + ' page →</a>';
         }
         return html;
     }
@@ -296,7 +309,7 @@
             .then(function (geojson) {
                 var focusLayer = null;
                 L.geoJSON(geojson, {
-                    style: function (f) { return styleFor(f, focus); },
+                    style: function (f) { return styleFor(f, focus, links); },
                     onEachFeature: function (feature, layer) {
                         var p = feature.properties || {};
                         layer.bindPopup(regionPopup(p, undefined, links, focus, country));

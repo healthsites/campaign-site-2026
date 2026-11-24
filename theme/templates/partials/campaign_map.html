@@ -16,7 +16,8 @@
 {% set map_country_slug = page.country_slug|default(page.country|lower) %}
 {% set region_links = {} %}
 {% for p in pages if p.region and not p.parent_url and p.country_slug == map_country_slug and p.lang == page.lang %}
-    {% set _ = region_links.update({(p.adm1_name or p.region): {"url": SITEURL ~ "/" ~ p.url, "status": p.campaign_status or ""}}) %}
+    {% set _ = region_links.update({(p.adm1_name or p.region): {"url": SITEURL ~ "/" ~ p.url, "status": p.campaign_status or "",
+                                       "tier": p.region_tier or ("campaign" if p.campaign_status else "open-data")}}) %}
 {% endfor %}
 <section class="page-map">
     <div class="container">
@@ -33,6 +34,15 @@
              {%- if page.highlight_label %} data-highlight-label="{{ page.highlight_label }}"{% endif %}
              {%- if hl_heat and hl.heat_range %} data-highlight-dates="{{ hl.heat_range }}"{% endif %}
              {%- if page.highlight_link %} data-highlight-link="{{ SITEURL }}{{ page.highlight_link }}"{% endif %}{% endif %}></div>
+        {% if not map_region and region_links %}
+        {# Country map: region colours come from the region pages (Region_tier) and the boundary file (status: complete) #}
+        <ul class="map-legend" aria-label="Map key">
+            <li><span class="map-legend__swatch map-legend__swatch--complete"></span>Validated</li>
+            <li><span class="map-legend__swatch map-legend__swatch--active"></span>Inviting support</li>
+            <li><span class="map-legend__swatch map-legend__swatch--open"></span>Open data: map and facility figures</li>
+            {% if hs %}<li><span class="map-legend__dot map-legend__dot--other"></span>Health facility on OpenStreetMap</li>{% endif %}
+        </ul>
+        {% endif %}
         {% if hl %}
         <ul class="map-legend" aria-label="Map key">
             {% if hl_heat %}
@@ -60,7 +70,7 @@
                     {% for name, n in hs.by_region|dictsort(by='value', reverse=true) %}
                         {% set link = region_links.get(name) %}
                         <tr>
-                            <th scope="row">{% if link %}<a href="{{ link.url }}" data-umami-event="{{ page.country }} Region Table Click">{{ name }}</a>{% if link.status %}<span class="region-counts-status">{{ link.status }}</span>{% endif %}{% else %}{{ name }}{% endif %}</th>
+                            <th scope="row">{% if link %}<a href="{{ link.url }}" data-umami-event="{{ page.country }} Region Table Click">{{ name }}</a><span class="region-counts-status">{{ link.status if link.status else 'Open data' }}</span>{% else %}{{ name }}{% endif %}</th>
                             <td class="num">{{ "{:,}".format(n) }}<span class="region-count-bar" style="width:{{ (100 * n / top)|round(1) if top else 0 }}%" aria-hidden="true"></span></td>
                         </tr>
                     {% endfor %}

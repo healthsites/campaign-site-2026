@@ -12,6 +12,12 @@
 {% set is_pt = (page and page.lang == 'pt') or DEFAULT_LANG == 'pt' %}
 {% set is_ar = (page and page.lang == 'ar') or DEFAULT_LANG == 'ar' %}
 {% set lang_prefix = '/fr' if is_fr else '/pt' if is_pt else '/ar' if is_ar else '' %}
+{# Region_tier: campaign (invites support) or open-data (map, figures, API). Pages without
+   it keep the old behaviour: a campaign if they have a Campaign_status. #}
+{% set tier = page.region_tier or ('campaign' if page.campaign_status else 'open-data') %}
+{% set region_key = page.adm1_name or page.region %}
+{% set hs_page = HEALTHSITES.get(page.facilities_geojson) if (HEALTHSITES and page.facilities_geojson) else None %}
+{% set region_n = hs_page.by_region.get(region_key) if hs_page else None %}
 
 <!-- Header band -->
 <section class="page-header-band">
@@ -38,10 +44,16 @@
         <span class="status-pill {% if 'complete' in page.campaign_status|lower %}status-pill--complete{% elif 'active' in page.campaign_status|lower or 'inviting' in page.campaign_status|lower %}status-pill--active{% else %}status-pill--planned{% endif %}">
             {{ page.campaign_status }}
         </span>
+        {% elif tier == 'open-data' %}
+        <span class="status-pill status-pill--open">{% if is_fr %}Données ouvertes{% else %}Open data{% endif %}</span>
         {% endif %}
 
         {% if page.lede %}
         <p class="page-lede">{{ page.lede }}</p>
+        {% elif tier == 'open-data' and not page.content|trim %}
+        <p class="page-lede">{% if is_fr %}Les établissements de santé de {{ page.region }} sur OpenStreetMap, servis par l'API healthsites.io. healthsites.io n'a pas encore de campagne ici.{% else %}Health facilities in {{ page.region }} on OpenStreetMap, served by the healthsites.io API. healthsites.io has no campaign here yet.{% endif %}</p>
+        {% elif not page.content|trim %}
+        <p class="page-lede">{% if is_fr %}healthsites.io invite des partenaires à mener une campagne de cartographie sanitaire d'urgence à {{ page.region }}.{% else %}healthsites.io invites partners to run an Emergency Health Mapping Campaign in {{ page.region }}.{% endif %}</p>
         {% endif %}
     </div>
 </section>
@@ -56,6 +68,14 @@
                 {% if is_fr %}Établissements validés &amp; publiés sur OSM{% else %}Facilities validated &amp; uploaded to OSM{% endif %}
             </div>
         </div>
+        {% if page.buildings_mapped %}
+        <div class="cstat-cell cstat-cell--divider-white">
+            <div class="cstat-number cstat-number--white">{{ page.buildings_mapped }}</div>
+            <div class="cstat-label cstat-label--white">
+                {% if is_fr %}Bâtiments cartographiés{% else %}Buildings mapped{% endif %}
+            </div>
+        </div>
+        {% endif %}
         {% if page.beds_documented %}
         <div class="cstat-cell cstat-cell--divider-white">
             <div class="cstat-number cstat-number--white">{{ page.beds_documented }}</div>
@@ -139,7 +159,28 @@
         <div class="region-layout">
 
             <article class="content">
+                {% if page.content|trim %}
                 {{ page.content }}
+                {% elif tier == 'open-data' %}
+                {# Generated page (scripts/region_pages.py): the template writes the text #}
+                {% if is_fr %}
+                <p>Ces établissements sont des données ouvertes sous la licence Open Database, et l'API healthsites.io les sert à tous.</p>
+                <p>Un établissement manque, a fermé ou est mal placé ? Tout le monde peut le corriger sur OpenStreetMap.</p>
+                <p>Une campagne à {{ page.region }} aiderait-elle votre travail ? <a href="https://healthsites.io/contact" data-umami-event="{{ page.region }} Campaign Interest Click">Dites-le-nous</a>. Chaque demande nous aide à choisir où aller ensuite.</p>
+                {% else %}
+                <p>These facilities are open data under the Open Database Licence, and the healthsites.io API serves them to anyone.</p>
+                <p>Is a facility missing, closed or in the wrong place? Anyone can fix it on OpenStreetMap.</p>
+                <p>Would a campaign in {{ page.region }} help your work? <a href="https://healthsites.io/contact" data-umami-event="{{ page.region }} Campaign Interest Click">Tell us</a>. Each request helps us decide where to go next.</p>
+                {% endif %}
+                {% else %}
+                {% if is_fr %}
+                <p>Une campagne vérifie chaque établissement sur le terrain, avec le système de santé, et publie les résultats en données ouvertes. <a href="{{ SITEURL }}/about/methodology/">Lire la méthodologie →</a></p>
+                <p>Contactez-nous pour financer la campagne, y participer ou aider à cartographier.</p>
+                {% else %}
+                <p>A campaign checks every facility on the ground, with the health system, and publishes the results as open data. <a href="{{ SITEURL }}/about/methodology/">Read the methodology →</a></p>
+                <p>Get in touch to fund the campaign, partner on it or help map.</p>
+                {% endif %}
+                {% endif %}
             </article>
 
             <aside class="region-sidebar">
@@ -197,6 +238,37 @@
                     <div class="eyebrow">{% if is_fr %}Données ouvertes{% else %}Open Data{% endif %}</div>
                     <p>{% if is_fr %}Chaque établissement est publié sur OpenStreetMap sous la licence Open Database — un bien public permanent que tout programme peut utiliser.{% else %}Every facility is published to OpenStreetMap under the Open Database Licence — a permanent public asset any programme can build on.{% endif %}</p>
                 </div>
+
+                {% elif tier == 'open-data' %}
+                {# Open-data region: the figures, the API and a demand test #}
+                <div class="campaign-stats">
+                    <h3>{% if is_fr %}Données ouvertes{% else %}Open data{% endif %}</h3>
+                    {% if region_n is not none %}
+                    <div class="stat">
+                        <strong>{% if is_fr %}Sur OpenStreetMap{% else %}On OpenStreetMap{% endif %}</strong>
+                        <span>{{ "{:,}".format(region_n) }}</span>
+                    </div>
+                    <div class="stat">
+                        <strong>{% if is_fr %}Mis à jour{% else %}Updated{% endif %}</strong>
+                        <span>{{ hs_page.updated_day }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="campaign-actions">
+                    <a href="https://github.com/healthsites/healthsites/wiki/API" class="btn btn-primary" target="_blank" rel="noopener"
+                       data-umami-event="{{ page.region }} Open Data API Click">
+                        {% if is_fr %}Utiliser ces données{% else %}Use this data{% endif %}
+                    </a>
+                    <a href="https://healthsites.io/map?place={{ page.region|urlencode }}" class="btn btn-secondary" target="_blank" rel="noopener"
+                       data-umami-event="{{ page.region }} Map Click">
+                        {% if is_fr %}Voir sur healthsites.io{% else %}See it on healthsites.io{% endif %}
+                    </a>
+                </div>
+                <p class="region-interest">
+                    <a href="https://healthsites.io/contact" data-umami-event="{{ page.region }} Campaign Interest Click">
+                        {% if is_fr %}Une campagne à {{ page.region }} ? Dites-le-nous →{% else %}Want a campaign in {{ page.region }}? Tell us →{% endif %}
+                    </a>
+                </p>
 
                 {% else %}
                 {# In-progress campaign: Phase 1 stats + CTAs #}
