@@ -120,6 +120,17 @@ class BuildTest(Sandbox):
         self.assertEqual(meta["by_type"], {"hospital": 1, "clinic": 1, "doctor": 0, "pharmacy": 1, "other": 1})
         self.assertEqual(meta["licence"], "ODbL 1.0")
 
+    def test_just_outside_a_boundary_joins_the_nearest_region(self):
+        # 0.005 degrees is about 550 m: inside the 1 km limit. 0.05 is about 5.5 km: outside it.
+        recs = [{"id": "node/8", "name": "Poste côtier", "type": "clinic", "lon": -0.005, "lat": 0.5},
+                {"id": "node/9", "name": "Au large", "type": "clinic", "lon": -0.05, "lat": 0.5}]
+        gj = hsf.build_geojson("tst", recs, "2026-11-24", 1)
+        regions = {f["properties"]["id"]: f["properties"]["r"] for f in gj["features"]}
+        self.assertEqual(regions, {"node/8": "West", "node/9": ""})
+        self.assertEqual(gj["metadata"]["snapped_to_region"], 1)
+        self.assertEqual(gj["metadata"]["outside_regions"], 1)
+        self.assertEqual(gj["metadata"]["by_region"], {"West": 1, "East": 0})
+
     def test_only_small_public_properties(self):
         gj = hsf.build_geojson("tst", self.records(), "2026-11-23", 2)
         for f in gj["features"]:
