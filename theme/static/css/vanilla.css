@@ -4122,3 +4122,31 @@ a.sreg-card:hover {
     .heat-table--top th:nth-child(2), .heat-table--top td:nth-child(2) { display: none; }
     .heat-view { flex: 1 1 calc(50% - 8px); padding: 8px 10px; }
 }
+
+/* Facilities on OpenStreetMap by region (partials/campaign_map.html) */
+.region-counts { margin-top: 2rem; }
+.region-counts h2 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+.region-counts-table .num { text-align: right; white-space: nowrap; width: 40%; }
+.region-counts-status { display: block; font-size: 0.85rem; font-weight: 400; color: var(--medium-gray); }
+.region-count-bar { display: block; height: 6px; min-width: 2px; margin: 4px 0 0 auto; border-radius: 3px; background: #3c4c57; }
+
+/* Highlighted facilities on campaign maps (campaign-map.js, partials/campaign_map.html) */
+.map-legend { list-style: none; margin: 0.75rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; font-size: 0.9rem; color: var(--medium-gray); }
+.map-legend li { display: flex; align-items: center; gap: 0.4rem; }
+.map-legend__title { flex-basis: 100%; }
+.map-legend__dot { flex: none; display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,0.2); }
+.map-legend__dot--red { background: #f44a52; }
+.map-legend__dot--other { width: 7px; height: 7px; border: 0; background: #3c4c57; }
+.map-legend__dot--heat1 { background: #ef9a5e; }
+.map-legend__dot--heat2 { background: #e57536; }
+.map-legend__dot--heat3 { background: #cc521b; }
+.map-legend__dot--heat4 { background: #a33b10; }
+.map-legend__dot--heat5 { background: #6b2408; }
+.facility-popup__flag { margin: 4px 0; font-weight: 600; color: #c62828; }
+.facility-popup__heat { margin: 4px 0; }
+.highlight-list { padding: 1rem 0 3rem; }
+.highlight-list h2 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+.highlight-table .num { text-align: right; white-space: nowrap; }
+/* Bullets in region page articles (the global reset removes them) */
+.region-content .content ul { padding-left: 1.25rem; margin: 0 0 1.25rem; }
+.region-content .content ul li { list-style: disc; margin-bottom: 0.4rem; }

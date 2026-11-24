@@ -3,6 +3,7 @@ Template: region
 Slug: campaigns/senegal/tambacounda
 Lang: en
 Status: published
+geojson_file: sen_admin1.geojson
 facilities_geojson: sen_facilities.geojson
 Country: Senegal
 Country_slug: senegal

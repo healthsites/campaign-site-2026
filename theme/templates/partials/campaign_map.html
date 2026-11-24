@@ -1,0 +1,73 @@
+{# One map for a country page or one of its region pages, from the same two files:
+     page.geojson_file       the QGIS admin-1 boundaries, e.g. sen_admin1.geojson
+     page.facilities_geojson the healthsites.io API download, e.g. sen_facilities.geojson
+   Set map_region before including this (region pages) to zoom to that region and
+   show only its facilities. Set map_region_table to true to list facilities per region.
+   Region popups link to every published region page of the same country
+   (not to sub-pages such as Étape 2, which set parent_url).
+   Optional highlighted facilities, from front matter:
+     highlight_geojson   e.g. sen_saint_louis_emergency.geojson
+     highlight_style     red (default) or heat
+     highlight_label     one line in each popup and the legend
+     highlight_link      popup link, e.g. /campaigns/senegal/saint-louis/etape-2/ #}
+{% set hs = HEALTHSITES.get(page.facilities_geojson) if (HEALTHSITES and page.facilities_geojson) else None %}
+{% set hl = HIGHLIGHTS.get(page.highlight_geojson) if (HIGHLIGHTS and page.highlight_geojson) else None %}
+{% set hl_heat = hl and page.highlight_style == 'heat' %}
+{% set map_country_slug = page.country_slug|default(page.country|lower) %}
+{% set region_links = {} %}
+{% for p in pages if p.region and not p.parent_url and p.country_slug == map_country_slug and p.lang == page.lang %}
+    {% set _ = region_links.update({(p.adm1_name or p.region): {"url": SITEURL ~ "/" ~ p.url, "status": p.campaign_status or ""}}) %}
+{% endfor %}
+<section class="page-map">
+    <div class="container">
+        <div id="map" class="campaign-map" role="region" aria-label="Map of {{ map_region or page.country }}"
+             data-geojson="{{ SITEURL }}/theme/geojson/{{ page.geojson_file }}"
+             data-lat="{{ page.map_center_lat|default(14.5) }}"
+             data-lng="{{ page.map_center_lng|default(-14.5) }}"
+             data-zoom="{{ page.map_zoom|default(6) }}"
+             data-country="{{ page.country }}"
+             {%- if map_region %} data-region="{{ map_region }}"{% endif %}
+             {%- if region_links %} data-region-links='{{ region_links|tojson }}'{% endif %}
+             {%- if hs %} data-facilities="{{ SITEURL }}/theme/geojson/{{ page.facilities_geojson }}"{% endif %}
+             {%- if hl %} data-highlight="{{ SITEURL }}/theme/geojson/{{ page.highlight_geojson }}" data-highlight-style="{{ 'heat' if hl_heat else 'red' }}"
+             {%- if page.highlight_label %} data-highlight-label="{{ page.highlight_label }}"{% endif %}
+             {%- if hl_heat and hl.heat_range %} data-highlight-dates="{{ hl.heat_range }}"{% endif %}
+             {%- if page.highlight_link %} data-highlight-link="{{ SITEURL }}{{ page.highlight_link }}"{% endif %}{% endif %}></div>
+        {% if hl %}
+        <ul class="map-legend" aria-label="Map key">
+            {% if hl_heat %}
+            <li class="map-legend__title">Large dots: the {{ hl.metadata.total }} facilities, coloured by daytime high, {{ hl.heat_range }}, compared with all health facilities in Senegal.</li>
+            {% for label in ['Coolest 20%', 'Cooler', 'Middle', 'Hotter', 'Hottest 20%'] %}
+            <li><span class="map-legend__dot map-legend__dot--heat{{ loop.index }}"></span>{{ label }}</li>
+            {% endfor %}
+            {% else %}
+            <li><span class="map-legend__dot map-legend__dot--red"></span><span>{{ hl.metadata.total }} facilities: {{ page.highlight_label|default('highlighted')|lower }}{% if page.highlight_link %} · <a href="{{ SITEURL }}{{ page.highlight_link }}" data-umami-event="{{ page.country }} {{ map_region }} Map Legend Etape 2 Click">Étape&nbsp;2&nbsp;→</a>{% endif %}</span></li>
+            {% endif %}
+            <li><span class="map-legend__dot map-legend__dot--other"></span>Other health facilities on OpenStreetMap</li>
+        </ul>
+        {% endif %}
+        {% include "partials/facility_caption.html" %}
+
+        {% if map_region_table and hs and hs.by_region %}
+        {% set top = hs.by_region.values()|max %}
+        <div class="region-counts">
+            <h2 id="region-counts-title">Health facilities on OpenStreetMap, by region</h2>
+            <p class="heat-table-note">A low number usually means facilities are missing from the map, not from the region. From the healthsites.io API, {{ hs.updated_day }}.</p>
+            <div class="heat-table-wrap">
+                <table class="heat-table region-counts-table" aria-labelledby="region-counts-title">
+                    <thead><tr><th scope="col">Region</th><th scope="col" class="num">On OpenStreetMap</th></tr></thead>
+                    <tbody>
+                    {% for name, n in hs.by_region|dictsort(by='value', reverse=true) %}
+                        {% set link = region_links.get(name) %}
+                        <tr>
+                            <th scope="row">{% if link %}<a href="{{ link.url }}" data-umami-event="{{ page.country }} Region Table Click">{{ name }}</a>{% if link.status %}<span class="region-counts-status">{{ link.status }}</span>{% endif %}{% else %}{{ name }}{% endif %}</th>
+                            <td class="num">{{ "{:,}".format(n) }}<span class="region-count-bar" style="width:{{ (100 * n / top)|round(1) if top else 0 }}%" aria-hidden="true"></span></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>

@@ -28,6 +28,7 @@ report says so. Use --force to accept a large drop.
 import argparse
 import getpass
 import json
+import math
 import os
 import sys
 import time
@@ -56,6 +57,8 @@ ROOT = Path(__file__).resolve().parent.parent
 GEOJSON_DIR = ROOT / "theme" / "static" / "geojson"
 CACHE = ROOT / ".cache" / "healthsites"
 
+SNAP_METRES = 1000    # a facility just outside every region (coastline, river bank) joins
+                      # the nearest region if it is this close to its boundary
 KEEP_IF_BELOW = 0.9   # keep the current file if the new total is below 90% of it
 MIN_FOR_GUARD = 50    # ...unless the current file is this small
 RETRIES = 3
@@ -251,6 +254,34 @@ def region_of(lon, lat, regions):
     return ""
 
 
+def metres_to_ring(lon, lat, ring):
+    """Approximate distance in metres from a point to a polygon ring (fine below ~10 km)."""
+    kx = 111320 * math.cos(math.radians(lat))
+    ky = 110540
+    px, py = lon * kx, lat * ky
+    best = float("inf")
+    for (ax, ay, *_), (bx, by, *_) in zip(ring, ring[1:]):
+        ax, ay, bx, by = ax * kx, ay * ky, bx * kx, by * ky
+        dx, dy = bx - ax, by - ay
+        t = 0.0 if dx == dy == 0 else max(0.0, min(1.0, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy)))
+        best = min(best, math.hypot(px - ax - t * dx, py - ay - t * dy))
+    return best
+
+
+def nearest_region(lon, lat, regions, limit=SNAP_METRES):
+    """The region whose boundary is within `limit` metres of the point, or ''."""
+    pad = limit / 100000  # ~1 km in degrees, generous enough for the bbox test
+    best, name_best = limit, ""
+    for name, (x0, y0, x1, y1), polys in regions:
+        if not (x0 - pad <= lon <= x1 + pad and y0 - pad <= lat <= y1 + pad):
+            continue
+        for poly in polys:
+            d = metres_to_ring(lon, lat, poly[0])
+            if d <= best:
+                best, name_best = d, name
+    return name_best
+
+
 def type_group(t):
     t = (t or "").lower()
     for group, words in TYPE_GROUPS:
@@ -267,9 +298,12 @@ def build_geojson(iso3, records, downloaded, calls):
     by_region = {name: 0 for name, _, _ in regions}
     by_type = {g: 0 for g, _ in TYPE_GROUPS}
     by_type[OTHER] = 0
-    features, outside, unnamed = [], 0, 0
+    features, outside, unnamed, snapped = [], 0, 0, 0
     for r in sorted(records, key=lambda r: r["id"]):
         region = region_of(r["lon"], r["lat"], regions) if regions else ""
+        if not region and regions:
+            region = nearest_region(r["lon"], r["lat"], regions)
+            snapped += bool(region)
         if region:
             by_region[region] += 1
         elif regions:
@@ -288,6 +322,7 @@ def build_geojson(iso3, records, downloaded, calls):
         "by_type": by_type,
         "by_region": by_region,
         "outside_regions": outside,
+        "snapped_to_region": snapped,
         "unnamed": unnamed,
         "downloaded": downloaded,
         "api_calls": calls,
@@ -331,6 +366,8 @@ def save(iso3, records, downloaded, calls, force, report):
     else:
         change = f"+{len(new - old):,} / −{len(old - new):,}"
     notes = []
+    if meta["snapped_to_region"]:
+        notes.append(f"{meta['snapped_to_region']:,} just outside a boundary, placed in the nearest region")
     if meta["outside_regions"]:
         notes.append(f"{meta['outside_regions']:,} outside every region boundary")
     report.append(f"| {label} | {meta['total']:,} | {change} | {'; '.join(notes)} |")

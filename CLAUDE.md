@@ -78,6 +78,17 @@ Two changes are required:
 1. Create `content/campaigns/{country}/{region}.md` (and translation variants)
 2. Manually add the region card to `country.html` — region cards are hardcoded per-country, not auto-generated from content files
 
+### Region maps
+
+A region page reuses its country's two map files. Add to its front matter:
+
+```
+geojson_file: sen_admin1.geojson          # same boundary file as the country page
+facilities_geojson: sen_facilities.geojson # same healthsites.io API download
+```
+
+`partials/campaign_map.html` then zooms the map to the region, fades the others and shows only that region's facilities. `Region:` must match `adm1_name` in the boundary file exactly (accents included); if it differs, add `adm1_name: <exact name>`. The country map's region popups link to every published region page automatically.
+
 ### Templates
 
 Located in `theme/templates/` (Jinja2):

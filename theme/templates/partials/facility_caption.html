@@ -1,7 +1,12 @@
 {# Facility count and API ask under a campaign map.
    Needs `hs`: an entry of HEALTHSITES (plugins/healthsites_facilities), or none.
+   With `map_region` set (region pages), the count is for that region only.
    The count comes from the committed map file, so it shows without JavaScript. #}
 {% if hs %}
-<p class="map-caption map-caption--facilities"><strong>{{ "{:,}".format(hs.total) }}</strong> health facilities on OpenStreetMap, including pharmacies, served by the healthsites.io API. Updated {{ hs.updated_day }}.</p>
-<p class="map-caption map-caption--api">Use this data in your own tools: <a href="https://github.com/healthsites/healthsites/wiki/API" target="_blank" rel="noopener" data-umami-event="{{ page.country }} Map API Key Click">get a free API key</a> for up to 50 calls a day. <a href="https://healthsites.io/contact" data-umami-event="{{ page.country }} Map API Subscribe Click">Need more than 50 calls a day? Ask about a subscription →</a></p>
+{% set hs_n = hs.by_region.get(map_region) if map_region else hs.total %}
+{% set hs_event = page.country ~ (' ' ~ map_region if map_region else '') %}
+{% if hs_n is not none %}
+<p class="map-caption map-caption--facilities"><strong>{{ "{:,}".format(hs_n) }}</strong> health facilities{% if map_region %} in {{ map_region }}{% endif %} on OpenStreetMap, including pharmacies, served by the healthsites.io API. Updated {{ hs.updated_day }}.</p>
+{% endif %}
+<p class="map-caption map-caption--api">Use this data in your own tools: <a href="https://github.com/healthsites/healthsites/wiki/API" target="_blank" rel="noopener" data-umami-event="{{ hs_event }} Map API Key Click">get a free API key</a> for up to 50 calls a day. <a href="https://healthsites.io/contact" data-umami-event="{{ hs_event }} Map API Subscribe Click">Need more than 50 calls a day? Ask about a subscription →</a></p>
 {% endif %}

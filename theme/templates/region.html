@@ -25,7 +25,11 @@
                 {{ page.country }}
             </a>
             <span class="breadcrumb-sep">→</span>
-            <span>{{ page.region }}</span>
+            {% if page.parent_url %}
+            <a href="{{ SITEURL }}{{ page.parent_url }}">{{ page.parent_title }}</a>
+            <span class="breadcrumb-sep">→</span>
+            {% endif %}
+            <span>{{ page.breadcrumb_title or page.region }}</span>
         </nav>
 
         <h1>{{ page.title }}</h1>
@@ -80,17 +84,41 @@
 </section>
 {% endif %}
 
-{# ── LEAFLET MAP (optional, for campaigns with geojson) ─── #}
-{% if page.geojson_file %}
-<section class="page-map">
-    <div class="container">
-        <div id="map" class="campaign-map" role="region" aria-label="Map of {{ page.region }}"
-             data-geojson="{{ SITEURL }}/theme/geojson/{{ page.geojson_file }}"
-             data-lat="{{ page.map_center_lat|default(14.5) }}"
-             data-lng="{{ page.map_center_lng|default(-14.5) }}"
-             data-zoom="{{ page.map_zoom|default(6) }}"></div>
+{# ── HIGHLIGHT STAT BAND (e.g. Saint-Louis Étape 2), from scripts/saint_louis_emergency.py ─── #}
+{% set hl = HIGHLIGHTS.get(page.highlight_geojson) if (HIGHLIGHTS and page.highlight_geojson) else None %}
+{% if page.highlight_stats and hl and not page.facilities_validated %}
+{% set hm = hl.metadata %}
+<section class="results-band">
+    <div class="cstat-inner">
+        <div class="cstat-cell">
+            <div class="cstat-number cstat-number--white">{{ hm.total }}</div>
+            <div class="cstat-label cstat-label--white">{{ page.highlight_label|default("highlighted facilities") }}</div>
+        </div>
+        {% if hm.hottest_20 is not none and hl.heat_range %}
+        <div class="cstat-cell cstat-cell--divider-white">
+            <div class="cstat-number cstat-number--red">{{ hm.hottest_20 }}</div>
+            <div class="cstat-label cstat-label--white">in the hottest 20% of Senegal's health facilities, {{ hl.heat_range }}</div>
+        </div>
+        {% endif %}
+        {% if hm.no_doctor_2022 is not none %}
+        <div class="cstat-cell cstat-cell--divider-white">
+            <div class="cstat-number cstat-number--white">{{ hm.no_doctor_2022 }}</div>
+            <div class="cstat-label cstat-label--white">with no doctor recorded in 2022</div>
+        </div>
+        {% endif %}
+        <div class="cstat-cell cstat-cell--divider-white">
+            <div class="cstat-number cstat-number--white">{{ page.phase2_target|default(hm.total) }}</div>
+            <div class="cstat-label cstat-label--white">still to confirm with the health system</div>
+        </div>
     </div>
 </section>
+{% endif %}
+
+{# ── LEAFLET MAP (optional, for campaigns with geojson) ─── #}
+{% if page.geojson_file %}
+{# Same boundary and facility files as the country page, zoomed to this region #}
+{% set map_region = page.adm1_name or page.region %}
+{% include "partials/campaign_map.html" %}
 {% elif page.map_image %}
 <section class="page-map">
     <div class="container">
@@ -140,9 +168,10 @@
                         </div>
                         {% endif %}
                     </div>
-                    <a href="{{ page.phase2_cta_url if page.phase2_cta_url else 'https://healthsites.io/contact' }}"
+                    {% set phase2_url = page.phase2_cta_url if page.phase2_cta_url else 'https://healthsites.io/contact' %}
+                    <a href="{{ phase2_url if phase2_url.startswith('http') else SITEURL ~ phase2_url }}"
                        class="btn btn-primary btn-full"
-                       target="_blank" rel="noopener"
+                       {% if phase2_url.startswith('http') %}target="_blank" rel="noopener"{% endif %}
                        data-umami-event="{{ page.region }} Phase 2 Click">
                         {{ page.phase2_cta_label if page.phase2_cta_label else 'Support Phase 2' }}
                     </a>
@@ -229,6 +258,31 @@
         </div>
     </div>
 </section>
+
+{# ── HIGHLIGHT LIST (e.g. the 35 on the Étape 2 page): a text version of the map ─── #}
+{% if page.highlight_table and hl %}
+<section class="highlight-list">
+    <div class="container">
+        <h2 id="highlight-list-title">The {{ hl.metadata.total }} facilities, hottest first</h2>
+        {% if hl.heat_range %}<p class="heat-table-note">Daytime high: mean of the daily maximum air temperature, {{ hl.heat_range }}, downscaled by HeatReady. "Hotter than" compares it with every mapped health facility in Senegal.</p>{% endif %}
+        <div class="heat-table-wrap">
+            <table class="heat-table highlight-table" aria-labelledby="highlight-list-title">
+                <thead><tr><th scope="col">Facility</th><th scope="col" class="num">Daytime high</th><th scope="col" class="num">Hotter than</th></tr></thead>
+                <tbody>
+                {% for f in hl.rows %}
+                    <tr>
+                        <th scope="row"><a href="https://healthsites.io/map#!/locality/{{ f.id }}" target="_blank" rel="noopener" data-umami-event="{{ page.region }} List Facility Click">{{ f.n or 'Unnamed facility' }}</a>{% if f.r and f.r != (page.adm1_name or page.region) %}<span class="region-counts-status">Inside the {{ f.r }} boundary</span>{% endif %}</th>
+                        <td class="num">{% if f.tmax is not none %}{{ "%.1f"|format(f.tmax) }} °C{% else %}–{% endif %}</td>
+                        <td class="num">{% if f.p is not none %}{{ f.p }}%{% else %}–{% endif %}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <p class="map-caption">Source: {{ hl.metadata.source }}. Names, types and locations: healthsites.io / © OpenStreetMap contributors, ODbL 1.0.</p>
+    </div>
+</section>
+{% endif %}
 
 {% endblock %}
 
